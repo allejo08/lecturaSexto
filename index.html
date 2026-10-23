@@ -1,0 +1,1714 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LecturaPro - El Árbol del Emprendimiento (Ley 1014)</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Lightweight Native Confetti Script (Fixes ReferenceError) -->
+    <script>
+        function confetti(options) {
+            const canvas = document.getElementById('confetti-canvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            const particleCount = (options && options.particleCount) || 80;
+            const particles = [];
+            const colors = ['#10b981', '#f59e0b', '#ec4899', '#38bdf8', '#8b5cf6'];
+
+            for (let i = 0; i < particleCount; i++) {
+                particles.push({
+                    x: canvas.width / 2 + (Math.random() - 0.5) * 200,
+                    y: canvas.height * ((options && options.origin && options.origin.y) || 0.6),
+                    vx: (Math.random() - 0.5) * 12,
+                    vy: Math.random() * -12 - 4,
+                    size: Math.random() * 8 + 4,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    rotation: Math.random() * 360,
+                    rSpeed: (Math.random() - 0.5) * 10
+                });
+            }
+
+            let opacity = 1;
+            function render() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach(p => {
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    p.vy += 0.3; // gravity
+                    p.rotation += p.rSpeed;
+
+                    ctx.save();
+                    ctx.globalAlpha = opacity;
+                    ctx.translate(p.x, p.y);
+                    ctx.rotate((p.rotation * Math.PI) / 180);
+                    ctx.fillStyle = p.color;
+                    ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
+                    ctx.restore();
+                });
+
+                opacity -= 0.012;
+                if (opacity > 0) {
+                    requestAnimationFrame(render);
+                } else {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                }
+            }
+            render();
+        }
+    </script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        darkbg: '#180a2e',
+                        cardbg: '#251343',
+                        cardborder: '#3c2266',
+                        mint: {
+                            400: '#34d399',
+                            500: '#10b981',
+                            600: '#059669',
+                        },
+                        amber: {
+                            400: '#fbbf24',
+                            500: '#f59e0b',
+                        },
+                        magenta: {
+                            500: '#ec4899',
+                            600: '#db2777',
+                        },
+                        cyan: {
+                            400: '#38bdf8',
+                            500: '#06b6d4',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        kids: ['Fredoka', 'sans-serif'],
+                        dyslexic: ['Comic Sans MS', 'Arial', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #180a2e;
+            color: #f3f4f6;
+            user-select: none;
+        }
+
+        /* 3D Tactile Buttons */
+        .btn-3d {
+            transition: all 0.1s ease;
+            box-shadow: 0 5px 0 var(--btn-shadow-color, rgba(0,0,0,0.35));
+        }
+        .btn-3d:active {
+            transform: translateY(4px);
+            box-shadow: 0 1px 0 var(--btn-shadow-color, rgba(0,0,0,0.35));
+        }
+        .btn-mint {
+            background-color: #10b981;
+            --btn-shadow-color: #047857;
+            color: white;
+        }
+        .btn-mint:hover { background-color: #34d399; }
+
+        .btn-amber {
+            background-color: #f59e0b;
+            --btn-shadow-color: #b45309;
+            color: white;
+        }
+        .btn-amber:hover { background-color: #fbbf24; }
+
+        .btn-magenta {
+            background-color: #ec4899;
+            --btn-shadow-color: #be185d;
+            color: white;
+        }
+        .btn-magenta:hover { background-color: #f472b6; }
+
+        .btn-purple {
+            background-color: #7c3aed;
+            --btn-shadow-color: #5b21b6;
+            color: white;
+        }
+        .btn-purple:hover { background-color: #8b5cf6; }
+
+        /* Resaltado Karaoke / RSVP */
+        .word-highlight {
+            background-color: #f59e0b;
+            color: #180a2e;
+            border-radius: 0.375rem;
+            padding: 0.1rem 0.3rem;
+            font-weight: 700;
+            box-shadow: 0 0 12px rgba(245, 158, 11, 0.6);
+            transition: all 0.15s ease;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #180a2e;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #3c2266;
+            border-radius: 6px;
+        }
+
+        /* Animations */
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(1deg); }
+        }
+        .animate-float {
+            animation: floatSlow 4s ease-in-out infinite;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 0.4; filter: drop-shadow(0 0 5px #10b981); }
+            50% { opacity: 1; filter: drop-shadow(0 0 15px #10b981); }
+        }
+        .tree-glow {
+            animation: pulseGlow 2.5s infinite;
+        }
+
+        .dyslexic-font {
+            font-family: 'Comic Sans MS', 'Arial', sans-serif !important;
+            letter-spacing: 0.05em;
+            word-spacing: 0.1em;
+            line-height: 1.7;
+        }
+    </style>
+</head>
+<body class="min-h-full flex flex-col justify-between font-sans overflow-x-hidden">
+
+    <!-- Canvas para Confeti Global -->
+    <canvas id="confetti-canvas" class="fixed inset-0 pointer-events-none z-50"></canvas>
+
+    <!-- HEADER / NAVBAR -->
+    <header class="sticky top-0 z-40 bg-cardbg/90 backdrop-blur-md border-b border-cardborder shadow-lg">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+            <!-- Logo -->
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="app.navigateTo('home')">
+                <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-mint-500 to-cyan-400 flex items-center justify-center text-darkbg shadow-lg font-bold text-xl">
+                    <i class="fa-solid fa-tree"></i>
+                </div>
+                <div>
+                    <h1 class="font-kids text-2xl font-bold tracking-wide bg-gradient-to-r from-mint-400 via-amber-400 to-magenta-500 bg-clip-text text-transparent">LecturaPro</h1>
+                    <p class="text-[10px] text-purple-300 font-semibold tracking-wider uppercase">Árbol del Emprendimiento • Ley 1014</p>
+                </div>
+            </div>
+
+            <!-- Stats Rápidas -->
+            <div class="hidden md:flex items-center space-x-5 bg-darkbg/60 px-4 py-1.5 rounded-2xl border border-cardborder text-xs font-bold">
+                <div class="flex items-center space-x-1.5 text-amber-400" title="Máximas Palabras Por Minuto alcanzadas">
+                    <i class="fa-solid fa-bolt text-sm"></i>
+                    <span class="text-slate-400 font-normal">Máx PPM:</span>
+                    <span id="nav-max-ppm">0</span>
+                </div>
+                <div class="h-4 w-px bg-cardborder"></div>
+                <div class="flex items-center space-x-1.5 text-mint-400" title="Puntos Acumulados">
+                    <i class="fa-solid fa-star text-sm"></i>
+                    <span class="text-slate-400 font-normal">Puntos:</span>
+                    <span id="nav-points">0</span>
+                </div>
+                <div class="h-4 w-px bg-cardborder"></div>
+                <div class="flex items-center space-x-1.5 text-magenta-500" title="Cartas Pokédex Desbloqueadas">
+                    <i class="fa-solid fa-book-bookmark text-sm"></i>
+                    <span class="text-slate-400 font-normal">Pokédex:</span>
+                    <span id="nav-pokedex-count">0/5</span>
+                </div>
+            </div>
+
+            <!-- Botones Accesibilidad y Modos -->
+            <div class="flex items-center space-x-2">
+                <button onclick="app.navigateTo('trainer')" class="px-3 h-9 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 text-amber-400 border border-amber-500/40 font-kids text-xs font-bold flex items-center space-x-1.5 transition-all" title="Entrenador RSVP con ORP">
+                    <i class="fa-solid fa-bolt text-amber-400"></i>
+                    <span class="hidden sm:inline">Entrenador ORP</span>
+                </button>
+                <button id="btn-sound" onclick="app.toggleSound()" class="w-9 h-9 rounded-xl bg-cardborder hover:bg-purple-900 text-slate-200 flex items-center justify-center transition-all" title="Sonido On/Off">
+                    <i class="fa-solid fa-volume-high text-sm"></i>
+                </button>
+                <button id="btn-font" onclick="app.toggleFont()" class="px-2.5 h-9 rounded-xl bg-cardborder hover:bg-purple-900 text-xs font-bold text-slate-200 flex items-center space-x-1 transition-all" title="Fuente Dislexia">
+                    <i class="fa-solid fa-font"></i>
+                    <span class="hidden sm:inline">Dislexia</span>
+                </button>
+                <button onclick="app.navigateTo('pokedex')" class="px-3 h-9 rounded-xl bg-gradient-to-r from-magenta-500 to-purple-600 font-kids text-xs font-bold text-white shadow-md hover:brightness-110 flex items-center space-x-1.5 transition-all">
+                    <i class="fa-solid fa-box-archive"></i>
+                    <span id="header-pokedex-text">Pokédex (0/5)</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTAINER -->
+    <main class="flex-grow max-w-5xl w-full mx-auto px-4 py-6 flex flex-col justify-center">
+
+        <!-- ========================================== -->
+        <!-- VISTA 1: HOME / DASHBOARD & NIVELES        -->
+        <!-- ========================================== -->
+        <section id="view-home" class="space-y-8">
+            <!-- Hero Banner -->
+            <div class="relative overflow-hidden rounded-3xl bg-gradient-to-r from-cardbg via-purple-900/60 to-cardbg border-2 border-cardborder p-6 sm:p-8 shadow-2xl">
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+                    <div class="md:col-span-7 space-y-4">
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-extrabold bg-mint-500/20 border border-mint-500/40 text-mint-400 uppercase tracking-wider">
+                            <i class="fa-solid fa-graduation-cap mr-1.5"></i> Comprensión & Velocidad Lectora
+                        </span>
+                        <h2 class="text-3xl sm:text-4xl font-extrabold font-kids leading-tight text-white">
+                            Aprende la <span class="text-amber-400">Ley 1014</span> con el <span class="text-mint-400">Árbol del Emprendimiento</span>
+                        </h2>
+                        <p class="text-slate-300 text-sm leading-relaxed">
+                            No basta con leer rápido: debes comprender la estructura visual, dominar el léxico clave y superar los ejercicios para completar tu Pokédex.
+                        </p>
+                        <div class="pt-2 flex flex-wrap gap-3">
+                            <button onclick="app.startLevel(1)" class="px-6 py-3.5 rounded-2xl btn-3d btn-mint font-kids font-bold text-base flex items-center space-x-2">
+                                <i class="fa-solid fa-play"></i>
+                                <span>Empezar Nivel 1</span>
+                            </button>
+                            <button onclick="app.navigateTo('pokedex')" class="px-5 py-3.5 rounded-2xl bg-cardborder hover:bg-purple-800/60 text-white font-bold text-sm transition-all flex items-center space-x-2">
+                                <i class="fa-solid fa-layer-group text-magenta-500"></i>
+                                <span id="btn-hero-pokedex">Ver Pokédex (0/5)</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Árbol Ilustrado Interactivo Preview -->
+                    <div class="md:col-span-5 flex justify-center items-center">
+                        <div class="relative w-64 h-64 bg-darkbg/80 rounded-3xl p-4 border border-cardborder flex items-center justify-center animate-float shadow-inner">
+                            <svg id="home-tree-svg" class="w-full h-full" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <!-- Suelo -->
+                                <path d="M 20 160 Q 100 145 180 160 L 180 185 Q 100 195 20 185 Z" fill="#78350f" class="transition-all hover:opacity-80 cursor-pointer" onclick="app.showTreeTip('suelo')"/>
+                                <!-- Semilla -->
+                                <circle cx="100" cy="165" r="10" fill="#f59e0b" class="cursor-pointer" onclick="app.showTreeTip('semilla')"/>
+                                <!-- Tronco -->
+                                <path d="M 85 160 C 85 120 70 100 65 80 L 135 80 C 130 100 115 120 115 160 Z" fill="#a16207" class="cursor-pointer" onclick="app.showTreeTip('tronco')"/>
+                                <!-- Ramas -->
+                                <path d="M 65 80 L 40 50 M 135 80 L 160 50 M 100 80 L 100 45" stroke="#843d10" stroke-width="8" stroke-linecap="round"/>
+                                <!-- Frutos / Copa -->
+                                <circle cx="60" cy="50" r="30" fill="#10b981" opacity="0.85" class="cursor-pointer" onclick="app.showTreeTip('frutos')"/>
+                                <circle cx="140" cy="50" r="30" fill="#10b981" opacity="0.85" class="cursor-pointer" onclick="app.showTreeTip('frutos')"/>
+                                <circle cx="100" cy="35" r="35" fill="#34d399" opacity="0.9" class="cursor-pointer" onclick="app.showTreeTip('frutos')"/>
+                                <!-- Manzanas decorativas -->
+                                <circle cx="65" cy="45" r="6" fill="#ec4899"/>
+                                <circle cx="135" cy="55" r="6" fill="#f59e0b"/>
+                                <circle cx="100" cy="30" r="6" fill="#38bdf8"/>
+                            </svg>
+                            <span class="absolute bottom-2 text-[10px] bg-darkbg/90 px-2 py-0.5 rounded-full text-slate-300 border border-cardborder">¡Toca las partes del árbol!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Grid de Niveles -->
+            <div class="space-y-4">
+                <div class="flex items-center justify-between">
+                    <h3 class="text-xl font-bold font-kids text-white flex items-center gap-2">
+                        <i class="fa-solid fa-map-location-dot text-mint-400"></i> Ruta de Aprendizaje
+                    </h3>
+                    <span class="text-xs text-slate-400">Avanza en orden para desbloquear</span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="levels-container">
+                    <!-- Dinámico vía JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- VISTA 2: ETAPA 1 - ANTES DE LEER           -->
+        <!-- ========================================== -->
+        <section id="view-before-read" class="hidden space-y-6">
+            <!-- Header de Etapa -->
+            <div class="bg-cardbg rounded-2xl p-4 border border-cardborder flex items-center justify-between">
+                <button onclick="app.navigateTo('home')" class="text-slate-400 hover:text-white font-semibold text-sm flex items-center gap-2">
+                    <i class="fa-solid fa-arrow-left"></i> Regresar
+                </button>
+                <div class="flex items-center space-x-2">
+                    <span class="px-3 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-400 border border-amber-500/30 uppercase">
+                        Etapa 1 de 3: Preparación
+                    </span>
+                    <span id="before-level-title" class="text-xs text-purple-300 font-bold">Nivel 1</span>
+                </div>
+            </div>
+
+            <!-- Contenido Interactivo de Activación -->
+            <div class="bg-cardbg rounded-3xl p-6 sm:p-8 border border-cardborder space-y-8 shadow-xl">
+                <!-- 1. Pregunta de Anclaje de Título & Metáfora -->
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-8 h-8 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold">1</div>
+                        <h3 class="text-lg font-bold text-white font-kids">Anclaje Estratégico de Título y Metáfora</h3>
+                    </div>
+                    <p class="text-slate-300 text-sm">
+                        Para comprender la lectura, debes memorizar el título exacto y el modelo con el que abordaremos la norma.
+                    </p>
+                    <div id="before-title-question" class="bg-darkbg/70 p-5 rounded-2xl border border-cardborder space-y-4">
+                        <!-- Creado en JS -->
+                    </div>
+                </div>
+
+                <hr class="border-cardborder">
+
+                <!-- 2. Tarjetas de Léxico Clave -->
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-8 h-8 rounded-xl bg-mint-500/20 text-mint-400 flex items-center justify-center font-bold">2</div>
+                        <h3 class="text-lg font-bold text-white font-kids">Vocabulario Clave del Texto</h3>
+                    </div>
+                    <p class="text-slate-300 text-sm">
+                        Haz clic en cada tarjeta para descubrir su significado antes de leer:
+                    </p>
+                    <div id="before-lexicon-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                        <!-- Creado en JS -->
+                    </div>
+                </div>
+
+                <div class="pt-4 flex justify-end">
+                    <button id="btn-start-reading" onclick="app.proceedToReading()" disabled class="px-8 py-4 rounded-2xl btn-3d btn-mint opacity-50 cursor-not-allowed font-kids font-bold text-base flex items-center space-x-2">
+                        <span>Paso 2: Iniciar Lectura</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- VISTA 3: ETAPA 2 - DURANTE LA LECTURA      -->
+        <!-- ========================================== -->
+        <section id="view-reading" class="hidden space-y-6">
+            <!-- Controls Bar -->
+            <div class="bg-cardbg rounded-2xl p-4 border border-cardborder flex flex-wrap items-center justify-between gap-4">
+                <!-- Modo Toggle -->
+                <div class="bg-darkbg p-1 rounded-xl flex text-xs font-bold border border-cardborder">
+                    <button id="mode-btn-free" onclick="app.setReaderMode('free')" class="px-3 py-2 rounded-lg bg-mint-500 text-white transition-all">
+                        <i class="fa-solid fa-clock mr-1"></i> Libre con Cronómetro
+                    </button>
+                    <button id="mode-btn-rsvp" onclick="app.setReaderMode('rsvp')" class="px-3 py-2 rounded-lg text-slate-400 hover:text-white transition-all">
+                        <i class="fa-solid fa-forward mr-1"></i> Guiado (Karaoke RSVP)
+                    </button>
+                </div>
+
+                <!-- WPM Selector for RSVP -->
+                <div id="wpm-control-box" class="hidden flex items-center space-x-3 text-xs">
+                    <span class="text-slate-300 font-bold">Velocidad:</span>
+                    <input type="range" id="wpm-slider" min="40" max="200" step="10" value="80" oninput="app.updateWpmLabel(this.value)" class="w-28 accent-mint-500">
+                    <span id="wpm-label" class="font-extrabold text-amber-400 bg-darkbg px-2 py-1 rounded-lg border border-cardborder">80 PPM</span>
+                </div>
+
+                <!-- Font Size Buttons -->
+                <div class="flex items-center bg-darkbg rounded-xl p-1 text-xs border border-cardborder">
+                    <button onclick="app.adjustFontSize(-2)" class="w-8 h-8 rounded-lg hover:bg-cardborder font-bold">A-</button>
+                    <button onclick="app.adjustFontSize(2)" class="w-8 h-8 rounded-lg hover:bg-cardborder font-bold">A+</button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                <!-- Texto principal de lectura -->
+                <div class="lg:col-span-8 bg-cardbg rounded-3xl p-6 sm:p-8 border border-cardborder space-y-6 shadow-xl flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 id="reading-text-title" class="font-kids text-xl font-bold text-amber-400">Título del Texto</h3>
+                            <span id="reading-word-count-badge" class="text-xs bg-darkbg px-3 py-1 rounded-full text-slate-300 border border-cardborder">0 palabras</span>
+                        </div>
+
+                        <!-- Area de texto libre -->
+                        <div id="reader-free-box" class="text-slate-100 text-lg leading-relaxed space-y-4 transition-all">
+                            <!-- Contenido inyectado JS -->
+                        </div>
+
+                        <!-- Area RSVP Karaoke -->
+                        <div id="reader-rsvp-box" class="hidden min-h-[180px] bg-darkbg rounded-2xl p-6 border border-cardborder flex flex-col items-center justify-center text-center space-y-4">
+                            <span id="rsvp-word-display" class="text-3xl sm:text-4xl font-extrabold text-amber-400 font-kids tracking-wide">
+                                ¡Listos!
+                            </span>
+                            <p id="rsvp-status-subtext" class="text-xs text-slate-400">Las palabras cambiarán al ritmo configurado</p>
+                        </div>
+                    </div>
+
+                    <!-- Botón de inicio/finalización de lectura -->
+                    <div class="pt-6 border-t border-cardborder flex items-center justify-between">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 rounded-2xl bg-darkbg border border-cardborder flex items-center justify-center text-mint-400 font-bold">
+                                <i class="fa-solid fa-stopwatch text-lg"></i>
+                            </div>
+                            <div>
+                                <span class="text-[10px] text-slate-400 uppercase font-bold block">Tiempo Transcurrido</span>
+                                <span id="reading-timer-display" class="font-mono text-xl font-bold text-white">00:00</span>
+                            </div>
+                        </div>
+
+                        <button id="btn-reading-action" onclick="app.toggleReadingProcess()" class="px-8 py-4 rounded-2xl btn-3d btn-mint font-kids font-bold text-base flex items-center space-x-2">
+                            <i class="fa-solid fa-play"></i>
+                            <span id="reading-btn-text">Iniciar Lectura</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Ilustración Lateral Árbol Interactivo -->
+                <div class="lg:col-span-4 bg-cardbg rounded-3xl p-6 border border-cardborder flex flex-col items-center justify-center text-center space-y-4">
+                    <h4 class="font-kids text-sm font-bold text-purple-300 uppercase tracking-wider">Visualizador del Árbol</h4>
+                    <div class="w-full h-64 bg-darkbg/60 rounded-2xl p-4 border border-cardborder flex items-center justify-center">
+                        <svg id="reading-tree-svg" class="w-full h-full" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                            <!-- SVG renderizado dinámicamente -->
+                        </svg>
+                    </div>
+                    <p id="reading-tree-status" class="text-xs text-slate-300 font-medium">
+                        El árbol se iluminará según la sección evaluada.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- VISTA 4: ETAPA 3 - EVALUACIÓN MULTIDIMENSIONAL -->
+        <!-- ========================================== -->
+        <section id="view-quiz" class="hidden space-y-6">
+            <!-- Header de Evaluación -->
+            <div class="bg-cardbg rounded-2xl p-4 border border-cardborder flex items-center justify-between">
+                <span class="px-3 py-1 rounded-full text-xs font-bold bg-magenta-500/20 text-magenta-500 border border-magenta-500/30 uppercase">
+                    Etapa 3 de 3: Evaluación Cognitiva
+                </span>
+                <span id="quiz-timer-result" class="text-xs font-mono font-bold text-amber-400">PPM Estimado: Calculando...</span>
+            </div>
+
+            <!-- Quiz Card -->
+            <div class="bg-cardbg rounded-3xl p-6 sm:p-8 border border-cardborder space-y-6 shadow-xl">
+                <div>
+                    <h3 class="text-2xl font-bold font-kids text-white">Comprueba tu Comprensión y Léxico</h3>
+                    <p class="text-slate-300 text-sm">Responde las preguntas estructuradas por dimensiones académicas:</p>
+                </div>
+
+                <form id="quiz-form" class="space-y-6">
+                    <!-- Inyectado por JS -->
+                </form>
+
+                <div class="pt-4 border-t border-cardborder flex justify-end">
+                    <button onclick="app.submitQuiz()" class="px-8 py-4 rounded-2xl btn-3d btn-magenta font-kids font-bold text-base flex items-center space-x-2">
+                        <i class="fa-solid fa-check-double"></i>
+                        <span>Evaluar Mis Respuestas</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- VISTA 5: RESULTADOS Y CELEBRACIÓN          -->
+        <!-- ========================================== -->
+        <section id="view-results" class="hidden space-y-6">
+            <div id="results-card-container" class="bg-cardbg rounded-3xl p-6 sm:p-10 border-2 border-cardborder space-y-8 text-center shadow-2xl relative overflow-hidden">
+                <!-- Modal Banner -->
+                <div id="results-banner-box" class="space-y-3">
+                    <!-- Dinámico -->
+                </div>
+
+                <!-- Stats Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <div class="bg-darkbg p-4 rounded-2xl border border-cardborder space-y-1">
+                        <span class="text-xs text-slate-400 font-bold uppercase">Velocidad</span>
+                        <p id="res-wpm" class="text-2xl sm:text-3xl font-extrabold text-amber-400 font-kids">0 PPM</p>
+                        <span id="res-wpm-category" class="text-xs font-bold text-amber-300 block">Nivel: --</span>
+                    </div>
+                    <div class="bg-darkbg p-4 rounded-2xl border border-cardborder space-y-1">
+                        <span class="text-xs text-slate-400 font-bold uppercase">Comprensión</span>
+                        <p id="res-accuracy" class="text-2xl sm:text-3xl font-extrabold text-mint-400 font-kids">0%</p>
+                        <span id="res-accuracy-detail" class="text-xs text-slate-400 block">0/4 Correctas</span>
+                    </div>
+                    <div class="bg-darkbg p-4 rounded-2xl border border-cardborder space-y-1">
+                        <span class="text-xs text-slate-400 font-bold uppercase">Tiempo Total</span>
+                        <p id="res-time" class="text-2xl sm:text-3xl font-extrabold text-cyan-400 font-kids">0s</p>
+                        <span id="res-time-detail" class="text-xs text-slate-400 block">Tiempo real</span>
+                    </div>
+                </div>
+
+                <!-- Caja de Diagnóstico Personalizado -->
+                <div class="bg-darkbg/80 p-5 rounded-2xl border border-cardborder text-left space-y-2">
+                    <h4 class="text-xs font-bold text-amber-400 uppercase tracking-widest flex items-center gap-1.5">
+                        <i class="fa-solid fa-square-poll-vertical"></i> Diagnóstico & Oportunidades de Mejora
+                    </h4>
+                    <p id="res-feedback-text" class="text-xs text-slate-200 leading-relaxed">
+                        <!-- Inyectado por JS -->
+                    </p>
+                </div>
+
+                <!-- Banner de Graduación Total -->
+                <div id="res-graduation-box" class="hidden bg-gradient-to-r from-purple-900/90 via-cardbg to-purple-900/90 p-6 rounded-2xl border-2 border-amber-400/80 space-y-4">
+                    <div class="text-4xl animate-bounce">👑 🌳 🎓</div>
+                    <h3 class="font-kids text-2xl font-bold text-amber-300">¡FELICITACIONES! GRADUADO EN LEY 1014</h3>
+                    <p class="text-xs text-slate-200 leading-relaxed max-w-xl mx-auto">
+                        Has demostrado un dominio integral de la estructura de <strong>El Árbol del Emprendimiento</strong>, integrando el suelo cultural, la semilla innovadora, el tronco estructurado, las ramas creativas y la cosecha del plan de negocios.
+                    </p>
+                    <button onclick="app.generateShareableBadge()" class="px-6 py-3 rounded-xl bg-gradient-to-r from-amber-400 to-amber-500 text-darkbg font-kids font-bold text-xs shadow-lg hover:brightness-110 transition-all flex items-center gap-2 mx-auto">
+                        <i class="fa-solid fa-award text-base"></i>
+                        <span>Generar Ficha Digital de Logro</span>
+                    </button>
+                </div>
+
+                <!-- Ruleta de Recompensas Trigger -->
+                <div id="res-wheel-trigger" class="hidden pt-2">
+                    <button onclick="app.openWheelModal()" class="px-8 py-4 rounded-2xl btn-3d btn-amber font-kids font-bold text-base flex items-center space-x-2 mx-auto">
+                        <i class="fa-solid fa-arrows-spin"></i>
+                        <span>¡Girar Ruleta de Premios!</span>
+                    </button>
+                </div>
+
+                <!-- Botones de Navegación tras completar nivel -->
+                <div class="pt-4 flex flex-wrap justify-center gap-4">
+                    <button onclick="app.navigateTo('home')" class="px-6 py-3.5 rounded-2xl bg-cardborder hover:bg-purple-800 text-white font-bold text-sm">
+                        <i class="fa-solid fa-house mr-1"></i> Ir al Inicio
+                    </button>
+                    <button id="btn-retry-level" onclick="app.retryCurrentLevel()" class="px-6 py-3.5 rounded-2xl btn-3d btn-purple font-bold text-sm">
+                        <i class="fa-solid fa-rotate-right mr-1"></i> Reintentar Nivel
+                    </button>
+                    <button id="btn-next-level" onclick="app.nextLevelNav()" class="px-6 py-3.5 rounded-2xl btn-3d btn-mint font-bold text-sm flex items-center gap-1.5">
+                        <span>Siguiente Nivel</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- VISTA 6: POKÉDEX DE EMPRENDIMIENTO         -->
+        <!-- ========================================== -->
+        <section id="view-pokedex" class="hidden space-y-6">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h3 class="text-2xl font-bold font-kids text-white flex items-center gap-2">
+                        <i class="fa-solid fa-box-archive text-magenta-500"></i> Pokédex de Emprendimiento
+                    </h3>
+                    <p class="text-xs text-slate-400">Colecciona los 5 componentes del Árbol de la Ley 1014</p>
+                </div>
+                <button onclick="app.navigateTo('home')" class="text-slate-400 hover:text-white font-semibold text-sm">
+                    <i class="fa-solid fa-arrow-left"></i> Volver
+                </button>
+            </div>
+
+            <div id="pokedex-cards-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Creado en JS -->
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- VISTA 7: ENTRENADOR RSVP CON ORP           -->
+        <!-- ========================================== -->
+        <section id="view-trainer" class="hidden space-y-6">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h3 class="text-2xl font-bold font-kids text-white flex items-center gap-2">
+                        <i class="fa-solid fa-bolt text-amber-400"></i> Entrenador RSVP con ORP
+                    </h3>
+                    <p class="text-xs text-slate-400">Gira los ojos en un único punto focal para acelerar tu velocidad de reconocimiento visual.</p>
+                </div>
+                <button onclick="app.navigateTo('home')" class="text-slate-400 hover:text-white font-semibold text-sm">
+                    <i class="fa-solid fa-arrow-left"></i> Volver
+                </button>
+            </div>
+
+            <!-- Contenedor Principal del Visor ORP -->
+            <div class="bg-cardbg rounded-3xl p-6 sm:p-10 border-2 border-cardborder space-y-8 shadow-2xl text-center max-w-3xl mx-auto">
+                
+                <!-- TUTORIAL EXPLICATIVO PARA NIÑOS -->
+                <div class="bg-gradient-to-r from-purple-900/90 via-cardbg to-purple-900/90 p-5 rounded-2xl border border-amber-500/40 text-left space-y-3">
+                    <div class="flex items-center space-x-2 text-amber-400 font-kids font-bold text-sm sm:text-base">
+                        <i class="fa-solid fa-graduation-cap text-lg"></i>
+                        <span>¿Cómo entrenar tu cerebro de súper lector? (Guía Rápida)</span>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs text-slate-200">
+                        <div class="bg-darkbg/80 p-3 rounded-xl border border-cardborder space-y-1">
+                            <span class="text-amber-400 font-bold block">1. Ojos al Centro 👀</span>
+                            <p class="text-[11px] text-slate-300">Mantén tu mirada fija únicamente en la <strong>letra magenta</strong> señalada por las flechitas. ¡No muevas los ojos de lado a lado!</p>
+                        </div>
+                        <div class="bg-darkbg/80 p-3 rounded-xl border border-cardborder space-y-1">
+                            <span class="text-mint-400 font-bold block">2. Reconoce sin Hablar 🧠</span>
+                            <p class="text-[11px] text-slate-300">Intenta entender la palabra en tu mente sin pronunciarla en voz alta ni mover los labios. Esto te dará súper velocidad.</p>
+                        </div>
+                        <div class="bg-darkbg/80 p-3 rounded-xl border border-cardborder space-y-1">
+                            <span class="text-cyan-400 font-bold block">3. Sube de Nivel 🚀</span>
+                            <p class="text-[11px] text-slate-300">Comienza en el nivel <strong>Bajo (50 PPM)</strong>. Cuando sientas que entiendes sin esfuerzo, ¡pasa a los niveles más rápidos!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Selector de Nivel de Velocidad -->
+                <div class="space-y-3">
+                    <label class="text-xs font-bold text-amber-400 uppercase tracking-widest block">Selecciona Tu Nivel de Entrenamiento</label>
+                    <div class="grid grid-cols-2 sm:grid-cols-5 gap-2">
+                        <button onclick="app.setTrainerSpeed(50, 'Bajo')" id="speed-btn-bajo" class="px-3 py-2.5 rounded-xl border border-cardborder text-xs font-bold bg-mint-500 text-darkbg transition-all">Bajo<br><span class="text-[10px] font-normal">50 PPM</span></button>
+                        <button onclick="app.setTrainerSpeed(80, 'Medio Bajo')" id="speed-btn-medio-bajo" class="px-3 py-2.5 rounded-xl border border-cardborder text-xs font-bold bg-darkbg text-slate-300 hover:border-amber-400 transition-all">Medio Bajo<br><span class="text-[10px] font-normal">80 PPM</span></button>
+                        <button onclick="app.setTrainerSpeed(110, 'Medio')" id="speed-btn-medio" class="px-3 py-2.5 rounded-xl border border-cardborder text-xs font-bold bg-darkbg text-slate-300 hover:border-amber-400 transition-all">Medio<br><span class="text-[10px] font-normal">110 PPM</span></button>
+                        <button onclick="app.setTrainerSpeed(150, 'Medio Alto')" id="speed-btn-medio-alto" class="px-3 py-2.5 rounded-xl border border-cardborder text-xs font-bold bg-darkbg text-slate-300 hover:border-amber-400 transition-all">Medio Alto<br><span class="text-[10px] font-normal">150 PPM</span></button>
+                        <button onclick="app.setTrainerSpeed(200, 'Alto')" id="speed-btn-alto" class="px-3 py-2.5 rounded-xl border border-cardborder text-xs font-bold bg-darkbg text-slate-300 hover:border-amber-400 transition-all">Alto<br><span class="text-[10px] font-normal">200 PPM</span></button>
+                    </div>
+                </div>
+
+                <!-- Visor RSVP con Marcador ORP -->
+                <div class="relative bg-darkbg rounded-3xl border-2 border-amber-500/40 p-8 sm:p-12 min-h-[180px] flex flex-col items-center justify-center overflow-hidden shadow-inner">
+                    <!-- Guías Visuales Superior e Inferior (Punto Focal) -->
+                    <div class="absolute top-2 left-1/2 -translate-x-1/2 text-amber-400 text-xs font-bold z-10">▼</div>
+                    <div class="absolute bottom-2 left-1/2 -translate-x-1/2 text-amber-400 text-xs font-bold z-10">▲</div>
+                    <div class="absolute inset-y-0 left-1/2 border-r border-dashed border-amber-500/30 pointer-events-none z-0"></div>
+
+                    <!-- Visualizador de Palabra con Letra ORP Destacada en el Centro Fijo -->
+                    <div id="orp-display-box" class="w-full font-mono text-3xl sm:text-5xl font-extrabold tracking-wider text-white flex items-center justify-center z-10">
+                        <span class="text-slate-400">PULSA</span>
+                        <span class="text-magenta-500 font-extrabold">I</span>
+                        <span class="text-slate-400">NICIAR</span>
+                    </div>
+                </div>
+
+                <!-- Barra de Progreso y Estadísticas -->
+                <div class="space-y-2">
+                    <div class="w-full bg-darkbg h-2 rounded-full overflow-hidden border border-cardborder">
+                        <div id="trainer-progress-bar" class="bg-gradient-to-r from-amber-400 to-mint-400 h-full w-0 transition-all duration-150"></div>
+                    </div>
+                    <div class="flex justify-between text-xs text-slate-400 font-bold">
+                        <span id="trainer-speed-info">Modo: Bajo (50 PPM)</span>
+                        <span id="trainer-count-info">Palabras: 0/0</span>
+                    </div>
+                </div>
+
+                <!-- Botones de Control -->
+                <div class="flex justify-center gap-4 pt-2">
+                    <button id="btn-start-trainer" onclick="app.toggleTrainer()" class="px-8 py-3.5 rounded-2xl btn-3d btn-mint font-kids font-bold text-base flex items-center gap-2">
+                        <i class="fa-solid fa-play"></i>
+                        <span id="btn-trainer-text">Iniciar Entrenamiento</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- MODAL RULETA DE RECOMPENSAS -->
+    <div id="modal-wheel" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-cardbg border-2 border-cardborder rounded-3xl p-6 sm:p-8 max-w-md w-full text-center space-y-6 relative shadow-2xl">
+            <button onclick="app.closeWheelModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+
+            <h3 class="font-kids text-2xl font-bold text-amber-400">Ruleta de Prestigio</h3>
+            <p class="text-xs text-slate-300">¡Gira y acumula puntos extra para tu récord personal!</p>
+
+            <div class="relative w-64 h-64 mx-auto flex items-center justify-center">
+                <canvas id="wheel-canvas" width="250" height="250" class="w-full h-full rounded-full shadow-2xl"></canvas>
+                <div class="absolute -top-2 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[12px] border-l-transparent border-r-[12px] border-r-transparent border-t-[20px] border-t-magenta-500 z-10"></div>
+            </div>
+
+            <button id="btn-spin-wheel" onclick="app.spinWheel()" class="w-full py-4 rounded-2xl btn-3d btn-amber font-kids font-bold text-lg">
+                ¡GIRAR AHORA!
+            </button>
+
+            <button id="btn-close-wheel-modal" onclick="app.closeWheelModal()" class="hidden w-full py-4 rounded-2xl bg-cardborder hover:bg-purple-800 text-white font-kids font-bold text-base">
+                Cerrar y Continuar
+            </button>
+
+            <div id="wheel-result-msg" class="hidden text-base font-bold text-mint-400 font-kids"></div>
+        </div>
+    </div>
+
+    <!-- LOGIC APPLICATION JS -->
+    <script>
+        // Web Audio Synthesizer for FX Sound Effects
+        class SoundFX {
+            constructor() {
+                this.ctx = null;
+                this.enabled = true;
+            }
+
+            init() {
+                if (!this.ctx) {
+                    this.ctx = new (window.AudioContext || window.webkitAudioContext)();
+                }
+            }
+
+            playPop() {
+                if (!this.enabled) return;
+                this.init();
+                const osc = this.ctx.createOscillator();
+                const gain = this.ctx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(300, this.ctx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(800, this.ctx.currentTime + 0.08);
+                gain.gain.setValueAtTime(0.3, this.ctx.currentTime);
+                gain.gain.linearRampToValueAtTime(0.01, this.ctx.currentTime + 0.08);
+                osc.connect(gain);
+                gain.connect(this.ctx.destination);
+                osc.start();
+                osc.stop(this.ctx.currentTime + 0.08);
+            }
+
+            playWin() {
+                if (!this.enabled) return;
+                this.init();
+                const notes = [261.63, 329.63, 392.00, 523.25];
+                notes.forEach((freq, idx) => {
+                    const osc = this.ctx.createOscillator();
+                    const gain = this.ctx.createGain();
+                    osc.frequency.value = freq;
+                    gain.gain.setValueAtTime(0.2, this.ctx.currentTime + idx * 0.1);
+                    gain.gain.linearRampToValueAtTime(0.01, this.ctx.currentTime + idx * 0.1 + 0.25);
+                    osc.connect(gain);
+                    gain.connect(this.ctx.destination);
+                    osc.start(this.ctx.currentTime + idx * 0.1);
+                    osc.stop(this.ctx.currentTime + idx * 0.1 + 0.25);
+                });
+            }
+
+            playClick() {
+                if (!this.enabled) return;
+                this.init();
+                const osc = this.ctx.createOscillator();
+                const gain = this.ctx.createGain();
+                osc.type = 'triangle';
+                osc.frequency.value = 150;
+                gain.gain.setValueAtTime(0.15, this.ctx.currentTime);
+                gain.gain.linearRampToValueAtTime(0.01, this.ctx.currentTime + 0.05);
+                osc.connect(gain);
+                gain.connect(this.ctx.destination);
+                osc.start();
+                osc.stop(this.ctx.currentTime + 0.05);
+            }
+        }
+
+        const sound = new SoundFX();
+
+        const DATA = {
+            levels: [
+                {
+                    id: 1,
+                    title: "Nivel 1: El Suelo y la Semilla",
+                    subtitle: "Raíces e Identidad (Cultura y Emprendedor)",
+                    wordCount: 118,
+                    targetComponent: "suelo",
+                    unlockCards: ["suelo", "semilla"],
+                    beforeQuiz: {
+                        question: "¿Cuál es el propósito principal de estudiar la Ley 1014 mediante la metáfora del árbol?",
+                        options: [
+                            { text: "Comprender cómo la cultura y el esfuerzo organizado transforman la comunidad de forma ética", correct: true },
+                            { text: "Aprender las técnicas agrícolas necesarias para cultivar árboles frutales en la vereda", correct: false },
+                            { text: "Memorizar los artículos legales para presentar exámenes teóricos en la escuela", correct: false }
+                        ]
+                    },
+                    lexicon: [
+                        { word: "Cultura", def: "Conjunto de valores y costumbres que unen a la comunidad.", icon: "fa-people-roof" },
+                        { word: "Minga y Convite", def: "Trabajo comunitario colaborativo sin cobrar un jornal.", icon: "fa-hands-holding-child" },
+                        { word: "Semilla Emprendedora", def: "Persona observadora que plantea soluciones éticas e innovadoras.", icon: "fa-seedling" }
+                    ],
+                    text: "Para que un proyecto crezca con fuerza, necesita raíces profundas. En la Ley 1014 de 2006, el suelo fértil representa la cultura: las costumbres y la solidaridad comunitaria, ejemplificada en la tradicional minga o convite campesino donde los vecinos colaboran unidos. En este suelo nutritivo sembramos la semilla, que simboliza al emprendedor. Un emprendedor no es un obsesionado por el dinero, sino una persona observadora que identifica problemas reales en su entorno. Por ejemplo, Don Carlos nota que la guayaba se cae de los árboles y aprende a elaborar mermelada artesanal con panela, mientras Camila prepara limonada natural para reemplazar los envases plásticos. Ambos representan semillas creativas que transforman su comunidad con ética.",
+                    questions: [
+                        {
+                            cat: "Categoría 1: Título y Metáfora",
+                            q: "¿En la metáfora del texto, qué elemento representa la cultura y los valores compartidos?",
+                            options: [
+                                "El suelo nutritivo que sostiene el proyecto comunitario",
+                                "Las frutas cosechadas al final de la temporada escolar",
+                                "Las herramientas agrícolas empleadas en el trabajo diario"
+                            ],
+                            correct: 0
+                        },
+                        {
+                            cat: "Categoría 2: Léxico",
+                            q: "¿Qué caracteriza a una minga o convite dentro del entorno comunitario?",
+                            options: [
+                                "El trabajo voluntario y colaborativo para el beneficio común",
+                                "Un contrato formal de empleo firmado ante la alcaldía municipal",
+                                "Un préstamo monetario con cobro de intereses entre vecinos"
+                            ],
+                            correct: 0
+                        },
+                        {
+                            cat: "Categoría 3: Literal e Inferencial",
+                            q: "¿Por qué Don Carlos y Camila representan semillas emprendedoras en la vereda?",
+                            options: [
+                                "Porque detectaron problemas locales y crearon soluciones creativas",
+                                "Porque solicitaron créditos de grandes montos en el banco local",
+                                "Porque compraron productos importados para vender en el colegio"
+                            ],
+                            correct: 0
+                        },
+                        {
+                            cat: "Categoría 4: Caso Práctico",
+                            q: "Si en tu vereda los vecinos se unen para reparar un puente de madera voluntariamente, están fortaleciendo:",
+                            options: [
+                                "El suelo cultural mediante la solidaridad y el trabajo en equipo",
+                                "Los frutos comerciales de una empresa privada de la región",
+                                "El tronco administrativo del gobierno municipal y nacional"
+                            ],
+                            correct: 0
+                        }
+                    ]
+                },
+                {
+                    id: 2,
+                    title: "Nivel 2: El Tronco y las Ramas",
+                    subtitle: "Acción y Destreza (Emprendimiento y Empresarialidad)",
+                    wordCount: 165,
+                    targetComponent: "tronco",
+                    unlockCards: ["tronco", "ramas"],
+                    beforeQuiz: {
+                        question: "¿Qué elementos del árbol representan la acción práctica y la habilidad para organizar recursos?",
+                        options: [
+                            { text: "El tronco como acción organizada y las ramas como habilidad técnica", correct: true },
+                            { text: "Las hojas caídas como planificación y las raíces como resultado financiero", correct: false },
+                            { text: "La sombra del árbol como descanso y la corteza como normas legales", correct: false }
+                        ]
+                    },
+                    lexicon: [
+                        { word: "Emprendimiento", def: "Proyecto estructurado en marcha con gestión de riesgo calculado.", icon: "fa-tree" },
+                        { word: "Empresarialidad", def: "Chispa y destreza práctica para usar los recursos del entorno.", icon: "fa-code-branch" },
+                        { word: "Riesgo Calculado", def: "Actitud de planear y prever costos antes de iniciar un proyecto.", icon: "fa-bolt" }
+                    ],
+                    text: "Cuando la semilla germina, las ideas toman forma física. El emprendimiento representa el tronco fuerte del árbol: la acción de ponerse las botas, estructurar el proyecto y calcular riesgos para no quebrar. Un ejemplo claro ocurre cuando cinco familias de la vereda se asocian para criar gallinas criollas: compran concentrado, construyen el gallinero con guadua local y venden huevos frescos. De ese tronco nacen las ramas, que simbolizan la empresarialidad: la chispa práctica para usar con inteligencia los recursos disponibles. Se observa cuando los estudiantes transforman las cáscaras de plátano en abono orgánico para la huerta escolar, o cuando organizan caminatas ecológicas ofreciendo almuerzos envueltos en hoja de bijao. La empresarialidad es la habilidad de hallar valor donde otros ven desperdicio.",
+                    questions: [
+                        {
+                            cat: "Categoría 1: Título y Metáfora",
+                            q: "¿Qué función cumple el tronco fuerte del árbol en el esquema del emprendimiento?",
+                            options: [
+                                "Representa la acción estructurada y la marcha continua del proyecto",
+                                "Simboliza un plan teórico escrito que no se lleva a la práctica",
+                                "Equivale a las ganancias económicas acumuladas en una cuenta"
+                            ],
+                            correct: 0
+                        },
+                        {
+                            cat: "Categoría 2: Léxico",
+                            q: "¿Cómo se manifiesta la empresarialidad en las actividades cotidianas del campo?",
+                            options: [
+                                "En la destreza para aprovechar creativamente los recursos disponibles",
+                                "En la obligación legal de pagar impuestos de registro mercantil",
+                                "En el esfuerzo físico realizado sin ningún tipo de planificación"
+                            ],
+                            correct: 0
+                        },
+                        {
+                            cat: "Categoría 3: Literal e Inferencial",
+                            q: "¿Por qué el proyecto asociativo de las gallinas criollas se considera un riesgo calculado?",
+                            options: [
+                                "Porque planearon insumos y utilizaron materiales locales desde el inicio",
+                                "Porque iniciaron la compra de insumos sin construir la infraestructura",
+                                "Porque dependían únicamente de donaciones externas para operar"
+                            ],
+                            correct: 0
+                        },
+                        {
+                            cat: "Categoría 4: Caso Práctico",
+                            q: "Si unos estudiantes elaboran abono orgánico con los residuos del refrigerio, están aplicando:",
+                            options: [
+                                "La empresarialidad al transformar residuos en recursos de valor",
+                                "Una estrategia para reemplazar las clases teóricas por labores manuales",
+                                "Un procedimiento estándar para desechar materiales sin uso"
+                            ],
+                            correct: 0
+                        }
+                    ]
+                },
+                {
+                    id: 3,
+                    title: "Nivel 3: Los Frutos y el Ecosistema",
+                    subtitle: "Plan de Negocios y Formación Rural",
+                    wordCount: 215,
+                    targetComponent: "frutos",
+                    unlockCards: ["frutos"],
+                    beforeQuiz: {
+                        question: "¿Qué documento o guía equivale a los frutos producidos por el árbol del emprendimiento?",
+                        options: [
+                            { text: "El plan de negocios escrito que orienta los costos y los objetivos", correct: true },
+                            { text: "El registro de asistencia a las reuniones comunitarias de la vereda", correct: false },
+                            { text: "El manual de convivencia escolar sobre el uso de uniformes", correct: false }
+                        ]
+                    },
+                    lexicon: [
+                        { word: "Plan de Negocios", def: "Documento escrito que sirve como mapa de viaje guiando costos y precios.", icon: "fa-file-signature" },
+                        { word: "Ecosistema Escolar", def: "Entorno educativo que integra conocimientos académicos con la vida real.", icon: "fa-sun" },
+                        { word: "Ganancia Unitaria", def: "Diferencia beneficiosa entre el precio de venta y el costo de producción.", icon: "fa-calculator" }
+                    ],
+                    text: "Con raíces firmes, tronco fuerte y ramas expandidas, llegamos a la cosecha final del árbol: el Plan de Negocios, que representa los frutos. La Ley 1014 lo define como el documento escrito que sirve de mapa de viaje, detallando objetivos, costos y precios antes de gastar dinero a ciegas. Por ejemplo, en un proyecto escolar para vender bolsas de pulpa de mora, los estudiantes calculan que cada bolsa cuesta $2.000 en insumos y se venderá a $3.500 a los vecinos, generando una ganancia de $1.500 para comprar balones y herramientas para la huerta. Por último, ningún árbol vive sin sol ni lluvia: la escuela representa este ecosistema de formación rural, donde la teoría de clases se une con la práctica productiva real.",
+                    questions: [
+                        {
+                            cat: "Categoría 1: Título y Metáfora",
+                            q: "¿Por qué el Plan de Negocios se compara con los frutos cosechados del árbol?",
+                            options: [
+                                "Porque es el resultado de organizar costos, precios y metas comunitarias",
+                                "Porque se trata de un alimento fresco cultivado directamente en la huerta",
+                                "Porque sustituye todos los contratos escritos exigidos por las autoridades"
+                            ],
+                            correct: 0
+                        },
+                        {
+                            cat: "Categoría 2: Léxico",
+                            q: "En el proyecto de la pulpa de mora, ¿qué representa la suma de $1.500 por bolsa?",
+                            options: [
+                                "La ganancia unitaria orientada a comprar recursos para la escuela",
+                                "El costo total de los insumos requeridos para preparar el producto",
+                                "El valor del impuesto pagado al gobierno por cada venta realizada"
+                            ],
+                            correct: 0
+                        },
+                        {
+                            cat: "Categoría 3: Literal e Inferencial",
+                            q: "¿Qué función cumple la escuela dentro del ecosistema de formación rural?",
+                            options: [
+                                "Articular los conocimientos teóricos del aula con proyectos prácticos reales",
+                                "Reemplazar los saberes tradicionales del campo por teoría abstracta",
+                                "Clasificar a los estudiantes únicamente mediante exámenes escritos"
+                            ],
+                            correct: 0
+                        },
+                        {
+                            cat: "Categoría 4: Caso Práctico",
+                            q: "Si una persona no funda su propia empresa pero cuida las herramientas e innova en su empleo, la ley la considera:",
+                            options: [
+                                "Una colaboradora emprendedora de gran valor para la comunidad",
+                                "Una persona que no logró comprender el propósito de la norma",
+                                "Una ciudadana obligada a registrarse en la cámara de comercio"
+                            ],
+                            correct: 0
+                        }
+                    ]
+                }
+            ],
+            pokedex: [
+                { id: "suelo", title: "1. El Suelo (Cultura)", desc: "Valores, costumbres y tradiciones comunitarias compartidas (Minga).", color: "from-amber-900/60 to-amber-950/80" },
+                { id: "semilla", title: "2. La Semilla (Emprendedor)", desc: "Persona observadora que detecta necesidades y crea soluciones éticas.", color: "from-amber-800/60 to-amber-900/80" },
+                { id: "tronco", title: "3. El Tronco (Emprendimiento)", desc: "Proyecto en marcha estructurado con visión y gestión de riesgo calculada.", color: "from-amber-700/60 to-amber-800/80" },
+                { id: "ramas", title: "4. Las Ramas (Empresarialidad)", desc: "Chispa práctica y destreza para aprovechar recursos del entorno.", color: "from-mint-900/60 to-mint-950/80" },
+                { id: "frutos", title: "5. Los Frutos (Plan de Negocios)", desc: "Documento guía con costos, precios y cosecha de beneficio social.", color: "from-cyan-900/60 to-cyan-950/80" }
+            ]
+        };
+
+        const state = {
+            currentLevel: 1,
+            userStats: {
+                completedLevels: [],
+                pokedexUnlocked: [],
+                points: 0,
+                maxPpm: 0,
+                save() {
+                    localStorage.setItem('lecturapro_stats', JSON.stringify({
+                        completedLevels: this.completedLevels,
+                        pokedexUnlocked: this.pokedexUnlocked,
+                        points: this.points,
+                        maxPpm: this.maxPpm
+                    }));
+                },
+                load() {
+                    const data = localStorage.getItem('lecturapro_stats');
+                    if (data) {
+                        try {
+                            const parsed = JSON.parse(data);
+                            this.completedLevels = parsed.completedLevels || [];
+                            this.pokedexUnlocked = parsed.pokedexUnlocked || [];
+                            this.points = parsed.points || 0;
+                            this.maxPpm = parsed.maxPpm || 0;
+                        } catch (e) {
+                            console.error("Error cargando stats", e);
+                        }
+                    }
+                }
+            },
+            updateHeaderUI() {
+                this.userStats.load();
+                document.getElementById('nav-max-ppm').textContent = this.userStats.maxPpm;
+                document.getElementById('nav-points').textContent = this.userStats.points;
+                document.getElementById('nav-pokedex-count').textContent = `${this.userStats.pokedexUnlocked.length}/5`;
+                document.getElementById('header-pokedex-text').textContent = `Pokédex (${this.userStats.pokedexUnlocked.length}/5)`;
+                const btnHero = document.getElementById('btn-hero-pokedex');
+                if (btnHero) btnHero.textContent = `Ver Pokédex (${this.userStats.pokedexUnlocked.length}/5)`;
+            },
+            readerMode: 'free',
+            fontSize: 18,
+            dyslexicFont: false,
+            rsvpWpm: 80,
+            rsvpInterval: null,
+            isReadingActive: false,
+            readingStartTime: 0,
+            readingElapsedTime: 0,
+            beforeQuizPassed: false,
+            lexiconViewedCount: 0,
+            hasSpunWheelCurrentSession: false,
+            trainerWpm: 50,
+            trainerLevelName: 'Bajo',
+            trainerWords: [],
+            trainerIndex: 0,
+            trainerInterval: null,
+            isTrainerActive: false
+        };
+
+        const app = {
+            init() {
+                state.updateHeaderUI();
+                this.renderLevelsGrid();
+                this.renderPokedexGrid();
+                this.drawTreeSvg('reading-tree-svg', null);
+            },
+
+            saveStats() {
+                state.userStats.save();
+                state.updateHeaderUI();
+            },
+
+            drawTreeSvg(targetId, activeNode) {
+                const container = document.getElementById(targetId);
+                if (!container) return;
+                
+                const isSuelo = activeNode === 'suelo';
+                const isTronco = activeNode === 'tronco';
+                const isFrutos = activeNode === 'frutos';
+
+                container.innerHTML = `
+                    <g>
+                        <!-- Suelo -->
+                        <path d="M 20 160 Q 100 145 180 160 L 180 185 Q 100 195 20 185 Z" fill="${isSuelo ? '#f59e0b' : '#78350f'}" class="${isSuelo ? 'tree-glow' : ''}"/>
+                        <!-- Semilla -->
+                        <circle cx="100" cy="165" r="10" fill="${isSuelo ? '#fbbf24' : '#d97706'}"/>
+                        <!-- Tronco -->
+                        <path d="M 85 160 C 85 120 70 100 65 80 L 135 80 C 130 100 115 120 115 160 Z" fill="${isTronco ? '#f59e0b' : '#a16207'}" class="${isTronco ? 'tree-glow' : ''}"/>
+                        <!-- Ramas -->
+                        <path d="M 65 80 L 40 50 M 135 80 L 160 50 M 100 80 L 100 45" stroke="#843d10" stroke-width="8" stroke-linecap="round"/>
+                        <!-- Frutos / Copa -->
+                        <circle cx="60" cy="50" r="30" fill="${isFrutos ? '#34d399' : '#10b981'}" opacity="0.85"/>
+                        <circle cx="140" cy="50" r="30" fill="${isFrutos ? '#34d399' : '#10b981'}" opacity="0.85"/>
+                        <circle cx="100" cy="35" r="35" fill="${isFrutos ? '#6ee7b7' : '#34d399'}" opacity="0.9" class="${isFrutos ? 'tree-glow' : ''}"/>
+                        <!-- Manzanas -->
+                        <circle cx="65" cy="45" r="6" fill="#ec4899"/>
+                        <circle cx="135" cy="55" r="6" fill="#f59e0b"/>
+                        <circle cx="100" cy="30" r="6" fill="#38bdf8"/>
+                    </g>
+                `;
+            },
+
+            showTreeTip(component) {
+                sound.playClick();
+                const tips = {
+                    suelo: "El Suelo representa la Cultura: tradiciones, valores y el trabajo colaborativo (Minga).",
+                    semilla: "La Semilla representa al Emprendedor: observador y creativo ante los problemas de la comunidad.",
+                    tronco: "El Tronco representa el Emprendimiento: la acción organizada y la gestión de riesgo calculado.",
+                    frutos: "Los Frutos representan el Plan de Negocios y la cosecha de beneficios comunitarios."
+                };
+                const statusEl = document.getElementById('reading-tree-status');
+                if (statusEl) {
+                    statusEl.textContent = tips[component] || "¡Explora el árbol para descubrir sus componentes!";
+                }
+            },
+
+            renderLevelsGrid() {
+                const container = document.getElementById('levels-container');
+                if (!container) return;
+                container.innerHTML = '';
+
+                DATA.levels.forEach((lvl, idx) => {
+                    const isUnlocked = idx === 0 || state.userStats.completedLevels.includes(lvl.id - 1);
+                    const isCompleted = state.userStats.completedLevels.includes(lvl.id);
+
+                    const card = document.createElement('div');
+                    card.className = `bg-cardbg rounded-3xl p-6 border-2 transition-all flex flex-col justify-between space-y-4 shadow-xl ${
+                        isCompleted 
+                            ? 'border-mint-500/80 bg-gradient-to-b from-cardbg to-mint-950/20' 
+                            : isUnlocked 
+                                ? 'border-cardborder hover:border-amber-400' 
+                                : 'border-cardborder/40 opacity-50'
+                    }`;
+
+                    card.innerHTML = `
+                        <div class="space-y-2">
+                            <div class="flex items-center justify-between">
+                                <span class="px-3 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-wider ${
+                                    isCompleted ? 'bg-mint-500/20 text-mint-400 border border-mint-500/40' :
+                                    isUnlocked ? 'bg-amber-500/20 text-amber-400 border border-amber-500/40' :
+                                    'bg-slate-800 text-slate-400'
+                                }">
+                                    ${isCompleted ? '✓ Completado' : isUnlocked ? 'Disponible' : '🔒 Bloqueado'}
+                                </span>
+                                <span class="text-xs font-mono font-bold text-slate-400">${lvl.wordCount} Palabras</span>
+                            </div>
+                            <h4 class="font-kids text-lg font-bold text-white">${lvl.title}</h4>
+                            <p class="text-xs text-slate-300">${lvl.subtitle}</p>
+                        </div>
+                        <button onclick="app.startLevel(${lvl.id})" ${!isUnlocked ? 'disabled' : ''} class="w-full py-3.5 rounded-2xl font-kids font-bold text-sm ${
+                            isUnlocked ? 'btn-3d btn-mint' : 'bg-cardborder text-slate-500 cursor-not-allowed'
+                        }">
+                            ${isCompleted ? 'Volver a Jugar' : isUnlocked ? 'Empezar Nivel' : 'Nivel Bloqueado'}
+                        </button>
+                    `;
+                    container.appendChild(card);
+                });
+            },
+
+            startLevel(levelId) {
+                sound.playClick();
+                state.currentLevel = levelId;
+                state.hasSpunWheelCurrentSession = false;
+                const lvl = DATA.levels.find(l => l.id === levelId);
+
+                document.getElementById('before-level-title').textContent = lvl.title;
+
+                // 1. Pregunta Anclaje
+                const titleQBox = document.getElementById('before-title-question');
+                titleQBox.innerHTML = `
+                    <p class="text-xs sm:text-sm font-bold text-amber-300">${lvl.beforeQuiz.question}</p>
+                    <div class="space-y-2 pt-2">
+                        ${lvl.beforeQuiz.options.map((opt, i) => `
+                            <button onclick="app.checkBeforeQuestion(${opt.correct}, this)" class="w-full text-left p-3 rounded-xl bg-cardbg border border-cardborder text-xs sm:text-sm text-slate-200 hover:border-amber-400 transition-all flex items-center justify-between">
+                                <span>${opt.text}</span>
+                                <i class="fa-regular fa-circle text-slate-500"></i>
+                            </button>
+                        `).join('')}
+                    </div>
+                `;
+
+                // 2. Léxico Flashcards
+                const lexiconGrid = document.getElementById('before-lexicon-grid');
+                lexiconGrid.innerHTML = '';
+                lvl.lexicon.forEach(lex => {
+                    const card = document.createElement('div');
+                    card.className = "bg-darkbg p-4 rounded-2xl border border-cardborder space-y-2 hover:border-mint-400 transition-all cursor-pointer";
+                    card.innerHTML = `
+                        <div class="flex items-center space-x-2 text-mint-400 font-bold text-sm">
+                            <i class="fa-solid ${lex.icon}"></i>
+                            <span>${lex.word}</span>
+                        </div>
+                        <p class="text-xs text-slate-300 leading-relaxed">${lex.def}</p>
+                    `;
+                    lexiconGrid.appendChild(card);
+                });
+
+                const btnStart = document.getElementById('btn-start-reading');
+                btnStart.disabled = true;
+                btnStart.className = "px-8 py-4 rounded-2xl btn-3d btn-mint opacity-50 cursor-not-allowed font-kids font-bold text-base flex items-center space-x-2";
+
+                this.navigateTo('before-read');
+            },
+
+            checkBeforeQuestion(isCorrect, btnEl) {
+                sound.playClick();
+                const parent = btnEl.parentElement;
+                const buttons = parent.querySelectorAll('button');
+
+                buttons.forEach(b => {
+                    b.className = "w-full text-left p-3 rounded-xl bg-cardbg border border-cardborder text-xs sm:text-sm text-slate-400 opacity-60 flex items-center justify-between";
+                });
+
+                if (isCorrect) {
+                    btnEl.className = "w-full text-left p-3 rounded-xl bg-mint-950/80 border-2 border-mint-500 text-xs sm:text-sm text-mint-300 font-bold flex items-center justify-between";
+                    btnEl.querySelector('i').className = "fa-solid fa-circle-check text-mint-400";
+                    
+                    const btnStart = document.getElementById('btn-start-reading');
+                    btnStart.disabled = false;
+                    btnStart.className = "px-8 py-4 rounded-2xl btn-3d btn-mint font-kids font-bold text-base flex items-center space-x-2";
+                } else {
+                    btnEl.className = "w-full text-left p-3 rounded-xl bg-red-950/80 border-2 border-red-500 text-xs sm:text-sm text-red-300 font-bold flex items-center justify-between";
+                    btnEl.querySelector('i').className = "fa-solid fa-circle-xmark text-red-400";
+                }
+            },
+
+            proceedToReading() {
+                sound.playPop();
+                const lvl = DATA.levels.find(l => l.id === state.currentLevel);
+
+                document.getElementById('reading-text-title').textContent = lvl.title;
+                document.getElementById('reading-word-count-badge').textContent = `${lvl.wordCount} palabras`;
+                
+                const freeBox = document.getElementById('reader-free-box');
+                freeBox.innerHTML = `<p>${lvl.text}</p>`;
+
+                document.getElementById('reading-timer-display').textContent = '00:00';
+                document.getElementById('reading-btn-text').textContent = 'Iniciar Lectura';
+
+                state.isReadingActive = false;
+                state.readingElapsedTime = 0;
+
+                this.drawTreeSvg('reading-tree-svg', lvl.targetComponent);
+                this.navigateTo('reading');
+            },
+
+            navigateTo(viewId) {
+                sound.playClick();
+                if (state.isTrainerActive) this.stopTrainer();
+                const views = ['view-home', 'view-before-read', 'view-reading', 'view-quiz', 'view-results', 'view-pokedex', 'view-trainer'];
+                views.forEach(v => document.getElementById(v).classList.add('hidden'));
+                document.getElementById(`view-${viewId}`).classList.remove('hidden');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            },
+
+            toggleSound() {
+                sound.enabled = !sound.enabled;
+                const btn = document.getElementById('btn-sound');
+                btn.innerHTML = sound.enabled ? '<i class="fa-solid fa-volume-high text-sm"></i>' : '<i class="fa-solid fa-volume-xmark text-sm"></i>';
+                if(sound.enabled) sound.playPop();
+            },
+
+            toggleFont() {
+                sound.playClick();
+                state.dyslexicFont = !state.dyslexicFont;
+                if(state.dyslexicFont) {
+                    document.body.classList.add('dyslexic-font');
+                } else {
+                    document.body.classList.remove('dyslexic-font');
+                }
+            },
+
+            // --- ENTRENADOR RSVP CON ORP (OPTIMAL RECOGNITION POINT) ---
+            setTrainerSpeed(wpm, levelName) {
+                sound.playClick();
+                state.trainerWpm = wpm;
+                state.trainerLevelName = levelName;
+
+                const btns = ['bajo', 'medio-bajo', 'medio', 'medio-alto', 'alto'];
+                btns.forEach(b => {
+                    const el = document.getElementById(`speed-btn-${b}`);
+                    if (el) el.className = "px-3 py-2.5 rounded-xl border border-cardborder text-xs font-bold bg-darkbg text-slate-300 hover:border-amber-400 transition-all";
+                });
+
+                const key = levelName.toLowerCase().replace(' ', '-');
+                const activeEl = document.getElementById(`speed-btn-${key}`);
+                if (activeEl) activeEl.className = "px-3 py-2.5 rounded-xl border border-cardborder text-xs font-bold bg-mint-500 text-darkbg transition-all";
+
+                document.getElementById('trainer-speed-info').textContent = `Modo: ${levelName} (${wpm} PPM)`;
+                if (state.isTrainerActive) {
+                    this.startTrainerStream();
+                }
+            },
+
+            prepareTrainerWords() {
+                let allText = DATA.levels.map(l => l.text).join(' ');
+                let cleanWords = allText.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "").split(/\s+/);
+                // Shuffle Array
+                for (let i = cleanWords.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [cleanWords[i], cleanWords[j]] = [cleanWords[j], cleanWords[i]];
+                }
+                state.trainerWords = cleanWords;
+                state.trainerIndex = 0;
+            },
+
+            formatWordORP(word) {
+                if (!word) return '<span class="text-slate-400">FIN</span>';
+                const len = word.length;
+                let orpIdx = Math.floor((len - 1) * 0.35); // ORP standard index (~35% position)
+                if (len <= 3) orpIdx = 0;
+
+                const left = word.substring(0, orpIdx);
+                const mid = word.charAt(orpIdx);
+                const right = word.substring(orpIdx + 1);
+
+                // Use flex layout with fixed 50% width columns for perfect ORP centering on the vertical axis
+                return `
+                    <div class="w-1/2 text-right text-slate-200 select-none">${left}</div>
+                    <div class="text-magenta-500 font-black text-4xl sm:text-6xl mx-[2px] flex-none select-none">${mid}</div>
+                    <div class="w-1/2 text-left text-slate-200 select-none">${right}</div>
+                `;
+            },
+
+            // --- METODOS DEL ENTRENADOR ORP ---
+            toggleTrainer() {
+                sound.playPop();
+                if (!state.isTrainerActive) {
+                    this.startTrainerStream();
+                } else {
+                    this.stopTrainer();
+                }
+            },
+
+            startTrainerStream() {
+                if (state.trainerWords.length === 0 || state.trainerIndex >= state.trainerWords.length) {
+                    this.prepareTrainerWords();
+                }
+
+                state.isTrainerActive = true;
+                const btnText = document.getElementById('btn-trainer-text');
+                const btn = document.getElementById('btn-start-trainer');
+                if (btnText) btnText.textContent = "Pausar Entrenamiento";
+                if (btn) btn.className = "px-8 py-3.5 rounded-2xl btn-3d btn-amber font-kids font-bold text-base flex items-center gap-2";
+
+                const delay = (60 / state.trainerWpm) * 1000;
+                const displayBox = document.getElementById('orp-display-box');
+                const progressBar = document.getElementById('trainer-progress-bar');
+                const countInfo = document.getElementById('trainer-count-info');
+
+                if (state.trainerInterval) clearInterval(state.trainerInterval);
+
+                state.trainerInterval = setInterval(() => {
+                    if (state.trainerIndex < state.trainerWords.length) {
+                        const word = state.trainerWords[state.trainerIndex];
+                        displayBox.innerHTML = this.formatWordORP(word);
+                        
+                        state.trainerIndex++;
+                        const pct = Math.round((state.trainerIndex / state.trainerWords.length) * 100);
+                        if (progressBar) progressBar.style.width = `${pct}%`;
+                        if (countInfo) countInfo.textContent = `Palabras: ${state.trainerIndex}/${state.trainerWords.length}`;
+                    } else {
+                        this.stopTrainer();
+                        displayBox.innerHTML = '<span class="text-mint-400 font-bold">¡ENTRENAMIENTO FINALIZADO! 🎉</span>';
+                    }
+                }, delay);
+            },
+
+            stopTrainer() {
+                state.isTrainerActive = false;
+                if (state.trainerInterval) {
+                    clearInterval(state.trainerInterval);
+                    state.trainerInterval = null;
+                }
+                const btnText = document.getElementById('btn-trainer-text');
+                const btn = document.getElementById('btn-start-trainer');
+                if (btnText) btnText.textContent = "Iniciar Entrenamiento";
+                if (btn) btn.className = "px-8 py-3.5 rounded-2xl btn-3d btn-mint font-kids font-bold text-base flex items-center gap-2";
+            },
+
+            setReaderMode(mode) {
+                sound.playClick();
+                state.readerMode = mode;
+                const freeBtn = document.getElementById('mode-btn-free');
+                const rsvpBtn = document.getElementById('mode-btn-rsvp');
+                const freeBox = document.getElementById('reader-free-box');
+                const rsvpBox = document.getElementById('reader-rsvp-box');
+                const wpmBox = document.getElementById('wpm-control-box');
+
+                if (mode === 'free') {
+                    freeBtn.className = "px-3 py-2 rounded-lg bg-mint-500 text-white transition-all";
+                    rsvpBtn.className = "px-3 py-2 rounded-lg text-slate-400 hover:text-white transition-all";
+                    freeBox.classList.remove('hidden');
+                    rsvpBox.classList.add('hidden');
+                    wpmBox.classList.add('hidden');
+                } else {
+                    rsvpBtn.className = "px-3 py-2 rounded-lg bg-mint-500 text-white transition-all";
+                    freeBtn.className = "px-3 py-2 rounded-lg text-slate-400 hover:text-white transition-all";
+                    rsvpBox.classList.remove('hidden');
+                    freeBox.classList.add('hidden');
+                    wpmBox.classList.remove('hidden');
+                }
+            },
+
+            updateWpmLabel(val) {
+                state.rsvpWpm = parseInt(val);
+                document.getElementById('wpm-label').textContent = `${val} PPM`;
+            },
+
+            adjustFontSize(delta) {
+                sound.playClick();
+                state.fontSize = Math.max(14, Math.min(26, state.fontSize + delta));
+                document.getElementById('reader-free-box').style.fontSize = `${state.fontSize}px`;
+            },
+
+            toggleReadingProcess() {
+                sound.playPop();
+                if (!state.isReadingActive) {
+                    state.isReadingActive = true;
+                    state.readingStartTime = Date.now();
+                    document.getElementById('reading-btn-text').textContent = "Terminar y Responder";
+
+                    state.readingTimerInterval = setInterval(() => {
+                        state.readingElapsedTime = Math.floor((Date.now() - state.readingStartTime) / 1000);
+                        const mins = String(Math.floor(state.readingElapsedTime / 60)).padStart(2, '0');
+                        const secs = String(state.readingElapsedTime % 60).padStart(2, '0');
+                        document.getElementById('reading-timer-display').textContent = `${mins}:${secs}`;
+                    }, 1000);
+
+                    if (state.readerMode === 'rsvp') {
+                        this.startRsvpStream();
+                    }
+                } else {
+                    clearInterval(state.readingTimerInterval);
+                    state.isReadingActive = false;
+                    this.prepareQuizView();
+                }
+            },
+
+            startRsvpStream() {
+                const lvl = DATA.levels.find(l => l.id === state.currentLevel);
+                const words = lvl.text.split(' ');
+                let idx = 0;
+                const display = document.getElementById('rsvp-word-display');
+                const delay = (60 / state.rsvpWpm) * 1000;
+
+                state.rsvpInterval = setInterval(() => {
+                    if (idx < words.length) {
+                        display.textContent = words[idx];
+                        idx++;
+                    } else {
+                        clearInterval(state.rsvpInterval);
+                        display.textContent = "¡Lectura Finalizada!";
+                        state.isRsvpFinished = true;
+                    }
+                }, delay);
+            },
+
+            prepareQuizView() {
+                sound.playPop();
+                const lvl = DATA.levels.find(l => l.id === state.currentLevel);
+                const quizForm = document.getElementById('quiz-form');
+                quizForm.innerHTML = '';
+
+                lvl.questions.forEach((q, qIdx) => {
+                    const box = document.createElement('div');
+                    box.className = "bg-darkbg p-5 rounded-2xl border border-cardborder space-y-3";
+                    box.innerHTML = `
+                        <span class="text-xs font-bold text-purple-300 uppercase block">${q.cat}</span>
+                        <p class="font-bold text-white text-sm">${q.q}</p>
+                        <div class="space-y-2">
+                            ${q.options.map((opt, oIdx) => `
+                                <label class="flex items-center space-x-3 p-3 rounded-xl bg-cardbg border border-cardborder cursor-pointer hover:border-magenta-500 transition-all">
+                                    <input type="radio" name="q_${qIdx}" value="${oIdx}" class="accent-magenta-500" required>
+                                    <span class="text-xs text-slate-200 font-semibold">${opt}</span>
+                                </label>
+                            `).join('')}
+                        </div>
+                    `;
+                    quizForm.appendChild(box);
+                });
+
+                this.navigateTo('quiz');
+            },
+
+            submitQuiz() {
+                sound.playPop();
+                const lvl = DATA.levels.find(l => l.id === state.currentLevel);
+                let correctCount = 0;
+
+                lvl.questions.forEach((q, qIdx) => {
+                    const selected = document.querySelector(`input[name="q_${qIdx}"]:checked`);
+                    if (selected && parseInt(selected.value) === q.correct) {
+                        correctCount++;
+                    }
+                });
+
+                const accuracy = Math.round((correctCount / lvl.questions.length) * 100);
+                const isPassed = accuracy >= 75;
+
+                const seconds = Math.max(state.readingElapsedTime, 1);
+                let rawPpm = Math.round((lvl.wordCount / seconds) * 60);
+                let adjustedPpm = rawPpm;
+
+                if (seconds < 6 && state.readerMode === 'free') {
+                    adjustedPpm = Math.min(rawPpm, 180);
+                }
+
+                let speedCategory = "Medio";
+                if (adjustedPpm < 60) speedCategory = "Bajo";
+                else if (adjustedPpm < 90) speedCategory = "Medio Bajo";
+                else if (adjustedPpm < 120) speedCategory = "Medio";
+                else if (adjustedPpm < 150) speedCategory = "Medio Alto";
+                else speedCategory = "Alto";
+
+                if (isPassed) {
+                    if (!state.userStats.completedLevels.includes(state.currentLevel)) {
+                        state.userStats.completedLevels.push(state.currentLevel);
+                    }
+                    lvl.unlockCards.forEach(c => {
+                        if (!state.userStats.pokedexUnlocked.includes(c)) {
+                            state.userStats.pokedexUnlocked.push(c);
+                        }
+                    });
+                    state.userStats.points += 100;
+                    if (adjustedPpm > state.userStats.maxPpm) {
+                        state.userStats.maxPpm = adjustedPpm;
+                    }
+                    this.saveStats();
+                    this.renderLevelsGrid();
+                    this.renderPokedexGrid();
+                }
+
+                document.getElementById('res-wpm').textContent = `${adjustedPpm} PPM`;
+                document.getElementById('res-wpm-category').textContent = `Nivel: ${speedCategory}`;
+                document.getElementById('res-accuracy').textContent = `${accuracy}%`;
+                document.getElementById('res-accuracy-detail').textContent = `${correctCount}/${lvl.questions.length} Correctas`;
+                document.getElementById('res-time').textContent = `${seconds}s`;
+
+                const bannerBox = document.getElementById('results-banner-box');
+                if (isPassed) {
+                    sound.playWin();
+                    confetti({ particleCount: 120, spread: 70, origin: { y: 0.6 } });
+                    bannerBox.innerHTML = `
+                        <div class="inline-flex p-3 rounded-2xl bg-mint-500/20 text-mint-400 text-3xl mb-2">🎉</div>
+                        <h2 class="text-3xl font-extrabold font-kids text-mint-400">¡Nivel Completado con Éxito!</h2>
+                        <p class="text-slate-300 text-xs">Has superado la evaluación de ${lvl.title}</p>
+                    `;
+                    document.getElementById('res-wheel-trigger').classList.remove('hidden');
+                } else {
+                    bannerBox.innerHTML = `
+                        <div class="inline-flex p-3 rounded-2xl bg-amber-500/20 text-amber-400 text-3xl mb-2">💡</div>
+                        <h2 class="text-3xl font-extrabold font-kids text-amber-400">¡Sigue Intentándolo!</h2>
+                        <p class="text-slate-300 text-xs">Necesitas mínimo 75% de precisión para desbloquear el siguiente nivel.</p>
+                    `;
+                    document.getElementById('res-wheel-trigger').classList.add('hidden');
+                }
+
+                const feedbackBox = document.getElementById('res-feedback-text');
+                if (isPassed) {
+                    if (adjustedPpm >= 120) {
+                        feedbackBox.innerHTML = `<strong>¡Excelente desempeño!</strong> Has alcanzado una velocidad óptima (${adjustedPpm} PPM) manteniendo un ${accuracy}% de comprensión. Tu retención de la metáfora del árbol es sobresaliente.`;
+                    } else {
+                        feedbackBox.innerHTML = `<strong>¡Comprensión Aprobada!</strong> Lograste un ${accuracy}% en las preguntas. Tu velocidad actual es de ${adjustedPpm} PPM (${speedCategory}). Si reintentas el nivel, te sugerimos agilizar el escaneo de palabras para alcanzar un ritmo más fluido.`;
+                    }
+                } else {
+                    feedbackBox.innerHTML = `<strong>Oportunidad de Mejora:</strong> Obtuviste un ${accuracy}% de precisión (se requiere mínimo 75%). Lee con atención los conceptos clave de ${lvl.targetComponent.toUpperCase()} y vuelve a intentarlo para afianzar la estructura.`;
+                }
+
+                const gradBox = document.getElementById('res-graduation-box');
+                if (isPassed && state.currentLevel === 3) {
+                    gradBox.classList.remove('hidden');
+                } else {
+                    gradBox.classList.add('hidden');
+                }
+
+                const btnNext = document.getElementById('btn-next-level');
+                if (isPassed && state.currentLevel < 3) {
+                    btnNext.classList.remove('hidden');
+                } else {
+                    btnNext.classList.add('hidden');
+                }
+
+                this.navigateTo('results');
+            },
+
+            generateShareableBadge() {
+                sound.playWin();
+                const totalPoints = state.userStats.points;
+                const maxPpm = state.userStats.maxPpm;
+                const badgeMessage = `🏆 RECONOCIMIENTO LECTURAPRO 🏆\n\nEstudiante Graduado en El Árbol del Emprendimiento (Ley 1014 de 2006)\n- Máxima Velocidad: ${maxPpm} PPM\n- Puntaje Total: ${totalPoints} Puntos\n- Fichas Coleccionadas: 5/5\n\nUbicación: Ginebra, Valle del Cauca`;
+                
+                alert(badgeMessage + "\n\n¡Puedes tomar una captura de pantalla de tu Pokédex y de este mensaje para compartir con tu docente!");
+            },
+
+            retryCurrentLevel() {
+                this.startLevel(state.currentLevel);
+            },
+
+            nextLevelNav() {
+                if (state.currentLevel < 3) {
+                    this.startLevel(state.currentLevel + 1);
+                }
+            },
+
+            openWheelModal() {
+                sound.playPop();
+                document.getElementById('modal-wheel').classList.remove('hidden');
+                document.getElementById('wheel-result-msg').classList.add('hidden');
+                
+                const btnSpin = document.getElementById('btn-spin-wheel');
+                if (!state.hasSpunWheelCurrentSession) {
+                    btnSpin.classList.remove('hidden');
+                    btnSpin.disabled = false;
+                    document.getElementById('btn-close-wheel-modal').classList.add('hidden');
+                }
+                
+                this.drawWheel();
+            },
+
+            closeWheelModal() {
+                sound.playClick();
+                document.getElementById('modal-wheel').classList.add('hidden');
+            },
+
+            drawWheel() {
+                const canvas = document.getElementById('wheel-canvas');
+                const ctx = canvas.getContext('2d');
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                const slices = ['+50 Pts', '+100 Pts', 'Medalla', '+200 Pts', 'Super Estrella'];
+                const colors = ['#10b981', '#f59e0b', '#ec4899', '#38bdf8', '#8b5cf6'];
+
+                const angle = (Math.PI * 2) / slices.length;
+
+                slices.forEach((slice, idx) => {
+                    ctx.beginPath();
+                    ctx.fillStyle = colors[idx];
+                    ctx.moveTo(125, 125);
+                    ctx.arc(125, 125, 120, idx * angle, (idx + 1) * angle);
+                    ctx.fill();
+
+                    ctx.save();
+                    ctx.translate(125, 125);
+                    ctx.rotate(idx * angle + angle / 2);
+                    ctx.fillStyle = '#ffffff';
+                    ctx.font = 'bold 12px Plus Jakarta Sans';
+                    ctx.fillText(slice, 45, 5);
+                    ctx.restore();
+                });
+            },
+
+            spinWheel() {
+                if (state.hasSpunWheelCurrentSession) return;
+                sound.playPop();
+                state.hasSpunWheelCurrentSession = true;
+
+                const btnSpin = document.getElementById('btn-spin-wheel');
+                btnSpin.disabled = true;
+
+                let rot = 0;
+                const totalRot = Math.random() * 360 + 1440;
+                const startTime = Date.now();
+
+                const animate = () => {
+                    const elapsed = Date.now() - startTime;
+                    if (elapsed < 3000) {
+                        rot = (totalRot * (elapsed / 3000));
+                        const canvas = document.getElementById('wheel-canvas');
+                        canvas.style.transform = `rotate(${rot}deg)`;
+                        requestAnimationFrame(animate);
+                    } else {
+                        sound.playWin();
+                        const msg = document.getElementById('wheel-result-msg');
+                        msg.textContent = "¡Felicidades! +150 Puntos Extra Ganados 🎉";
+                        msg.classList.remove('hidden');
+
+                        btnSpin.classList.add('hidden');
+                        document.getElementById('btn-close-wheel-modal').classList.remove('hidden');
+
+                        state.userStats.points += 150;
+                        this.saveStats();
+                    }
+                };
+                animate();
+            },
+
+            renderPokedexGrid() {
+                const grid = document.getElementById('pokedex-cards-grid');
+                if (!grid) return;
+                grid.innerHTML = '';
+
+                DATA.pokedex.forEach(card => {
+                    const isUnlocked = state.userStats.pokedexUnlocked.includes(card.id);
+                    const el = document.createElement('div');
+                    el.className = `p-6 rounded-3xl border-2 transition-all space-y-3 ${
+                        isUnlocked 
+                        ? `bg-gradient-to-br ${card.color} border-amber-400 text-white shadow-xl` 
+                        : 'bg-darkbg/50 border-cardborder text-slate-500 opacity-60'
+                    }`;
+
+                    el.innerHTML = `
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-bold uppercase tracking-widest ${isUnlocked ? 'text-amber-300' : 'text-slate-500'}">
+                                ${isUnlocked ? '✓ COLECCIONADA' : '🔒 BLOQUEADA'}
+                            </span>
+                            <i class="fa-solid ${isUnlocked ? 'fa-award text-amber-300' : 'fa-lock'} text-lg"></i>
+                        </div>
+                        <h4 class="font-kids text-lg font-bold">${card.title}</h4>
+                        <p class="text-xs leading-relaxed ${isUnlocked ? 'text-slate-100' : 'text-slate-500'}">${card.desc}</p>
+                    `;
+                    grid.appendChild(el);
+                });
+            }
+        };
+
+        window.onload = function() {
+            app.init();
+        };
+    </script>
+</body>
+</html>
