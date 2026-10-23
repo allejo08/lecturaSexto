@@ -11,7 +11,7 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
-    <!-- Lightweight Native Confetti Script (Fixes ReferenceError) -->
+    <!-- Lightweight Native Confetti Script -->
     <script>
         function confetti(options) {
             const canvas = document.getElementById('confetti-canvas');
@@ -84,69 +84,15 @@
                             500: '#f59e0b',
                         },
                         magenta: {
-                            500: '#ec4899',
-                            600: '#db2777',
-                        },
-                        cyan: {
-                            400: '#38bdf8',
-                            500: '#06b6d4',
+                            500: '#ec4899'
                         }
-                    },
-                    fontFamily: {
-                        sans: ['Plus Jakarta Sans', 'sans-serif'],
-                        kids: ['Fredoka', 'sans-serif'],
-                        dyslexic: ['Comic Sans MS', 'Arial', 'sans-serif']
                     }
                 }
             }
-        }
+        };
     </script>
 
     <style>
-        body {
-            background-color: #180a2e;
-            color: #f3f4f6;
-            user-select: none;
-        }
-
-        /* 3D Tactile Buttons */
-        .btn-3d {
-            transition: all 0.1s ease;
-            box-shadow: 0 5px 0 var(--btn-shadow-color, rgba(0,0,0,0.35));
-        }
-        .btn-3d:active {
-            transform: translateY(4px);
-            box-shadow: 0 1px 0 var(--btn-shadow-color, rgba(0,0,0,0.35));
-        }
-        .btn-mint {
-            background-color: #10b981;
-            --btn-shadow-color: #047857;
-            color: white;
-        }
-        .btn-mint:hover { background-color: #34d399; }
-
-        .btn-amber {
-            background-color: #f59e0b;
-            --btn-shadow-color: #b45309;
-            color: white;
-        }
-        .btn-amber:hover { background-color: #fbbf24; }
-
-        .btn-magenta {
-            background-color: #ec4899;
-            --btn-shadow-color: #be185d;
-            color: white;
-        }
-        .btn-magenta:hover { background-color: #f472b6; }
-
-        .btn-purple {
-            background-color: #7c3aed;
-            --btn-shadow-color: #5b21b6;
-            color: white;
-        }
-        .btn-purple:hover { background-color: #8b5cf6; }
-
-        /* Resaltado Karaoke / RSVP */
         .word-highlight {
             background-color: #f59e0b;
             color: #180a2e;
@@ -157,7 +103,65 @@
             transition: all 0.15s ease;
         }
 
-        /* Custom Scrollbar */
+        .btn-3d {
+            transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            cursor: pointer;
+            user-select: none;
+        }
+        .btn-3d:active {
+            transform: translateY(4px) !important;
+            box-shadow: 0 0 0 transparent !important;
+        }
+
+        .btn-mint {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: #ffffff;
+            box-shadow: 0 5px 0 #047857, 0 10px 15px -3px rgba(16, 185, 129, 0.4);
+            border: 1px solid #34d399;
+        }
+        .btn-mint:hover {
+            background: linear-gradient(135deg, #34d399 0%, #10b981 100%);
+        }
+
+        .btn-amber {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: #180a2e;
+            box-shadow: 0 5px 0 #b45309, 0 10px 15px -3px rgba(245, 158, 11, 0.4);
+            border: 1px solid #fbbf24;
+        }
+        .btn-amber:hover {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+        }
+
+        .btn-magenta {
+            background: linear-gradient(135deg, #ec4899 0%, #be185d 100%);
+            color: #ffffff;
+            box-shadow: 0 5px 0 #9d174d, 0 10px 15px -3px rgba(236, 72, 153, 0.4);
+            border: 1px solid #f472b6;
+        }
+        .btn-magenta:hover {
+            background: linear-gradient(135deg, #f472b6 0%, #ec4899 100%);
+        }
+
+        .btn-purple {
+            background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);
+            color: #ffffff;
+            box-shadow: 0 5px 0 #5b21b6, 0 10px 15px -3px rgba(139, 92, 246, 0.4);
+            border: 1px solid #a78bfa;
+        }
+        .btn-purple:hover {
+            background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%);
+        }
+
+        body {
+            background-color: #120723 !important;
+            color: #f8fafc;
+        }
+
+        :focus-visible{outline:3px solid #fbbf24;outline-offset:2px}
+        @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+        
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -169,21 +173,12 @@
             border-radius: 6px;
         }
 
-        /* Animations */
         @keyframes floatSlow {
             0%, 100% { transform: translateY(0px) rotate(0deg); }
             50% { transform: translateY(-8px) rotate(1deg); }
         }
         .animate-float {
             animation: floatSlow 4s ease-in-out infinite;
-        }
-
-        @keyframes pulseGlow {
-            0%, 100% { opacity: 0.4; filter: drop-shadow(0 0 5px #10b981); }
-            50% { opacity: 1; filter: drop-shadow(0 0 15px #10b981); }
-        }
-        .tree-glow {
-            animation: pulseGlow 2.5s infinite;
         }
 
         .dyslexic-font {
@@ -194,505 +189,671 @@
         }
     </style>
 </head>
-<body class="min-h-full flex flex-col justify-between font-sans overflow-x-hidden">
+<body class="min-h-full flex flex-col justify-between font-sans overflow-x-hidden bg-[#120723] text-slate-100">
 
     <!-- Canvas para Confeti Global -->
     <canvas id="confetti-canvas" class="fixed inset-0 pointer-events-none z-50"></canvas>
 
-    <!-- HEADER / NAVBAR -->
-    <header class="sticky top-0 z-40 bg-cardbg/90 backdrop-blur-md border-b border-cardborder shadow-lg">
-        <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
-            <!-- Logo -->
-            <div class="flex items-center space-x-3 cursor-pointer" onclick="app.navigateTo('home')">
-                <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-mint-500 to-cyan-400 flex items-center justify-center text-darkbg shadow-lg font-bold text-xl">
-                    <i class="fa-solid fa-tree"></i>
-                </div>
-                <div>
-                    <h1 class="font-kids text-2xl font-bold tracking-wide bg-gradient-to-r from-mint-400 via-amber-400 to-magenta-500 bg-clip-text text-transparent">LecturaPro</h1>
-                    <p class="text-[10px] text-purple-300 font-semibold tracking-wider uppercase">Árbol del Emprendimiento • Ley 1014</p>
-                </div>
+    <!-- PANTALLA DE INGRESO PREVIA OBLIGATORIA (CAFÉLAB LOGIN) -->
+    <div id="login-gatekeeper" class="fixed inset-0 bg-[#120723] z-50 flex flex-col items-center justify-center p-4">
+        <div class="bg-cardbg border-2 border-amber-500/50 rounded-3xl p-8 max-w-md w-full space-y-6 text-center shadow-2xl relative">
+            
+            <!-- LOGO OFICIAL BLANCO CLOUDINARY -->
+            <div class="w-full max-w-[280px] mx-auto py-2">
+                <img src="https://res.cloudinary.com/dgqpeth4f/image/upload/v1792772784/Logo_CafeLAB_2026_Final_Blanco_gwwwb7.png" alt="Logo CaféLAB" class="w-full h-auto drop-shadow-xl object-contain">
             </div>
 
-            <!-- Stats Rápidas -->
-            <div class="hidden md:flex items-center space-x-5 bg-darkbg/60 px-4 py-1.5 rounded-2xl border border-cardborder text-xs font-bold">
-                <div class="flex items-center space-x-1.5 text-amber-400" title="Máximas Palabras Por Minuto alcanzadas">
-                    <i class="fa-solid fa-bolt text-sm"></i>
-                    <span class="text-slate-400 font-normal">Máx PPM:</span>
-                    <span id="nav-max-ppm">0</span>
-                </div>
-                <div class="h-4 w-px bg-cardborder"></div>
-                <div class="flex items-center space-x-1.5 text-mint-400" title="Puntos Acumulados">
-                    <i class="fa-solid fa-star text-sm"></i>
-                    <span class="text-slate-400 font-normal">Puntos:</span>
-                    <span id="nav-points">0</span>
-                </div>
-                <div class="h-4 w-px bg-cardborder"></div>
-                <div class="flex items-center space-x-1.5 text-magenta-500" title="Cartas Pokédex Desbloqueadas">
-                    <i class="fa-solid fa-book-bookmark text-sm"></i>
-                    <span class="text-slate-400 font-normal">Pokédex:</span>
-                    <span id="nav-pokedex-count">0/5</span>
-                </div>
+            <div class="space-y-1">
+                <h2 class="font-kids text-xl font-bold text-amber-400">Plataforma de Comprensión Lectora</h2>
+                <p class="text-xs text-purple-200">Ingresa con tu código de estudiante o clave de docente</p>
             </div>
 
-            <!-- Botones Accesibilidad y Modos -->
-            <div class="flex items-center space-x-2">
-                <button onclick="app.navigateTo('trainer')" class="px-3 h-9 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 text-amber-400 border border-amber-500/40 font-kids text-xs font-bold flex items-center space-x-1.5 transition-all" title="Entrenador RSVP con ORP">
-                    <i class="fa-solid fa-bolt text-amber-400"></i>
-                    <span class="hidden sm:inline">Entrenador ORP</span>
-                </button>
-                <button id="btn-sound" onclick="app.toggleSound()" class="w-9 h-9 rounded-xl bg-cardborder hover:bg-purple-900 text-slate-200 flex items-center justify-center transition-all" title="Sonido On/Off">
-                    <i class="fa-solid fa-volume-high text-sm"></i>
-                </button>
-                <button id="btn-font" onclick="app.toggleFont()" class="px-2.5 h-9 rounded-xl bg-cardborder hover:bg-purple-900 text-xs font-bold text-slate-200 flex items-center space-x-1 transition-all" title="Fuente Dislexia">
-                    <i class="fa-solid fa-font"></i>
-                    <span class="hidden sm:inline">Dislexia</span>
-                </button>
-                <button onclick="app.navigateTo('pokedex')" class="px-3 h-9 rounded-xl bg-gradient-to-r from-magenta-500 to-purple-600 font-kids text-xs font-bold text-white shadow-md hover:brightness-110 flex items-center space-x-1.5 transition-all">
-                    <i class="fa-solid fa-box-archive"></i>
-                    <span id="header-pokedex-text">Pokédex (0/5)</span>
-                </button>
-            </div>
+            <!-- Formularios de Autenticación -->
+            <form id="gatekeeper-form" onsubmit="app.handleAuthSubmit(event)" class="space-y-4 pt-2">
+                <div class="space-y-1 text-left">
+                    <label class="text-xs font-bold text-slate-300 uppercase tracking-wider">Código de Estudiante (Usuario)</label>
+                    <input type="text" id="auth-code-input" required placeholder="Ej: 93584" class="w-full bg-darkbg border border-cardborder focus:border-amber-400 rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-all">
+                </div>
+
+                <div class="space-y-1 text-left">
+                    <label class="text-xs font-bold text-slate-300 uppercase tracking-wider">Contraseña</label>
+                    <input type="password" id="auth-pass-input" placeholder="Ej: 93584M" class="w-full bg-darkbg border border-cardborder focus:border-amber-400 rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-all">
+                    <p class="text-[10px] text-slate-400 leading-relaxed">Ejemplo: Si tu nombre es Alejandro Martínez Caicedo y tu código es 93584, tu Clave es <strong>93584M</strong></p>
+                </div>
+
+                <div class="pt-2">
+                    <button type="submit" id="btn-login-submit" class="w-full py-3.5 rounded-2xl btn-3d btn-amber font-kids font-bold text-base flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-right-to-bracket"></i>
+                        <span id="login-btn-text">Ingresar a la Plataforma</span>
+                    </button>
+                </div>
+            </form>
+
+            <div id="auth-status-msg" class="hidden text-xs font-bold text-center"></div>
         </div>
-    </header>
+    </div>
 
-    <!-- MAIN CONTAINER -->
-    <main class="flex-grow max-w-5xl w-full mx-auto px-4 py-6 flex flex-col justify-center">
+    <!-- MAIN APP WRAPPER (OCULTO HASTA AUTENTICAR) -->
+    <div id="main-app-wrapper" class="hidden min-h-full flex flex-col justify-between">
 
-        <!-- ========================================== -->
-        <!-- VISTA 1: HOME / DASHBOARD & NIVELES        -->
-        <!-- ========================================== -->
-        <section id="view-home" class="space-y-8">
-            <!-- Hero Banner -->
-            <div class="relative overflow-hidden rounded-3xl bg-gradient-to-r from-cardbg via-purple-900/60 to-cardbg border-2 border-cardborder p-6 sm:p-8 shadow-2xl">
-                <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
-                    <div class="md:col-span-7 space-y-4">
-                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-extrabold bg-mint-500/20 border border-mint-500/40 text-mint-400 uppercase tracking-wider">
-                            <i class="fa-solid fa-graduation-cap mr-1.5"></i> Comprensión & Velocidad Lectora
-                        </span>
-                        <h2 class="text-3xl sm:text-4xl font-extrabold font-kids leading-tight text-white">
-                            Aprende la <span class="text-amber-400">Ley 1014</span> con el <span class="text-mint-400">Árbol del Emprendimiento</span>
-                        </h2>
-                        <p class="text-slate-300 text-sm leading-relaxed">
-                            No basta con leer rápido: debes comprender la estructura visual, dominar el léxico clave y superar los ejercicios para completar tu Pokédex.
-                        </p>
-                        <div class="pt-2 flex flex-wrap gap-3">
-                            <button onclick="app.startLevel(1)" class="px-6 py-3.5 rounded-2xl btn-3d btn-mint font-kids font-bold text-base flex items-center space-x-2">
-                                <i class="fa-solid fa-play"></i>
-                                <span>Empezar Nivel 1</span>
-                            </button>
-                            <button onclick="app.navigateTo('pokedex')" class="px-5 py-3.5 rounded-2xl bg-cardborder hover:bg-purple-800/60 text-white font-bold text-sm transition-all flex items-center space-x-2">
-                                <i class="fa-solid fa-layer-group text-magenta-500"></i>
-                                <span id="btn-hero-pokedex">Ver Pokédex (0/5)</span>
-                            </button>
-                        </div>
+        <!-- HEADER / NAVBAR -->
+        <header class="sticky top-0 z-40 bg-cardbg/90 backdrop-blur-md border-b border-cardborder shadow-lg">
+            <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3 cursor-pointer" onclick="app.navigateTo('home')">
+                    <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-mint-500 to-cyan-400 flex items-center justify-center text-darkbg shadow-lg font-bold text-xl">
+                        <i class="fa-solid fa-tree"></i>
                     </div>
-
-                    <!-- Árbol Ilustrado Interactivo Preview -->
-                    <div class="md:col-span-5 flex justify-center items-center">
-                        <div class="relative w-64 h-64 bg-darkbg/80 rounded-3xl p-4 border border-cardborder flex items-center justify-center animate-float shadow-inner">
-                            <svg id="home-tree-svg" class="w-full h-full" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <!-- Suelo -->
-                                <path d="M 20 160 Q 100 145 180 160 L 180 185 Q 100 195 20 185 Z" fill="#78350f" class="transition-all hover:opacity-80 cursor-pointer" onclick="app.showTreeTip('suelo')"/>
-                                <!-- Semilla -->
-                                <circle cx="100" cy="165" r="10" fill="#f59e0b" class="cursor-pointer" onclick="app.showTreeTip('semilla')"/>
-                                <!-- Tronco -->
-                                <path d="M 85 160 C 85 120 70 100 65 80 L 135 80 C 130 100 115 120 115 160 Z" fill="#a16207" class="cursor-pointer" onclick="app.showTreeTip('tronco')"/>
-                                <!-- Ramas -->
-                                <path d="M 65 80 L 40 50 M 135 80 L 160 50 M 100 80 L 100 45" stroke="#843d10" stroke-width="8" stroke-linecap="round"/>
-                                <!-- Frutos / Copa -->
-                                <circle cx="60" cy="50" r="30" fill="#10b981" opacity="0.85" class="cursor-pointer" onclick="app.showTreeTip('frutos')"/>
-                                <circle cx="140" cy="50" r="30" fill="#10b981" opacity="0.85" class="cursor-pointer" onclick="app.showTreeTip('frutos')"/>
-                                <circle cx="100" cy="35" r="35" fill="#34d399" opacity="0.9" class="cursor-pointer" onclick="app.showTreeTip('frutos')"/>
-                                <!-- Manzanas decorativas -->
-                                <circle cx="65" cy="45" r="6" fill="#ec4899"/>
-                                <circle cx="135" cy="55" r="6" fill="#f59e0b"/>
-                                <circle cx="100" cy="30" r="6" fill="#38bdf8"/>
-                            </svg>
-                            <span class="absolute bottom-2 text-[10px] bg-darkbg/90 px-2 py-0.5 rounded-full text-slate-300 border border-cardborder">¡Toca las partes del árbol!</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Grid de Niveles -->
-            <div class="space-y-4">
-                <div class="flex items-center justify-between">
-                    <h3 class="text-xl font-bold font-kids text-white flex items-center gap-2">
-                        <i class="fa-solid fa-map-location-dot text-mint-400"></i> Ruta de Aprendizaje
-                    </h3>
-                    <span class="text-xs text-slate-400">Avanza en orden para desbloquear</span>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="levels-container">
-                    <!-- Dinámico vía JS -->
-                </div>
-            </div>
-        </section>
-
-        <!-- ========================================== -->
-        <!-- VISTA 2: ETAPA 1 - ANTES DE LEER           -->
-        <!-- ========================================== -->
-        <section id="view-before-read" class="hidden space-y-6">
-            <!-- Header de Etapa -->
-            <div class="bg-cardbg rounded-2xl p-4 border border-cardborder flex items-center justify-between">
-                <button onclick="app.navigateTo('home')" class="text-slate-400 hover:text-white font-semibold text-sm flex items-center gap-2">
-                    <i class="fa-solid fa-arrow-left"></i> Regresar
-                </button>
-                <div class="flex items-center space-x-2">
-                    <span class="px-3 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-400 border border-amber-500/30 uppercase">
-                        Etapa 1 de 3: Preparación
-                    </span>
-                    <span id="before-level-title" class="text-xs text-purple-300 font-bold">Nivel 1</span>
-                </div>
-            </div>
-
-            <!-- Contenido Interactivo de Activación -->
-            <div class="bg-cardbg rounded-3xl p-6 sm:p-8 border border-cardborder space-y-8 shadow-xl">
-                <!-- 1. Pregunta de Anclaje de Título & Metáfora -->
-                <div class="space-y-4">
-                    <div class="flex items-center space-x-3">
-                        <div class="w-8 h-8 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold">1</div>
-                        <h3 class="text-lg font-bold text-white font-kids">Anclaje Estratégico de Título y Metáfora</h3>
-                    </div>
-                    <p class="text-slate-300 text-sm">
-                        Para comprender la lectura, debes memorizar el título exacto y el modelo con el que abordaremos la norma.
-                    </p>
-                    <div id="before-title-question" class="bg-darkbg/70 p-5 rounded-2xl border border-cardborder space-y-4">
-                        <!-- Creado en JS -->
-                    </div>
-                </div>
-
-                <hr class="border-cardborder">
-
-                <!-- 2. Tarjetas de Léxico Clave -->
-                <div class="space-y-4">
-                    <div class="flex items-center space-x-3">
-                        <div class="w-8 h-8 rounded-xl bg-mint-500/20 text-mint-400 flex items-center justify-center font-bold">2</div>
-                        <h3 class="text-lg font-bold text-white font-kids">Vocabulario Clave del Texto</h3>
-                    </div>
-                    <p class="text-slate-300 text-sm">
-                        Haz clic en cada tarjeta para descubrir su significado antes de leer:
-                    </p>
-                    <div id="before-lexicon-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                        <!-- Creado en JS -->
-                    </div>
-                </div>
-
-                <div class="pt-4 flex justify-end">
-                    <button id="btn-start-reading" onclick="app.proceedToReading()" disabled class="px-8 py-4 rounded-2xl btn-3d btn-mint opacity-50 cursor-not-allowed font-kids font-bold text-base flex items-center space-x-2">
-                        <span>Paso 2: Iniciar Lectura</span>
-                        <i class="fa-solid fa-arrow-right"></i>
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <!-- ========================================== -->
-        <!-- VISTA 3: ETAPA 2 - DURANTE LA LECTURA      -->
-        <!-- ========================================== -->
-        <section id="view-reading" class="hidden space-y-6">
-            <!-- Controls Bar -->
-            <div class="bg-cardbg rounded-2xl p-4 border border-cardborder flex flex-wrap items-center justify-between gap-4">
-                <!-- Modo Toggle -->
-                <div class="bg-darkbg p-1 rounded-xl flex text-xs font-bold border border-cardborder">
-                    <button id="mode-btn-free" onclick="app.setReaderMode('free')" class="px-3 py-2 rounded-lg bg-mint-500 text-white transition-all">
-                        <i class="fa-solid fa-clock mr-1"></i> Libre con Cronómetro
-                    </button>
-                    <button id="mode-btn-rsvp" onclick="app.setReaderMode('rsvp')" class="px-3 py-2 rounded-lg text-slate-400 hover:text-white transition-all">
-                        <i class="fa-solid fa-forward mr-1"></i> Guiado (Karaoke RSVP)
-                    </button>
-                </div>
-
-                <!-- WPM Selector for RSVP -->
-                <div id="wpm-control-box" class="hidden flex items-center space-x-3 text-xs">
-                    <span class="text-slate-300 font-bold">Velocidad:</span>
-                    <input type="range" id="wpm-slider" min="40" max="200" step="10" value="80" oninput="app.updateWpmLabel(this.value)" class="w-28 accent-mint-500">
-                    <span id="wpm-label" class="font-extrabold text-amber-400 bg-darkbg px-2 py-1 rounded-lg border border-cardborder">80 PPM</span>
-                </div>
-
-                <!-- Font Size Buttons -->
-                <div class="flex items-center bg-darkbg rounded-xl p-1 text-xs border border-cardborder">
-                    <button onclick="app.adjustFontSize(-2)" class="w-8 h-8 rounded-lg hover:bg-cardborder font-bold">A-</button>
-                    <button onclick="app.adjustFontSize(2)" class="w-8 h-8 rounded-lg hover:bg-cardborder font-bold">A+</button>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-                <!-- Texto principal de lectura -->
-                <div class="lg:col-span-8 bg-cardbg rounded-3xl p-6 sm:p-8 border border-cardborder space-y-6 shadow-xl flex flex-col justify-between">
                     <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <h3 id="reading-text-title" class="font-kids text-xl font-bold text-amber-400">Título del Texto</h3>
-                            <span id="reading-word-count-badge" class="text-xs bg-darkbg px-3 py-1 rounded-full text-slate-300 border border-cardborder">0 palabras</span>
-                        </div>
+                        <h1 class="font-kids text-2xl font-bold tracking-wide bg-gradient-to-r from-mint-400 via-amber-400 to-magenta-500 bg-clip-text text-transparent">LecturaPro</h1>
+                        <p class="text-[10px] text-purple-300 font-semibold tracking-wider uppercase">Árbol del Emprendimiento • Ley 1014</p>
+                    </div>
+                </div>
 
-                        <!-- Area de texto libre -->
-                        <div id="reader-free-box" class="text-slate-100 text-lg leading-relaxed space-y-4 transition-all">
-                            <!-- Contenido inyectado JS -->
-                        </div>
+                <!-- Stats Rápidas -->
+                <div id="student-stats-header" class="hidden md:flex items-center space-x-5 bg-darkbg/60 px-4 py-1.5 rounded-2xl border border-cardborder text-xs font-bold">
+                    <div class="flex items-center space-x-1.5 text-amber-400" title="Máximas Palabras Por Minuto alcanzadas">
+                        <i class="fa-solid fa-bolt text-sm"></i>
+                        <span class="text-slate-400 font-normal">Máx PPM:</span>
+                        <span id="nav-max-ppm">0</span>
+                    </div>
+                    <div class="h-4 w-px bg-cardborder"></div>
+                    <div class="flex items-center space-x-1.5 text-mint-400" title="Puntos Acumulados">
+                        <i class="fa-solid fa-star text-sm"></i>
+                        <span class="text-slate-400 font-normal">Puntos:</span>
+                        <span id="nav-points">0</span>
+                    </div>
+                    <div class="h-4 w-px bg-cardborder"></div>
+                    <div class="flex items-center space-x-1.5 text-magenta-500" title="Cartas Pokédex Desbloqueadas">
+                        <i class="fa-solid fa-book-bookmark text-sm"></i>
+                        <span class="text-slate-400 font-normal">Pokédex:</span>
+                        <span id="nav-pokedex-count">0/5</span>
+                    </div>
+                </div>
 
-                        <!-- Area RSVP Karaoke -->
-                        <div id="reader-rsvp-box" class="hidden min-h-[180px] bg-darkbg rounded-2xl p-6 border border-cardborder flex flex-col items-center justify-center text-center space-y-4">
-                            <span id="rsvp-word-display" class="text-3xl sm:text-4xl font-extrabold text-amber-400 font-kids tracking-wide">
-                                ¡Listos!
+                <!-- Botones Accesibilidad y Modos -->
+                <div class="flex items-center space-x-2">
+                    <button id="nav-trainer-btn" onclick="app.navigateTo('trainer')" class="px-3 h-9 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 text-amber-400 border border-amber-500/40 font-kids text-xs font-bold flex items-center space-x-1.5 transition-all" title="Entrenador RSVP con ORP">
+                        <i class="fa-solid fa-bolt text-amber-400"></i>
+                        <span class="hidden sm:inline">Entrenador ORP</span>
+                    </button>
+                    <button id="btn-sound" onclick="app.toggleSound()" class="w-9 h-9 rounded-xl bg-cardborder hover:bg-purple-900 text-slate-200 flex items-center justify-center transition-all" title="Sonido On/Off">
+                        <i class="fa-solid fa-volume-high text-sm"></i>
+                    </button>
+                    <button id="btn-font" onclick="app.toggleFont()" class="px-2.5 h-9 rounded-xl bg-cardborder hover:bg-purple-900 text-xs font-bold text-slate-200 flex items-center space-x-1 transition-all" title="Fuente Dislexia">
+                        <i class="fa-solid fa-font"></i>
+                        <span class="hidden sm:inline">Dislexia</span>
+                    </button>
+                    <button id="nav-pokedex-btn" onclick="app.navigateTo('pokedex')" class="px-3 h-9 rounded-xl bg-gradient-to-r from-magenta-500 to-purple-600 font-kids text-xs font-bold text-white shadow-md hover:brightness-110 flex items-center space-x-1.5 transition-all">
+                        <i class="fa-solid fa-box-archive"></i>
+                        <span id="header-pokedex-text">Pokédex (0/5)</span>
+                    </button>
+                    <!-- Perfil -->
+                    <div id="btn-user-profile" onclick="app.logout()" title="Toca para cerrar sesión" role="button" tabindex="0" class="cursor-pointer hover:border-amber-400 px-3 h-9 rounded-xl bg-darkbg border border-cardborder text-xs font-bold text-amber-400 flex items-center space-x-1.5">
+                        <i class="fa-solid fa-user-check"></i>
+                        <span id="user-display-name">Estudiante</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- MAIN CONTAINER -->
+        <main class="flex-grow max-w-5xl w-full mx-auto px-4 py-6 flex flex-col justify-center">
+
+            <!-- ========================================== -->
+            <!-- VISTA DOCENTE: DASHBOARD DE RESULTADOS     -->
+            <!-- ========================================== -->
+            <section id="view-teacher-dashboard" class="hidden space-y-6">
+                <div class="bg-gradient-to-r from-cardbg via-purple-900/80 to-cardbg rounded-3xl p-6 sm:p-8 border-2 border-amber-500/50 shadow-2xl space-y-6">
+                    <div class="flex flex-wrap items-center justify-between gap-4">
+                        <div>
+                            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-extrabold bg-amber-500/20 border border-amber-500/40 text-amber-400 uppercase tracking-wider">
+                                <i class="fa-solid fa-chalkboard-user mr-1.5"></i> Panel de Administración Docente
                             </span>
-                            <p id="rsvp-status-subtext" class="text-xs text-slate-400">Las palabras cambiarán al ritmo configurado</p>
+                            <h2 class="text-3xl font-extrabold font-kids text-white mt-1">Seguimiento y Historial de Intentos</h2>
+                            <p class="text-xs text-slate-300">Consulta el detalle de cada intento, puntuación y el registro del último intento por estudiante.</p>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <button onclick="app.exportTeacherReport()" class="px-4 py-2.5 rounded-xl btn-3d btn-mint text-xs font-bold flex items-center gap-2">
+                                <i class="fa-solid fa-file-excel"></i> Exportar CSV
+                            </button>
+                            <button onclick="app.logout()" class="px-4 py-2.5 rounded-xl bg-cardborder hover:bg-purple-800 text-xs font-bold text-slate-200">
+                                <i class="fa-solid fa-right-from-bracket mr-1"></i> Salir
+                            </button>
                         </div>
                     </div>
 
-                    <!-- Botón de inicio/finalización de lectura -->
-                    <div class="pt-6 border-t border-cardborder flex items-center justify-between">
-                        <div class="flex items-center space-x-3">
-                            <div class="w-10 h-10 rounded-2xl bg-darkbg border border-cardborder flex items-center justify-center text-mint-400 font-bold">
-                                <i class="fa-solid fa-stopwatch text-lg"></i>
-                            </div>
-                            <div>
-                                <span class="text-[10px] text-slate-400 uppercase font-bold block">Tiempo Transcurrido</span>
-                                <span id="reading-timer-display" class="font-mono text-xl font-bold text-white">00:00</span>
+                    <!-- Filtros de Grupo -->
+                    <div class="flex flex-wrap items-center gap-3 bg-darkbg/70 p-4 rounded-2xl border border-cardborder text-xs">
+                        <span class="font-bold text-amber-400">Filtrar por Grupo:</span>
+                        <button onclick="app.filterTeacherGroup('ALL')" id="filter-btn-all" class="px-3 py-1.5 rounded-xl bg-amber-500 text-darkbg font-bold transition-all">Todos</button>
+                        <button onclick="app.filterTeacherGroup('6-1')" id="filter-btn-6-1" class="px-3 py-1.5 rounded-xl bg-cardbg text-slate-300 font-bold hover:bg-purple-900 transition-all">Grado 6-1</button>
+                        <button onclick="app.filterTeacherGroup('6-2')" id="filter-btn-6-2" class="px-3 py-1.5 rounded-xl bg-cardbg text-slate-300 font-bold hover:bg-purple-900 transition-all">Grado 6-2</button>
+                        <button onclick="app.filterTeacherGroup('7-1')" id="filter-btn-7-1" class="px-3 py-1.5 rounded-xl bg-cardbg text-slate-300 font-bold hover:bg-purple-900 transition-all">Grado 7-1</button>
+                    </div>
+
+                    <!-- Estadísticas Generales del Grupo -->
+                    <div class="grid grid-cols-1 sm:grid-cols-4 gap-4">
+                        <div class="bg-darkbg p-4 rounded-2xl border border-cardborder space-y-1">
+                            <span class="text-[10px] text-slate-400 uppercase font-bold">Estudiantes Registrados</span>
+                            <p id="teacher-stat-total" class="text-2xl font-bold font-kids text-white">0</p>
+                        </div>
+                        <div class="bg-darkbg p-4 rounded-2xl border border-cardborder space-y-1">
+                            <span class="text-[10px] text-slate-400 uppercase font-bold">Promedio Último PPM</span>
+                            <p id="teacher-stat-ppm" class="text-2xl font-bold font-kids text-amber-400">0 PPM</p>
+                        </div>
+                        <div class="bg-darkbg p-4 rounded-2xl border border-cardborder space-y-1">
+                            <span class="text-[10px] text-slate-400 uppercase font-bold">Promedio Última Comprensión</span>
+                            <p id="teacher-stat-acc" class="text-2xl font-bold font-kids text-mint-400">0%</p>
+                        </div>
+                        <div class="bg-darkbg p-4 rounded-2xl border border-cardborder space-y-1">
+                            <span class="text-[10px] text-slate-400 uppercase font-bold">Total Intentos Registrados</span>
+                            <p id="teacher-stat-attempts" class="text-2xl font-bold font-kids text-cyan-400">0</p>
+                        </div>
+                    </div>
+
+                    <!-- Tabla de Resultados General (Último Intento) -->
+                    <div class="bg-darkbg rounded-2xl border border-cardborder overflow-hidden space-y-2">
+                        <div class="p-4 border-b border-cardborder flex items-center justify-between">
+                            <h3 class="font-kids text-sm font-bold text-white">Resumen General (Último Intento por Estudiante)</h3>
+                            <span id="teacher-table-count" class="text-xs text-slate-400">0 registros</span>
+                        </div>
+                        <div class="overflow-x-auto max-h-80">
+                            <table class="w-full text-left text-xs">
+                                <thead class="bg-cardbg text-purple-300 uppercase font-bold sticky top-0">
+                                    <tr>
+                                        <th class="p-3">Estudiante</th>
+                                        <th class="p-3">Código</th>
+                                        <th class="p-3">Grado</th>
+                                        <th class="p-3">Total Intentos</th>
+                                        <th class="p-3">Último PPM</th>
+                                        <th class="p-3">Última Comprensión</th>
+                                        <th class="p-3">Puntos Acumulados</th>
+                                        <th class="p-3">Acción</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="teacher-table-body" class="divide-y divide-cardborder text-slate-200">
+                                    <!-- Inyectado por JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Sección de Detalle de Intentos por Estudiante -->
+                    <div id="teacher-attempts-detail" class="hidden bg-darkbg p-5 rounded-2xl border border-amber-500/40 space-y-3">
+                        <div class="flex items-center justify-between">
+                            <h4 id="teacher-detail-title" class="font-kids text-sm font-bold text-amber-400">Historial detallado de intentos</h4>
+                            <button onclick="document.getElementById('teacher-attempts-detail').classList.add('hidden')" class="text-xs text-slate-400 hover:text-white">Cerrar detalle</button>
+                        </div>
+                        <div class="overflow-x-auto max-h-60">
+                            <table class="w-full text-left text-xs">
+                                <thead class="bg-cardbg text-purple-300 uppercase font-bold">
+                                    <tr>
+                                        <th class="p-2.5">Intento N°</th>
+                                        <th class="p-2.5">Nivel</th>
+                                        <th class="p-2.5">Fecha / Hora</th>
+                                        <th class="p-2.5">Velocidad (PPM)</th>
+                                        <th class="p-2.5">Comprensión</th>
+                                        <th class="p-2.5">Aciertos</th>
+                                        <th class="p-2.5">Puntos</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="teacher-detail-tbody" class="divide-y divide-cardborder text-slate-200">
+                                    <!-- Inyectado por JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========================================== -->
+            <!-- VISTA 1: HOME / DASHBOARD & NIVELES        -->
+            <!-- ========================================== -->
+            <section id="view-home" class="space-y-8">
+                <!-- Hero Banner -->
+                <div class="relative overflow-hidden rounded-3xl bg-gradient-to-r from-cardbg via-purple-900/60 to-cardbg border-2 border-cardborder p-6 sm:p-8 shadow-2xl">
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+                        <div class="md:col-span-7 space-y-4">
+                            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-extrabold bg-mint-500/20 border border-mint-500/40 text-mint-400 uppercase tracking-wider">
+                                <i class="fa-solid fa-graduation-cap mr-1.5"></i> Comprensión & Velocidad Lectora
+                            </span>
+                            <h2 class="text-3xl sm:text-4xl font-extrabold font-kids leading-tight text-white">
+                                Aprende la <span class="text-amber-400">Ley 1014</span> con el <span class="text-mint-400">Árbol del Emprendimiento</span>
+                            </h2>
+                            <p class="text-slate-300 text-sm leading-relaxed">
+                                No basta con leer rápido: debes comprender la estructura visual, dominar el léxico clave y superar los ejercicios para completar tu Pokédex.
+                            </p>
+                            <div class="pt-2 flex flex-wrap gap-3">
+                                <button onclick="app.startLevel(1)" class="px-6 py-3.5 rounded-2xl btn-3d btn-mint font-kids font-bold text-base flex items-center space-x-2">
+                                    <i class="fa-solid fa-play"></i>
+                                    <span>Empezar Nivel 1</span>
+                                </button>
+                                <button onclick="app.navigateTo('pokedex')" class="px-5 py-3.5 rounded-2xl bg-cardborder hover:bg-purple-800/60 text-white font-bold text-sm transition-all flex items-center space-x-2">
+                                    <i class="fa-solid fa-layer-group text-magenta-500"></i>
+                                    <span id="btn-hero-pokedex">Ver Pokédex (0/5)</span>
+                                </button>
                             </div>
                         </div>
 
-                        <button id="btn-reading-action" onclick="app.toggleReadingProcess()" class="px-8 py-4 rounded-2xl btn-3d btn-mint font-kids font-bold text-base flex items-center space-x-2">
-                            <i class="fa-solid fa-play"></i>
-                            <span id="reading-btn-text">Iniciar Lectura</span>
+                        <!-- Árbol Ilustrado Interactivo Preview -->
+                        <div class="md:col-span-5 flex justify-center items-center">
+                            <div class="relative w-64 h-64 bg-darkbg/80 rounded-3xl p-4 border border-cardborder flex items-center justify-center animate-float shadow-inner">
+                                <svg id="home-tree-svg" class="w-full h-full" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <!-- Suelo -->
+                                    <path d="M 20 160 Q 100 145 180 160 L 180 185 Q 100 195 20 185 Z" fill="#78350f" class="transition-all hover:opacity-80 cursor-pointer" onclick="app.showTreeTip('suelo')"/>
+                                    <!-- Semilla -->
+                                    <circle cx="100" cy="165" r="10" fill="#f59e0b" class="cursor-pointer" onclick="app.showTreeTip('semilla')"/>
+                                    <!-- Tronco -->
+                                    <path d="M 85 160 C 85 120 70 100 65 80 L 135 80 C 130 100 115 120 115 160 Z" fill="#a16207" class="cursor-pointer" onclick="app.showTreeTip('tronco')"/>
+                                    <!-- Ramas -->
+                                    <path d="M 65 80 L 40 50 M 135 80 L 160 50 M 100 80 L 100 45" stroke="#843d10" stroke-width="8" stroke-linecap="round"/>
+                                    <!-- Frutos / Copa -->
+                                    <circle cx="60" cy="50" r="30" fill="#10b981" opacity="0.85" class="cursor-pointer" onclick="app.showTreeTip('frutos')"/>
+                                    <circle cx="140" cy="50" r="30" fill="#10b981" opacity="0.85" class="cursor-pointer" onclick="app.showTreeTip('frutos')"/>
+                                    <circle cx="100" cy="35" r="35" fill="#34d399" opacity="0.9" class="cursor-pointer" onclick="app.showTreeTip('frutos')"/>
+                                    <!-- Manzanas decorativas -->
+                                    <circle cx="65" cy="45" r="6" fill="#ec4899"/>
+                                    <circle cx="135" cy="55" r="6" fill="#f59e0b"/>
+                                    <circle cx="100" cy="30" r="6" fill="#38bdf8"/>
+                                </svg>
+                                <span class="absolute bottom-2 text-[10px] bg-darkbg/90 px-2 py-0.5 rounded-full text-slate-300 border border-cardborder">¡Toca las partes del árbol!</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="history-panel" class="hidden bg-cardbg rounded-3xl border border-cardborder p-5 space-y-3"></div>
+
+                <!-- Grid de Niveles -->
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-xl font-bold font-kids text-white flex items-center gap-2">
+                            <i class="fa-solid fa-map-location-dot text-mint-400"></i> Ruta de Aprendizaje
+                        </h3>
+                        <span class="text-xs text-slate-400">Avanza en orden para desbloquear</span>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="levels-container">
+                        <!-- Dinámico vía JS -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========================================== -->
+            <!-- VISTA 2: ETAPA 1 - ANTES DE LEER           -->
+            <!-- ========================================== -->
+            <section id="view-before-read" class="hidden space-y-6">
+                <!-- Header de Etapa -->
+                <div class="bg-cardbg rounded-2xl p-4 border border-cardborder flex items-center justify-between">
+                    <button onclick="app.navigateTo('home')" class="text-slate-400 hover:text-white font-semibold text-sm flex items-center gap-2">
+                        <i class="fa-solid fa-arrow-left"></i> Regresar
+                    </button>
+                    <div class="flex items-center space-x-2">
+                        <span class="px-3 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-400 border border-amber-500/30 uppercase">
+                            Etapa 1 de 3: Preparación
+                        </span>
+                        <span id="before-level-title" class="text-xs text-purple-300 font-bold">Nivel 1</span>
+                    </div>
+                </div>
+
+                <!-- Contenido Interactivo de Activación -->
+                <div class="bg-cardbg rounded-3xl p-6 sm:p-8 border border-cardborder space-y-8 shadow-xl">
+                    <!-- 1. Pregunta de Anclaje de Título & Metáfora -->
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-8 h-8 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold">1</div>
+                            <h3 class="text-lg font-bold text-white font-kids">Anclaje Estratégico de Título y Metáfora</h3>
+                        </div>
+                        <p class="text-slate-300 text-sm">
+                            Para comprender la lectura, debes memorizar el título exacto y el modelo con el que abordaremos la norma.
+                        </p>
+                        <div id="before-title-question" class="bg-darkbg/70 p-5 rounded-2xl border border-cardborder space-y-4">
+                            <!-- Creado en JS -->
+                        </div>
+                    </div>
+
+                    <hr class="border-cardborder">
+
+                    <!-- 2. Tarjetas de Léxico Clave -->
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-8 h-8 rounded-xl bg-mint-500/20 text-mint-400 flex items-center justify-center font-bold">2</div>
+                            <h3 class="text-lg font-bold text-white font-kids">Vocabulario Clave del Texto</h3>
+                        </div>
+                        <p class="text-slate-300 text-sm">
+                            Haz clic en cada tarjeta para descubrir su significado antes de leer:
+                        </p>
+                        <div id="before-lexicon-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                            <!-- Creado en JS -->
+                        </div>
+                    </div>
+
+                    <div class="pt-4 flex justify-end">
+                        <button id="btn-start-reading" onclick="app.proceedToReading()" disabled class="px-8 py-4 rounded-2xl btn-3d btn-mint opacity-50 cursor-not-allowed font-kids font-bold text-base flex items-center space-x-2">
+                            <span>Paso 2: Iniciar Lectura</span>
+                            <i class="fa-solid fa-arrow-right"></i>
                         </button>
                     </div>
                 </div>
+            </section>
 
-                <!-- Ilustración Lateral Árbol Interactivo -->
-                <div class="lg:col-span-4 bg-cardbg rounded-3xl p-6 border border-cardborder flex flex-col items-center justify-center text-center space-y-4">
-                    <h4 class="font-kids text-sm font-bold text-purple-300 uppercase tracking-wider">Visualizador del Árbol</h4>
-                    <div class="w-full h-64 bg-darkbg/60 rounded-2xl p-4 border border-cardborder flex items-center justify-center">
-                        <svg id="reading-tree-svg" class="w-full h-full" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                            <!-- SVG renderizado dinámicamente -->
-                        </svg>
+            <!-- ========================================== -->
+            <!-- VISTA 3: ETAPA 2 - DURANTE LA LECTURA      -->
+            <!-- ========================================== -->
+            <section id="view-reading" class="hidden space-y-6">
+                <!-- Controls Bar -->
+                <div class="bg-cardbg rounded-2xl p-4 border border-cardborder flex flex-wrap items-center justify-between gap-4">
+                    <!-- Modo Toggle -->
+                    <div class="bg-darkbg p-1 rounded-xl flex text-xs font-bold border border-cardborder">
+                        <button id="mode-btn-free" onclick="app.setReaderMode('free')" class="px-3 py-2 rounded-lg bg-mint-500 text-white transition-all">
+                            <i class="fa-solid fa-clock mr-1"></i> Libre con Cronómetro
+                        </button>
+                        <button id="mode-btn-rsvp" onclick="app.setReaderMode('rsvp')" class="px-3 py-2 rounded-lg text-slate-400 hover:text-white transition-all">
+                            <i class="fa-solid fa-forward mr-1"></i> Guiado (Karaoke RSVP)
+                        </button>
                     </div>
-                    <p id="reading-tree-status" class="text-xs text-slate-300 font-medium">
-                        El árbol se iluminará según la sección evaluada.
-                    </p>
-                </div>
-            </div>
-        </section>
 
-        <!-- ========================================== -->
-        <!-- VISTA 4: ETAPA 3 - EVALUACIÓN MULTIDIMENSIONAL -->
-        <!-- ========================================== -->
-        <section id="view-quiz" class="hidden space-y-6">
-            <!-- Header de Evaluación -->
-            <div class="bg-cardbg rounded-2xl p-4 border border-cardborder flex items-center justify-between">
-                <span class="px-3 py-1 rounded-full text-xs font-bold bg-magenta-500/20 text-magenta-500 border border-magenta-500/30 uppercase">
-                    Etapa 3 de 3: Evaluación Cognitiva
-                </span>
-                <span id="quiz-timer-result" class="text-xs font-mono font-bold text-amber-400">PPM Estimado: Calculando...</span>
-            </div>
-
-            <!-- Quiz Card -->
-            <div class="bg-cardbg rounded-3xl p-6 sm:p-8 border border-cardborder space-y-6 shadow-xl">
-                <div>
-                    <h3 class="text-2xl font-bold font-kids text-white">Comprueba tu Comprensión y Léxico</h3>
-                    <p class="text-slate-300 text-sm">Responde las preguntas estructuradas por dimensiones académicas:</p>
-                </div>
-
-                <form id="quiz-form" class="space-y-6">
-                    <!-- Inyectado por JS -->
-                </form>
-
-                <div class="pt-4 border-t border-cardborder flex justify-end">
-                    <button onclick="app.submitQuiz()" class="px-8 py-4 rounded-2xl btn-3d btn-magenta font-kids font-bold text-base flex items-center space-x-2">
-                        <i class="fa-solid fa-check-double"></i>
-                        <span>Evaluar Mis Respuestas</span>
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <!-- ========================================== -->
-        <!-- VISTA 5: RESULTADOS Y CELEBRACIÓN          -->
-        <!-- ========================================== -->
-        <section id="view-results" class="hidden space-y-6">
-            <div id="results-card-container" class="bg-cardbg rounded-3xl p-6 sm:p-10 border-2 border-cardborder space-y-8 text-center shadow-2xl relative overflow-hidden">
-                <!-- Modal Banner -->
-                <div id="results-banner-box" class="space-y-3">
-                    <!-- Dinámico -->
-                </div>
-
-                <!-- Stats Grid -->
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                    <div class="bg-darkbg p-4 rounded-2xl border border-cardborder space-y-1">
-                        <span class="text-xs text-slate-400 font-bold uppercase">Velocidad</span>
-                        <p id="res-wpm" class="text-2xl sm:text-3xl font-extrabold text-amber-400 font-kids">0 PPM</p>
-                        <span id="res-wpm-category" class="text-xs font-bold text-amber-300 block">Nivel: --</span>
+                    <!-- WPM Selector for RSVP -->
+                    <div id="wpm-control-box" class="hidden flex items-center space-x-3 text-xs">
+                        <span class="text-slate-300 font-bold">Velocidad:</span>
+                        <input type="range" id="wpm-slider" min="40" max="200" step="10" value="80" oninput="app.updateWpmLabel(this.value)" class="w-28 accent-mint-500">
+                        <span id="wpm-label" class="font-extrabold text-amber-400 bg-darkbg px-2 py-1 rounded-lg border border-cardborder">80 PPM</span>
                     </div>
-                    <div class="bg-darkbg p-4 rounded-2xl border border-cardborder space-y-1">
-                        <span class="text-xs text-slate-400 font-bold uppercase">Comprensión</span>
-                        <p id="res-accuracy" class="text-2xl sm:text-3xl font-extrabold text-mint-400 font-kids">0%</p>
-                        <span id="res-accuracy-detail" class="text-xs text-slate-400 block">0/4 Correctas</span>
-                    </div>
-                    <div class="bg-darkbg p-4 rounded-2xl border border-cardborder space-y-1">
-                        <span class="text-xs text-slate-400 font-bold uppercase">Tiempo Total</span>
-                        <p id="res-time" class="text-2xl sm:text-3xl font-extrabold text-cyan-400 font-kids">0s</p>
-                        <span id="res-time-detail" class="text-xs text-slate-400 block">Tiempo real</span>
+
+                    <!-- Font Size Buttons -->
+                    <div class="flex items-center bg-darkbg rounded-xl p-1 text-xs border border-cardborder">
+                        <button onclick="app.adjustFontSize(-2)" class="w-8 h-8 rounded-lg hover:bg-cardborder font-bold">A-</button>
+                        <button onclick="app.adjustFontSize(2)" class="w-8 h-8 rounded-lg hover:bg-cardborder font-bold">A+</button>
                     </div>
                 </div>
 
-                <!-- Caja de Diagnóstico Personalizado -->
-                <div class="bg-darkbg/80 p-5 rounded-2xl border border-cardborder text-left space-y-2">
-                    <h4 class="text-xs font-bold text-amber-400 uppercase tracking-widest flex items-center gap-1.5">
-                        <i class="fa-solid fa-square-poll-vertical"></i> Diagnóstico & Oportunidades de Mejora
-                    </h4>
-                    <p id="res-feedback-text" class="text-xs text-slate-200 leading-relaxed">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                    <!-- Texto principal de lectura -->
+                    <div class="lg:col-span-8 bg-cardbg rounded-3xl p-6 sm:p-8 border border-cardborder space-y-6 shadow-xl flex flex-col justify-between">
+                        <div>
+                            <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+                                <div class="flex items-center space-x-3">
+                                    <h3 id="reading-text-title" class="font-kids text-xl font-bold text-amber-400">Título del Texto</h3>
+                                    <button id="btn-reading-action" onclick="app.toggleReadingProcess()" class="px-5 py-2.5 rounded-xl btn-3d btn-mint font-kids font-bold text-sm flex items-center space-x-2">
+                                        <i class="fa-solid fa-play"></i>
+                                        <span id="reading-btn-text">Iniciar Lectura</span>
+                                    </button>
+                                </div>
+                                <span id="reading-word-count-badge" class="text-xs bg-darkbg px-3 py-1 rounded-full text-slate-300 border border-cardborder">0 palabras</span>
+                            </div>
+
+                            <!-- Area de texto libre -->
+                            <div id="reader-free-box" class="text-slate-100 text-lg leading-relaxed space-y-4 transition-all">
+                                <!-- Contenido inyectado JS -->
+                            </div>
+
+                            <!-- Area RSVP Karaoke -->
+                            <div id="reader-rsvp-box" class="hidden relative min-h-[180px] bg-darkbg rounded-2xl p-6 border border-cardborder flex flex-col items-center justify-center text-center space-y-4 overflow-hidden">
+                                <!-- Guías Visuales Superior e Inferior (Punto Focal) -->
+                                <div class="absolute top-2 left-1/2 -translate-x-1/2 text-amber-400 text-xs font-bold z-20 pointer-events-none">▼</div>
+                                <div class="absolute bottom-2 left-1/2 -translate-x-1/2 text-amber-400 text-xs font-bold z-20 pointer-events-none">▲</div>
+                                <div class="absolute inset-y-0 left-1/2 border-r-2 border-dashed border-amber-500/40 pointer-events-none z-10"></div>
+
+                                <span id="rsvp-word-display" class="text-3xl sm:text-4xl font-extrabold text-amber-400 font-kids tracking-wide z-10">
+                                    Presiona "Iniciar Lectura" para comenzar
+                                </span>
+                                <p id="rsvp-status-subtext" class="text-xs text-slate-400">El texto se mostrará palabra por palabra cuando inicies la lectura y el tiempo.</p>
+                            </div>
+                        </div>
+
+                        <!-- Botón de inicio/finalización de lectura -->
+                        <div class="pt-6 border-t border-cardborder flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 rounded-2xl bg-darkbg border border-cardborder flex items-center justify-center text-mint-400 font-bold">
+                                    <i class="fa-solid fa-stopwatch text-lg"></i>
+                                </div>
+                                <div>
+                                    <span class="text-[10px] text-slate-400 uppercase font-bold block">Tiempo Transcurrido</span>
+                                    <span id="reading-timer-display" class="font-mono text-xl font-bold text-white">00:00</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Ilustración Lateral Árbol Interactivo -->
+                    <div class="lg:col-span-4 bg-cardbg rounded-3xl p-6 border border-cardborder flex flex-col items-center justify-center text-center space-y-4">
+                        <h4 class="font-kids text-sm font-bold text-purple-300 uppercase tracking-wider">Visualizador del Árbol</h4>
+                        <div class="w-full h-64 bg-darkbg/60 rounded-2xl p-4 border border-cardborder flex items-center justify-center">
+                            <svg id="reading-tree-svg" class="w-full h-full" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                                <!-- SVG renderizado dinámicamente -->
+                            </svg>
+                        </div>
+                        <p id="reading-tree-status" class="text-xs text-slate-300 font-medium">
+                            El árbol se iluminará según la sección evaluada.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========================================== -->
+            <!-- VISTA 4: ETAPA 3 - EVALUACIÓN MULTIDIMENSIONAL -->
+            <!-- ========================================== -->
+            <section id="view-quiz" class="hidden space-y-6">
+                <!-- Header de Evaluación -->
+                <div class="bg-cardbg rounded-2xl p-4 border border-cardborder flex items-center justify-between">
+                    <span class="px-3 py-1 rounded-full text-xs font-bold bg-magenta-500/20 text-magenta-500 border border-magenta-500/30 uppercase">
+                        Etapa 3 de 3: Evaluación Cognitiva
+                    </span>
+                    <span id="quiz-timer-result" class="text-xs font-mono font-bold text-amber-400">PPM Estimado: Calculando...</span>
+                </div>
+
+                <!-- Quiz Card -->
+                <div class="bg-cardbg rounded-3xl p-6 sm:p-8 border border-cardborder space-y-6 shadow-xl">
+                    <div>
+                        <h3 class="text-2xl font-bold font-kids text-white">Comprueba tu Comprensión y Léxico</h3>
+                        <p class="text-slate-300 text-sm">Responde las preguntas estructuradas por dimensiones académicas:</p>
+                    </div>
+
+                    <form id="quiz-form" class="space-y-6">
                         <!-- Inyectado por JS -->
-                    </p>
-                </div>
+                    </form>
 
-                <!-- Banner de Graduación Total -->
-                <div id="res-graduation-box" class="hidden bg-gradient-to-r from-purple-900/90 via-cardbg to-purple-900/90 p-6 rounded-2xl border-2 border-amber-400/80 space-y-4">
-                    <div class="text-4xl animate-bounce">👑 🌳 🎓</div>
-                    <h3 class="font-kids text-2xl font-bold text-amber-300">¡FELICITACIONES! GRADUADO EN LEY 1014</h3>
-                    <p class="text-xs text-slate-200 leading-relaxed max-w-xl mx-auto">
-                        Has demostrado un dominio integral de la estructura de <strong>El Árbol del Emprendimiento</strong>, integrando el suelo cultural, la semilla innovadora, el tronco estructurado, las ramas creativas y la cosecha del plan de negocios.
-                    </p>
-                    <button onclick="app.generateShareableBadge()" class="px-6 py-3 rounded-xl bg-gradient-to-r from-amber-400 to-amber-500 text-darkbg font-kids font-bold text-xs shadow-lg hover:brightness-110 transition-all flex items-center gap-2 mx-auto">
-                        <i class="fa-solid fa-award text-base"></i>
-                        <span>Generar Ficha Digital de Logro</span>
-                    </button>
-                </div>
-
-                <!-- Ruleta de Recompensas Trigger -->
-                <div id="res-wheel-trigger" class="hidden pt-2">
-                    <button onclick="app.openWheelModal()" class="px-8 py-4 rounded-2xl btn-3d btn-amber font-kids font-bold text-base flex items-center space-x-2 mx-auto">
-                        <i class="fa-solid fa-arrows-spin"></i>
-                        <span>¡Girar Ruleta de Premios!</span>
-                    </button>
-                </div>
-
-                <!-- Botones de Navegación tras completar nivel -->
-                <div class="pt-4 flex flex-wrap justify-center gap-4">
-                    <button onclick="app.navigateTo('home')" class="px-6 py-3.5 rounded-2xl bg-cardborder hover:bg-purple-800 text-white font-bold text-sm">
-                        <i class="fa-solid fa-house mr-1"></i> Ir al Inicio
-                    </button>
-                    <button id="btn-retry-level" onclick="app.retryCurrentLevel()" class="px-6 py-3.5 rounded-2xl btn-3d btn-purple font-bold text-sm">
-                        <i class="fa-solid fa-rotate-right mr-1"></i> Reintentar Nivel
-                    </button>
-                    <button id="btn-next-level" onclick="app.nextLevelNav()" class="px-6 py-3.5 rounded-2xl btn-3d btn-mint font-bold text-sm flex items-center gap-1.5">
-                        <span>Siguiente Nivel</span>
-                        <i class="fa-solid fa-arrow-right"></i>
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <!-- ========================================== -->
-        <!-- VISTA 6: POKÉDEX DE EMPRENDIMIENTO         -->
-        <!-- ========================================== -->
-        <section id="view-pokedex" class="hidden space-y-6">
-            <div class="flex items-center justify-between">
-                <div>
-                    <h3 class="text-2xl font-bold font-kids text-white flex items-center gap-2">
-                        <i class="fa-solid fa-box-archive text-magenta-500"></i> Pokédex de Emprendimiento
-                    </h3>
-                    <p class="text-xs text-slate-400">Colecciona los 5 componentes del Árbol de la Ley 1014</p>
-                </div>
-                <button onclick="app.navigateTo('home')" class="text-slate-400 hover:text-white font-semibold text-sm">
-                    <i class="fa-solid fa-arrow-left"></i> Volver
-                </button>
-            </div>
-
-            <div id="pokedex-cards-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Creado en JS -->
-            </div>
-        </section>
-
-        <!-- ========================================== -->
-        <!-- VISTA 7: ENTRENADOR RSVP CON ORP           -->
-        <!-- ========================================== -->
-        <section id="view-trainer" class="hidden space-y-6">
-            <div class="flex items-center justify-between">
-                <div>
-                    <h3 class="text-2xl font-bold font-kids text-white flex items-center gap-2">
-                        <i class="fa-solid fa-bolt text-amber-400"></i> Entrenador RSVP con ORP
-                    </h3>
-                    <p class="text-xs text-slate-400">Gira los ojos en un único punto focal para acelerar tu velocidad de reconocimiento visual.</p>
-                </div>
-                <button onclick="app.navigateTo('home')" class="text-slate-400 hover:text-white font-semibold text-sm">
-                    <i class="fa-solid fa-arrow-left"></i> Volver
-                </button>
-            </div>
-
-            <!-- Contenedor Principal del Visor ORP -->
-            <div class="bg-cardbg rounded-3xl p-6 sm:p-10 border-2 border-cardborder space-y-8 shadow-2xl text-center max-w-3xl mx-auto">
-                
-                <!-- TUTORIAL EXPLICATIVO PARA NIÑOS -->
-                <div class="bg-gradient-to-r from-purple-900/90 via-cardbg to-purple-900/90 p-5 rounded-2xl border border-amber-500/40 text-left space-y-3">
-                    <div class="flex items-center space-x-2 text-amber-400 font-kids font-bold text-sm sm:text-base">
-                        <i class="fa-solid fa-graduation-cap text-lg"></i>
-                        <span>¿Cómo entrenar tu cerebro de súper lector? (Guía Rápida)</span>
+                    <div class="pt-4 border-t border-cardborder flex justify-end">
+                        <button onclick="app.submitQuiz()" class="px-8 py-4 rounded-2xl btn-3d btn-magenta font-kids font-bold text-base flex items-center space-x-2">
+                            <i class="fa-solid fa-check-double"></i>
+                            <span>Evaluar Mis Respuestas</span>
+                        </button>
                     </div>
-                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs text-slate-200">
-                        <div class="bg-darkbg/80 p-3 rounded-xl border border-cardborder space-y-1">
-                            <span class="text-amber-400 font-bold block">1. Ojos al Centro 👀</span>
-                            <p class="text-[11px] text-slate-300">Mantén tu mirada fija únicamente en la <strong>letra magenta</strong> señalada por las flechitas. ¡No muevas los ojos de lado a lado!</p>
+                </div>
+            </section>
+
+            <!-- ========================================== -->
+            <!-- VISTA 5: RESULTADOS Y CELEBRACIÓN          -->
+            <!-- ========================================== -->
+            <section id="view-results" class="hidden space-y-6">
+                <div id="results-card-container" class="bg-cardbg rounded-3xl p-6 sm:p-10 border-2 border-cardborder space-y-8 text-center shadow-2xl relative overflow-hidden">
+                    <!-- Modal Banner -->
+                    <div id="results-banner-box" class="space-y-3">
+                        <!-- Dinámico -->
+                    </div>
+
+                    <!-- Stats Grid -->
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <div class="bg-darkbg p-4 rounded-2xl border border-cardborder space-y-1">
+                            <span class="text-xs text-slate-400 font-bold uppercase">Velocidad</span>
+                            <p id="res-wpm" class="text-2xl sm:text-3xl font-extrabold text-amber-400 font-kids">0 PPM</p>
+                            <span id="res-wpm-category" class="text-xs font-bold text-amber-300 block">Nivel: --</span>
                         </div>
-                        <div class="bg-darkbg/80 p-3 rounded-xl border border-cardborder space-y-1">
-                            <span class="text-mint-400 font-bold block">2. Reconoce sin Hablar 🧠</span>
-                            <p class="text-[11px] text-slate-300">Intenta entender la palabra en tu mente sin pronunciarla en voz alta ni mover los labios. Esto te dará súper velocidad.</p>
+                        <div class="bg-darkbg p-4 rounded-2xl border border-cardborder space-y-1">
+                            <span class="text-xs text-slate-400 font-bold uppercase">Comprensión</span>
+                            <p id="res-accuracy" class="text-2xl sm:text-3xl font-extrabold text-mint-400 font-kids">0%</p>
+                            <span id="res-accuracy-detail" class="text-xs text-slate-400 block">0/4 Correctas</span>
                         </div>
-                        <div class="bg-darkbg/80 p-3 rounded-xl border border-cardborder space-y-1">
-                            <span class="text-cyan-400 font-bold block">3. Sube de Nivel 🚀</span>
-                            <p class="text-[11px] text-slate-300">Comienza en el nivel <strong>Bajo (50 PPM)</strong>. Cuando sientas que entiendes sin esfuerzo, ¡pasa a los niveles más rápidos!</p>
+                        <div class="bg-darkbg p-4 rounded-2xl border border-cardborder space-y-1">
+                            <span class="text-xs text-slate-400 font-bold uppercase">Tiempo Total</span>
+                            <p id="res-time" class="text-2xl sm:text-3xl font-extrabold text-cyan-400 font-kids">0s</p>
+                            <span id="res-time-detail" class="text-xs text-slate-400 block">Tiempo real</span>
                         </div>
                     </div>
-                </div>
 
-                <!-- Selector de Nivel de Velocidad -->
-                <div class="space-y-3">
-                    <label class="text-xs font-bold text-amber-400 uppercase tracking-widest block">Selecciona Tu Nivel de Entrenamiento</label>
-                    <div class="grid grid-cols-2 sm:grid-cols-5 gap-2">
-                        <button onclick="app.setTrainerSpeed(50, 'Bajo')" id="speed-btn-bajo" class="px-3 py-2.5 rounded-xl border border-cardborder text-xs font-bold bg-mint-500 text-darkbg transition-all">Bajo<br><span class="text-[10px] font-normal">50 PPM</span></button>
-                        <button onclick="app.setTrainerSpeed(80, 'Medio Bajo')" id="speed-btn-medio-bajo" class="px-3 py-2.5 rounded-xl border border-cardborder text-xs font-bold bg-darkbg text-slate-300 hover:border-amber-400 transition-all">Medio Bajo<br><span class="text-[10px] font-normal">80 PPM</span></button>
-                        <button onclick="app.setTrainerSpeed(110, 'Medio')" id="speed-btn-medio" class="px-3 py-2.5 rounded-xl border border-cardborder text-xs font-bold bg-darkbg text-slate-300 hover:border-amber-400 transition-all">Medio<br><span class="text-[10px] font-normal">110 PPM</span></button>
-                        <button onclick="app.setTrainerSpeed(150, 'Medio Alto')" id="speed-btn-medio-alto" class="px-3 py-2.5 rounded-xl border border-cardborder text-xs font-bold bg-darkbg text-slate-300 hover:border-amber-400 transition-all">Medio Alto<br><span class="text-[10px] font-normal">150 PPM</span></button>
-                        <button onclick="app.setTrainerSpeed(200, 'Alto')" id="speed-btn-alto" class="px-3 py-2.5 rounded-xl border border-cardborder text-xs font-bold bg-darkbg text-slate-300 hover:border-amber-400 transition-all">Alto<br><span class="text-[10px] font-normal">200 PPM</span></button>
+                    <!-- Caja de Diagnóstico Personalizado -->
+                    <div class="bg-darkbg/80 p-5 rounded-2xl border border-cardborder text-left space-y-2">
+                        <h4 class="text-xs font-bold text-amber-400 uppercase tracking-widest flex items-center gap-1.5">
+                            <i class="fa-solid fa-square-poll-vertical"></i> Diagnóstico & Oportunidades de Mejora
+                        </h4>
+                        <p id="res-feedback-text" class="text-xs text-slate-200 leading-relaxed">
+                            <!-- Inyectado por JS -->
+                        </p>
+                    </div>
+
+                    <div id="res-review" class="hidden text-left space-y-3"></div>
+
+                    <!-- Banner de Graduación Total -->
+                    <div id="res-graduation-box" class="hidden bg-gradient-to-r from-purple-900/90 via-cardbg to-purple-900/90 p-6 rounded-2xl border-2 border-amber-400/80 space-y-4">
+                        <div class="text-4xl animate-bounce">👑 🌳 🎓</div>
+                        <h3 class="font-kids text-2xl font-bold text-amber-300">¡FELICITACIONES! GRADUADO EN LEY 1014</h3>
+                        <p class="text-xs text-slate-200 leading-relaxed max-w-xl mx-auto">
+                            Has demostrado un dominio integral de la estructura de <strong>El Árbol del Emprendimiento</strong>, integrando el suelo cultural, la semilla innovadora, el tronco estructurado, las ramas creativas y la cosecha del plan de negocios.
+                        </p>
+                        <button onclick="app.generateShareableBadge()" class="px-6 py-3 rounded-xl bg-gradient-to-r from-amber-400 to-amber-500 text-darkbg font-kids font-bold text-xs shadow-lg hover:brightness-110 transition-all flex items-center gap-2 mx-auto">
+                            <i class="fa-solid fa-award text-base"></i>
+                            <span>Generar Ficha Digital de Logro</span>
+                        </button>
+                    </div>
+
+                    <!-- Ruleta de Recompensas Trigger -->
+                    <div id="res-wheel-trigger" class="hidden pt-2">
+                        <button onclick="app.openWheelModal()" class="px-8 py-4 rounded-2xl btn-3d btn-amber font-kids font-bold text-base flex items-center space-x-2 mx-auto">
+                            <i class="fa-solid fa-arrows-spin"></i>
+                            <span>¡Girar Ruleta de Premios!</span>
+                        </button>
+                    </div>
+
+                    <!-- Botones de Navegación tras completar nivel -->
+                    <div class="pt-4 flex flex-wrap justify-center gap-4">
+                        <button onclick="app.navigateTo('home')" class="px-6 py-3.5 rounded-2xl bg-cardborder hover:bg-purple-800 text-white font-bold text-sm">
+                            <i class="fa-solid fa-house mr-1"></i> Ir al Inicio
+                        </button>
+                        <button id="btn-retry-level" onclick="app.retryCurrentLevel()" class="px-6 py-3.5 rounded-2xl btn-3d btn-purple font-bold text-sm">
+                            <i class="fa-solid fa-rotate-right mr-1"></i> Reintentar Nivel
+                        </button>
+                        <button id="btn-next-level" onclick="app.nextLevelNav()" class="px-6 py-3.5 rounded-2xl btn-3d btn-mint font-bold text-sm flex items-center gap-1.5">
+                            <span>Siguiente Nivel</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
                     </div>
                 </div>
+            </section>
 
-                <!-- Visor RSVP con Marcador ORP -->
-                <div class="relative bg-darkbg rounded-3xl border-2 border-amber-500/40 p-8 sm:p-12 min-h-[180px] flex flex-col items-center justify-center overflow-hidden shadow-inner">
-                    <!-- Guías Visuales Superior e Inferior (Punto Focal) -->
-                    <div class="absolute top-2 left-1/2 -translate-x-1/2 text-amber-400 text-xs font-bold z-10">▼</div>
-                    <div class="absolute bottom-2 left-1/2 -translate-x-1/2 text-amber-400 text-xs font-bold z-10">▲</div>
-                    <div class="absolute inset-y-0 left-1/2 border-r border-dashed border-amber-500/30 pointer-events-none z-0"></div>
-
-                    <!-- Visualizador de Palabra con Letra ORP Destacada en el Centro Fijo -->
-                    <div id="orp-display-box" class="w-full font-mono text-3xl sm:text-5xl font-extrabold tracking-wider text-white flex items-center justify-center z-10">
-                        <span class="text-slate-400">PULSA</span>
-                        <span class="text-magenta-500 font-extrabold">I</span>
-                        <span class="text-slate-400">NICIAR</span>
+            <!-- ========================================== -->
+            <!-- VISTA 6: POKÉDEX DE EMPRENDIMIENTO         -->
+            <!-- ========================================== -->
+            <section id="view-pokedex" class="hidden space-y-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h3 class="text-2xl font-bold font-kids text-white flex items-center gap-2">
+                            <i class="fa-solid fa-box-archive text-magenta-500"></i> Pokédex de Emprendimiento
+                        </h3>
+                        <p class="text-xs text-slate-400">Colecciona los 5 componentes del Árbol de la Ley 1014</p>
                     </div>
-                </div>
-
-                <!-- Barra de Progreso y Estadísticas -->
-                <div class="space-y-2">
-                    <div class="w-full bg-darkbg h-2 rounded-full overflow-hidden border border-cardborder">
-                        <div id="trainer-progress-bar" class="bg-gradient-to-r from-amber-400 to-mint-400 h-full w-0 transition-all duration-150"></div>
-                    </div>
-                    <div class="flex justify-between text-xs text-slate-400 font-bold">
-                        <span id="trainer-speed-info">Modo: Bajo (50 PPM)</span>
-                        <span id="trainer-count-info">Palabras: 0/0</span>
-                    </div>
-                </div>
-
-                <!-- Botones de Control -->
-                <div class="flex justify-center gap-4 pt-2">
-                    <button id="btn-start-trainer" onclick="app.toggleTrainer()" class="px-8 py-3.5 rounded-2xl btn-3d btn-mint font-kids font-bold text-base flex items-center gap-2">
-                        <i class="fa-solid fa-play"></i>
-                        <span id="btn-trainer-text">Iniciar Entrenamiento</span>
+                    <button onclick="app.navigateTo('home')" class="text-slate-400 hover:text-white font-semibold text-sm">
+                        <i class="fa-solid fa-arrow-left"></i> Volver
                     </button>
                 </div>
-            </div>
-        </section>
 
-    </main>
+                <div id="pokedex-cards-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Creado en JS -->
+                </div>
+            </section>
+
+            <!-- ========================================== -->
+            <!-- VISTA 7: ENTRENADOR RSVP CON ORP           -->
+            <!-- ========================================== -->
+            <section id="view-trainer" class="hidden space-y-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h3 class="text-2xl font-bold font-kids text-white flex items-center gap-2">
+                            <i class="fa-solid fa-bolt text-amber-400"></i> Entrenador RSVP con ORP
+                        </h3>
+                        <p class="text-xs text-slate-400">Gira los ojos en un único punto focal para acelerar tu velocidad de reconocimiento visual.</p>
+                    </div>
+                    <button onclick="app.navigateTo('home')" class="text-slate-400 hover:text-white font-semibold text-sm">
+                        <i class="fa-solid fa-arrow-left"></i> Volver
+                    </button>
+                </div>
+
+                <!-- Contenedor Principal del Visor ORP -->
+                <div class="bg-cardbg rounded-3xl p-6 sm:p-10 border-2 border-cardborder space-y-8 shadow-2xl text-center max-w-3xl mx-auto">
+                    
+                    <!-- TUTORIAL EXPLICATIVO PARA NIÑOS -->
+                    <div class="bg-gradient-to-r from-purple-900/90 via-cardbg to-purple-900/90 p-5 rounded-2xl border border-amber-500/40 text-left space-y-3">
+                        <div class="flex items-center space-x-2 text-amber-400 font-kids font-bold text-sm sm:text-base">
+                            <i class="fa-solid fa-graduation-cap text-lg"></i>
+                            <span>¿Cómo entrenar tu cerebro de súper lector? (Guía Rápida)</span>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs text-slate-200">
+                            <div class="bg-darkbg/80 p-3 rounded-xl border border-cardborder space-y-1">
+                                <span class="text-amber-400 font-bold block">1. Ojos al Centro 👀</span>
+                                <p class="text-[11px] text-slate-300">Mantén tu mirada fija únicamente en la <strong>letra magenta</strong> señalada por las flechitas. ¡No muevas los ojos de lado a lado!</p>
+                            </div>
+                            <div class="bg-darkbg/80 p-3 rounded-xl border border-cardborder space-y-1">
+                                <span class="text-mint-400 font-bold block">2. Reconoce sin Hablar 🧠</span>
+                                <p class="text-[11px] text-slate-300">Intenta entender la palabra en tu mente sin pronunciarla en voz alta ni mover los labios. Esto te dará súper velocidad.</p>
+                            </div>
+                            <div class="bg-darkbg/80 p-3 rounded-xl border border-cardborder space-y-1">
+                                <span class="text-cyan-400 font-bold block">3. Sube de Nivel 🚀</span>
+                                <p class="text-[11px] text-slate-300">Comienza en el nivel <strong>Bajo (50 PPM)</strong>. Cuando sientas que entiendes sin esfuerzo, ¡pasa a los niveles más rápidos!</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Selector de Nivel de Velocidad -->
+                    <div class="space-y-3">
+                        <label class="text-xs font-bold text-amber-400 uppercase tracking-widest block">Selecciona Tu Nivel de Entrenamiento</label>
+                        <div class="grid grid-cols-2 sm:grid-cols-5 gap-2">
+                            <button onclick="app.setTrainerSpeed(50, 'Bajo')" id="speed-btn-bajo" class="px-3 py-2.5 rounded-xl border border-cardborder text-xs font-bold bg-mint-500 text-darkbg transition-all">Bajo<br><span class="text-[10px] font-normal">50 PPM</span></button>
+                            <button onclick="app.setTrainerSpeed(80, 'Medio Bajo')" id="speed-btn-medio-bajo" class="px-3 py-2.5 rounded-xl border border-cardborder text-xs font-bold bg-darkbg text-slate-300 hover:border-amber-400 transition-all">Medio Bajo<br><span class="text-[10px] font-normal">80 PPM</span></button>
+                            <button onclick="app.setTrainerSpeed(110, 'Medio')" id="speed-btn-medio" class="px-3 py-2.5 rounded-xl border border-cardborder text-xs font-bold bg-darkbg text-slate-300 hover:border-amber-400 transition-all">Medio<br><span class="text-[10px] font-normal">110 PPM</span></button>
+                            <button onclick="app.setTrainerSpeed(150, 'Medio Alto')" id="speed-btn-medio-alto" class="px-3 py-2.5 rounded-xl border border-cardborder text-xs font-bold bg-darkbg text-slate-300 hover:border-amber-400 transition-all">Medio Alto<br><span class="text-[10px] font-normal">150 PPM</span></button>
+                            <button onclick="app.setTrainerSpeed(200, 'Alto')" id="speed-btn-alto" class="px-3 py-2.5 rounded-xl border border-cardborder text-xs font-bold bg-darkbg text-slate-300 hover:border-amber-400 transition-all">Alto<br><span class="text-[10px] font-normal">200 PPM</span></button>
+                        </div>
+                    </div>
+
+                    <!-- Visor RSVP con Marcador ORP -->
+                    <div class="relative bg-darkbg rounded-3xl border-2 border-amber-500/40 p-8 sm:p-12 min-h-[180px] flex flex-col items-center justify-center overflow-hidden shadow-inner">
+                        <!-- Guías Visuales Superior e Inferior (Punto Focal) -->
+                        <div class="absolute top-2 left-1/2 -translate-x-1/2 text-amber-400 text-xs font-bold z-20 pointer-events-none">▼</div>
+                        <div class="absolute bottom-2 left-1/2 -translate-x-1/2 text-amber-400 text-xs font-bold z-20 pointer-events-none">▲</div>
+                        <div class="absolute inset-y-0 left-1/2 border-r-2 border-dashed border-amber-500/40 pointer-events-none z-10"></div>
+
+                        <!-- Visualizador de Palabra con Letra ORP Destacada en el Centro Fijo -->
+                        <div id="orp-display-box" class="w-full font-mono text-3xl sm:text-5xl font-extrabold tracking-wider text-white flex items-center justify-center z-10">
+                            <div class="w-1/2 text-right text-slate-200 select-none">PULS</div>
+                            <div class="text-magenta-500 font-black text-4xl sm:text-6xl mx-[1px] flex-none select-none">A</div>
+                            <div class="w-1/2 text-left text-slate-200 select-none"> INICIAR</div>
+                        </div>
+                    </div>
+
+                    <!-- Barra de Progreso y Estadísticas -->
+                    <div class="space-y-2">
+                        <div class="w-full bg-darkbg h-2 rounded-full overflow-hidden border border-cardborder">
+                            <div id="trainer-progress-bar" class="bg-gradient-to-r from-amber-400 to-mint-400 h-full w-0 transition-all duration-150"></div>
+                        </div>
+                        <div class="flex justify-between text-xs text-slate-400 font-bold">
+                            <span id="trainer-speed-info">Modo: Bajo (50 PPM)</span>
+                            <span id="trainer-count-info">Palabras: 0/0</span>
+                        </div>
+                    </div>
+
+                    <!-- Botones de Control -->
+                    <div class="flex justify-center gap-4 pt-2">
+                        <button id="btn-start-trainer" onclick="app.toggleTrainer()" class="px-8 py-3.5 rounded-2xl btn-3d btn-mint font-kids font-bold text-base flex items-center gap-2">
+                            <i class="fa-solid fa-play"></i>
+                            <span id="btn-trainer-text">Iniciar Entrenamiento</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+    </div>
 
     <!-- MODAL RULETA DE RECOMPENSAS -->
     <div id="modal-wheel" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
@@ -709,15 +870,17 @@
                 <div class="absolute -top-2 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[12px] border-l-transparent border-r-[12px] border-r-transparent border-t-[20px] border-t-magenta-500 z-10"></div>
             </div>
 
-            <button id="btn-spin-wheel" onclick="app.spinWheel()" class="w-full py-4 rounded-2xl btn-3d btn-amber font-kids font-bold text-lg">
-                ¡GIRAR AHORA!
-            </button>
+            <div id="wheel-result-msg" class="hidden text-sm font-bold text-mint-400"></div>
 
-            <button id="btn-close-wheel-modal" onclick="app.closeWheelModal()" class="hidden w-full py-4 rounded-2xl bg-cardborder hover:bg-purple-800 text-white font-kids font-bold text-base">
-                Cerrar y Continuar
-            </button>
-
-            <div id="wheel-result-msg" class="hidden text-base font-bold text-mint-400 font-kids"></div>
+            <div class="pt-2 flex justify-center gap-3">
+                <button id="btn-spin-wheel" onclick="app.spinWheel()" class="px-8 py-3.5 rounded-2xl btn-3d btn-amber font-kids font-bold text-base flex items-center gap-2">
+                    <i class="fa-solid fa-arrows-spin"></i>
+                    <span>¡Girar Ahora!</span>
+                </button>
+                <button id="btn-close-wheel-modal" onclick="app.closeWheelModal()" class="hidden px-8 py-3.5 rounded-2xl bg-cardborder text-white font-bold text-base">
+                    Cerrar
+                </button>
+            </div>
         </div>
     </div>
 
@@ -991,6 +1154,8 @@
             ]
         };
 
+        DATA.levels.forEach(l => { l.wordCount = l.text.trim().split(/\s+/).length; });
+
         const state = {
             currentLevel: 1,
             userStats: {
@@ -998,12 +1163,22 @@
                 pokedexUnlocked: [],
                 points: 0,
                 maxPpm: 0,
+                currentUser: null,
+                isTeacher: false,
+                sheetScriptUrl: localStorage.getItem('lecturapro_script_url') || 'https://script.google.com/macros/s/AKfycbxeaFsHDhOjNJFAKY1Osd2AMfNtBqmVJN0rkJw6XnBf95IA2f7zLCuXcI1v4di1Yfsqrw/exec',
                 save() {
+                    if (this.currentUser && !this._r) {
+                        this._r = true;
+                        const old = localStorage.getItem('lecturapro_u_' + this.currentUser.codigo);
+                        if (old) { try { const o = JSON.parse(old); this.completedLevels = o.completedLevels || []; this.pokedexUnlocked = o.pokedexUnlocked || []; this.points = o.points || 0; this.maxPpm = o.maxPpm || 0; } catch (e) {} }
+                    }
                     localStorage.setItem('lecturapro_stats', JSON.stringify({
                         completedLevels: this.completedLevels,
                         pokedexUnlocked: this.pokedexUnlocked,
                         points: this.points,
-                        maxPpm: this.maxPpm
+                        maxPpm: this.maxPpm,
+                        currentUser: this.currentUser,
+                        isTeacher: this.isTeacher
                     }));
                 },
                 load() {
@@ -1015,6 +1190,8 @@
                             this.pokedexUnlocked = parsed.pokedexUnlocked || [];
                             this.points = parsed.points || 0;
                             this.maxPpm = parsed.maxPpm || 0;
+                            this.currentUser = parsed.currentUser || null;
+                            this.isTeacher = parsed.isTeacher || false;
                         } catch (e) {
                             console.error("Error cargando stats", e);
                         }
@@ -1023,12 +1200,29 @@
             },
             updateHeaderUI() {
                 this.userStats.load();
-                document.getElementById('nav-max-ppm').textContent = this.userStats.maxPpm;
-                document.getElementById('nav-points').textContent = this.userStats.points;
-                document.getElementById('nav-pokedex-count').textContent = `${this.userStats.pokedexUnlocked.length}/5`;
-                document.getElementById('header-pokedex-text').textContent = `Pokédex (${this.userStats.pokedexUnlocked.length}/5)`;
+                const navMax = document.getElementById('nav-max-ppm');
+                const navPts = document.getElementById('nav-points');
+                const navPok = document.getElementById('nav-pokedex-count');
+                const headPok = document.getElementById('header-pokedex-text');
                 const btnHero = document.getElementById('btn-hero-pokedex');
+                const userDisplay = document.getElementById('user-display-name');
+                if (typeof app !== 'undefined') { app.renderHistory(); app.renderLevelsGrid(); app.renderPokedexGrid(); }
+
+                if (navMax) navMax.textContent = this.userStats.maxPpm;
+                if (navPts) navPts.textContent = this.userStats.points;
+                if (navPok) navPok.textContent = `${this.userStats.pokedexUnlocked.length}/5`;
+                if (headPok) headPok.textContent = `Pokédex (${this.userStats.pokedexUnlocked.length}/5)`;
                 if (btnHero) btnHero.textContent = `Ver Pokédex (${this.userStats.pokedexUnlocked.length}/5)`;
+
+                if (userDisplay) {
+                    if (this.userStats.isTeacher) {
+                        userDisplay.textContent = 'Profesor(a)';
+                    } else if (this.userStats.currentUser) {
+                        userDisplay.textContent = `${this.userStats.currentUser.nombre.split(' ')[0]} (${this.userStats.currentUser.grado})`;
+                    } else {
+                        userDisplay.textContent = 'Estudiante';
+                    }
+                }
             },
             readerMode: 'free',
             fontSize: 18,
@@ -1052,308 +1246,373 @@
         const app = {
             init() {
                 state.updateHeaderUI();
-                this.renderLevelsGrid();
-                this.renderPokedexGrid();
-                this.drawTreeSvg('reading-tree-svg', null);
-            },
+                app.renderLevelsGrid();
+                app.renderPokedexGrid();
+                app.drawTreeSvg('reading-tree-svg', null);
 
-            saveStats() {
-                state.userStats.save();
-                state.updateHeaderUI();
-            },
-
-            drawTreeSvg(targetId, activeNode) {
-                const container = document.getElementById(targetId);
-                if (!container) return;
-                
-                const isSuelo = activeNode === 'suelo';
-                const isTronco = activeNode === 'tronco';
-                const isFrutos = activeNode === 'frutos';
-
-                container.innerHTML = `
-                    <g>
-                        <!-- Suelo -->
-                        <path d="M 20 160 Q 100 145 180 160 L 180 185 Q 100 195 20 185 Z" fill="${isSuelo ? '#f59e0b' : '#78350f'}" class="${isSuelo ? 'tree-glow' : ''}"/>
-                        <!-- Semilla -->
-                        <circle cx="100" cy="165" r="10" fill="${isSuelo ? '#fbbf24' : '#d97706'}"/>
-                        <!-- Tronco -->
-                        <path d="M 85 160 C 85 120 70 100 65 80 L 135 80 C 130 100 115 120 115 160 Z" fill="${isTronco ? '#f59e0b' : '#a16207'}" class="${isTronco ? 'tree-glow' : ''}"/>
-                        <!-- Ramas -->
-                        <path d="M 65 80 L 40 50 M 135 80 L 160 50 M 100 80 L 100 45" stroke="#843d10" stroke-width="8" stroke-linecap="round"/>
-                        <!-- Frutos / Copa -->
-                        <circle cx="60" cy="50" r="30" fill="${isFrutos ? '#34d399' : '#10b981'}" opacity="0.85"/>
-                        <circle cx="140" cy="50" r="30" fill="${isFrutos ? '#34d399' : '#10b981'}" opacity="0.85"/>
-                        <circle cx="100" cy="35" r="35" fill="${isFrutos ? '#6ee7b7' : '#34d399'}" opacity="0.9" class="${isFrutos ? 'tree-glow' : ''}"/>
-                        <!-- Manzanas -->
-                        <circle cx="65" cy="45" r="6" fill="#ec4899"/>
-                        <circle cx="135" cy="55" r="6" fill="#f59e0b"/>
-                        <circle cx="100" cy="30" r="6" fill="#38bdf8"/>
-                    </g>
-                `;
-            },
-
-            showTreeTip(component) {
-                sound.playClick();
-                const tips = {
-                    suelo: "El Suelo representa la Cultura: tradiciones, valores y el trabajo colaborativo (Minga).",
-                    semilla: "La Semilla representa al Emprendedor: observador y creativo ante los problemas de la comunidad.",
-                    tronco: "El Tronco representa el Emprendimiento: la acción organizada y la gestión de riesgo calculado.",
-                    frutos: "Los Frutos representan el Plan de Negocios y la cosecha de beneficios comunitarios."
-                };
-                const statusEl = document.getElementById('reading-tree-status');
-                if (statusEl) {
-                    statusEl.textContent = tips[component] || "¡Explora el árbol para descubrir sus componentes!";
-                }
-            },
-
-            renderLevelsGrid() {
-                const container = document.getElementById('levels-container');
-                if (!container) return;
-                container.innerHTML = '';
-
-                DATA.levels.forEach((lvl, idx) => {
-                    const isUnlocked = idx === 0 || state.userStats.completedLevels.includes(lvl.id - 1);
-                    const isCompleted = state.userStats.completedLevels.includes(lvl.id);
-
-                    const card = document.createElement('div');
-                    card.className = `bg-cardbg rounded-3xl p-6 border-2 transition-all flex flex-col justify-between space-y-4 shadow-xl ${
-                        isCompleted 
-                            ? 'border-mint-500/80 bg-gradient-to-b from-cardbg to-mint-950/20' 
-                            : isUnlocked 
-                                ? 'border-cardborder hover:border-amber-400' 
-                                : 'border-cardborder/40 opacity-50'
-                    }`;
-
-                    card.innerHTML = `
-                        <div class="space-y-2">
-                            <div class="flex items-center justify-between">
-                                <span class="px-3 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-wider ${
-                                    isCompleted ? 'bg-mint-500/20 text-mint-400 border border-mint-500/40' :
-                                    isUnlocked ? 'bg-amber-500/20 text-amber-400 border border-amber-500/40' :
-                                    'bg-slate-800 text-slate-400'
-                                }">
-                                    ${isCompleted ? '✓ Completado' : isUnlocked ? 'Disponible' : '🔒 Bloqueado'}
-                                </span>
-                                <span class="text-xs font-mono font-bold text-slate-400">${lvl.wordCount} Palabras</span>
-                            </div>
-                            <h4 class="font-kids text-lg font-bold text-white">${lvl.title}</h4>
-                            <p class="text-xs text-slate-300">${lvl.subtitle}</p>
-                        </div>
-                        <button onclick="app.startLevel(${lvl.id})" ${!isUnlocked ? 'disabled' : ''} class="w-full py-3.5 rounded-2xl font-kids font-bold text-sm ${
-                            isUnlocked ? 'btn-3d btn-mint' : 'bg-cardborder text-slate-500 cursor-not-allowed'
-                        }">
-                            ${isCompleted ? 'Volver a Jugar' : isUnlocked ? 'Empezar Nivel' : 'Nivel Bloqueado'}
-                        </button>
-                    `;
-                    container.appendChild(card);
-                });
-            },
-
-            startLevel(levelId) {
-                sound.playClick();
-                state.currentLevel = levelId;
-                state.hasSpunWheelCurrentSession = false;
-                const lvl = DATA.levels.find(l => l.id === levelId);
-
-                document.getElementById('before-level-title').textContent = lvl.title;
-
-                // 1. Pregunta Anclaje
-                const titleQBox = document.getElementById('before-title-question');
-                titleQBox.innerHTML = `
-                    <p class="text-xs sm:text-sm font-bold text-amber-300">${lvl.beforeQuiz.question}</p>
-                    <div class="space-y-2 pt-2">
-                        ${lvl.beforeQuiz.options.map((opt, i) => `
-                            <button onclick="app.checkBeforeQuestion(${opt.correct}, this)" class="w-full text-left p-3 rounded-xl bg-cardbg border border-cardborder text-xs sm:text-sm text-slate-200 hover:border-amber-400 transition-all flex items-center justify-between">
-                                <span>${opt.text}</span>
-                                <i class="fa-regular fa-circle text-slate-500"></i>
-                            </button>
-                        `).join('')}
-                    </div>
-                `;
-
-                // 2. Léxico Flashcards
-                const lexiconGrid = document.getElementById('before-lexicon-grid');
-                lexiconGrid.innerHTML = '';
-                lvl.lexicon.forEach(lex => {
-                    const card = document.createElement('div');
-                    card.className = "bg-darkbg p-4 rounded-2xl border border-cardborder space-y-2 hover:border-mint-400 transition-all cursor-pointer";
-                    card.innerHTML = `
-                        <div class="flex items-center space-x-2 text-mint-400 font-bold text-sm">
-                            <i class="fa-solid ${lex.icon}"></i>
-                            <span>${lex.word}</span>
-                        </div>
-                        <p class="text-xs text-slate-300 leading-relaxed">${lex.def}</p>
-                    `;
-                    lexiconGrid.appendChild(card);
-                });
-
-                const btnStart = document.getElementById('btn-start-reading');
-                btnStart.disabled = true;
-                btnStart.className = "px-8 py-4 rounded-2xl btn-3d btn-mint opacity-50 cursor-not-allowed font-kids font-bold text-base flex items-center space-x-2";
-
-                this.navigateTo('before-read');
-            },
-
-            checkBeforeQuestion(isCorrect, btnEl) {
-                sound.playClick();
-                const parent = btnEl.parentElement;
-                const buttons = parent.querySelectorAll('button');
-
-                buttons.forEach(b => {
-                    b.className = "w-full text-left p-3 rounded-xl bg-cardbg border border-cardborder text-xs sm:text-sm text-slate-400 opacity-60 flex items-center justify-between";
-                });
-
-                if (isCorrect) {
-                    btnEl.className = "w-full text-left p-3 rounded-xl bg-mint-950/80 border-2 border-mint-500 text-xs sm:text-sm text-mint-300 font-bold flex items-center justify-between";
-                    btnEl.querySelector('i').className = "fa-solid fa-circle-check text-mint-400";
-                    
-                    const btnStart = document.getElementById('btn-start-reading');
-                    btnStart.disabled = false;
-                    btnStart.className = "px-8 py-4 rounded-2xl btn-3d btn-mint font-kids font-bold text-base flex items-center space-x-2";
+                if (state.userStats.isTeacher) {
+                    document.getElementById('login-gatekeeper').classList.add('hidden');
+                    document.getElementById('main-app-wrapper').classList.remove('hidden');
+                    document.getElementById('student-stats-header').classList.add('hidden');
+                    document.getElementById('nav-trainer-btn').classList.add('hidden');
+                    document.getElementById('nav-pokedex-btn').classList.add('hidden');
+                    app.navigateTo('teacher-dashboard');
+                } else if (state.userStats.currentUser) {
+                    document.getElementById('login-gatekeeper').classList.add('hidden');
+                    document.getElementById('main-app-wrapper').classList.remove('hidden');
                 } else {
-                    btnEl.className = "w-full text-left p-3 rounded-xl bg-red-950/80 border-2 border-red-500 text-xs sm:text-sm text-red-300 font-bold flex items-center justify-between";
-                    btnEl.querySelector('i').className = "fa-solid fa-circle-xmark text-red-400";
+                    document.getElementById('login-gatekeeper').classList.remove('hidden');
+                    document.getElementById('main-app-wrapper').classList.add('hidden');
                 }
-            },
-
-            proceedToReading() {
-                sound.playPop();
-                const lvl = DATA.levels.find(l => l.id === state.currentLevel);
-
-                document.getElementById('reading-text-title').textContent = lvl.title;
-                document.getElementById('reading-word-count-badge').textContent = `${lvl.wordCount} palabras`;
-                
-                const freeBox = document.getElementById('reader-free-box');
-                freeBox.innerHTML = `<p>${lvl.text}</p>`;
-
-                document.getElementById('reading-timer-display').textContent = '00:00';
-                document.getElementById('reading-btn-text').textContent = 'Iniciar Lectura';
-
-                state.isReadingActive = false;
-                state.readingElapsedTime = 0;
-
-                this.drawTreeSvg('reading-tree-svg', lvl.targetComponent);
-                this.navigateTo('reading');
             },
 
             navigateTo(viewId) {
                 sound.playClick();
-                if (state.isTrainerActive) this.stopTrainer();
-                const views = ['view-home', 'view-before-read', 'view-reading', 'view-quiz', 'view-results', 'view-pokedex', 'view-trainer'];
-                views.forEach(v => document.getElementById(v).classList.add('hidden'));
-                document.getElementById(`view-${viewId}`).classList.remove('hidden');
+                const views = [
+                    'view-home', 
+                    'view-before-read', 
+                    'view-reading', 
+                    'view-quiz', 
+                    'view-results', 
+                    'view-pokedex', 
+                    'view-trainer',
+                    'view-teacher-dashboard'
+                ];
+                
+                views.forEach(v => {
+                    const el = document.getElementById(v);
+                    if (el) el.classList.add('hidden');
+                });
+
+                if (viewId !== 'trainer') {
+                    app.stopTrainer();
+                }
+
+                if (viewId !== 'reading' && state.isReadingActive) {
+                    if (state.rsvpInterval) clearInterval(state.rsvpInterval);
+                    if (state.readingTimerInterval) clearInterval(state.readingTimerInterval);
+                    state.isReadingActive = false;
+                }
+
+                let targetId = viewId;
+                if (viewId === 'home') targetId = 'view-home';
+                if (viewId === 'before-read') targetId = 'view-before-read';
+                if (viewId === 'reading') targetId = 'view-reading';
+                if (viewId === 'quiz') targetId = 'view-quiz';
+                if (viewId === 'results') targetId = 'view-results';
+                if (viewId === 'pokedex') targetId = 'view-pokedex';
+                if (viewId === 'trainer') targetId = 'view-trainer';
+                if (viewId === 'teacher-dashboard') {
+                    targetId = 'view-teacher-dashboard';
+                    app.renderTeacherDashboard('ALL');
+                }
+
+                const targetEl = document.getElementById(targetId);
+                if (targetEl) {
+                    targetEl.classList.remove('hidden');
+                }
+
+                if (viewId === 'home') app.renderHistory();
                 window.scrollTo({ top: 0, behavior: 'smooth' });
+            },
+
+            renderTeacherDashboard(groupFilter) {
+                const tbody = document.getElementById('teacher-table-body');
+                if (!tbody) return;
+                tbody.innerHTML = '';
+
+                let studentsMap = {};
+                for (let i = 0; i < localStorage.length; i++) {
+                    const key = localStorage.key(i);
+                    if (key && key.startsWith('lecturapro_u_')) {
+                        try {
+                            const data = JSON.parse(localStorage.getItem(key));
+                            if (data && data.currentUser) {
+                                const code = data.currentUser.codigo;
+                                const histKey = 'lecturapro_hist_' + code;
+                                const attempts = JSON.parse(localStorage.getItem(histKey) || '[]');
+                                
+                                studentsMap[code] = {
+                                    nombre: data.currentUser.nombre,
+                                    codigo: code,
+                                    grado: data.currentUser.grado || '6-1',
+                                    points: data.points || 0,
+                                    attempts: attempts
+                                };
+                            }
+                        } catch (e) {}
+                    }
+                }
+
+                if (Object.keys(studentsMap).length === 0) {
+                    studentsMap = {
+                        "93584": { nombre: "Alejandro Martínez Caicedo", codigo: "93584", grado: "6-1", points: 300, attempts: [{n:1, ppm:110, acc:80, fecha:'10:00 AM'}, {n:2, ppm:125, acc:100, fecha:'10:15 AM'}] },
+                        "93585": { nombre: "Lucía Sofía Benavides", codigo: "93585", grado: "6-1", points: 400, attempts: [{n:1, ppm:140, acc:100, fecha:'11:00 AM'}] },
+                        "93586": { nombre: "Carlos Andrés Restrepo", codigo: "93586", grado: "6-2", points: 200, attempts: [{n:1, ppm:95, acc:75, fecha:'09:30 AM'}] }
+                    };
+                }
+
+                let studentList = Object.values(studentsMap);
+                const filtered = groupFilter === 'ALL' ? studentList : studentList.filter(s => s.grado === groupFilter);
+
+                document.getElementById('teacher-stat-total').textContent = filtered.length;
+                
+                let totalAttemptsAll = 0;
+                filtered.forEach(st => { totalAttemptsAll += (st.attempts.length || 0); });
+                document.getElementById('teacher-stat-attempts').textContent = totalAttemptsAll;
+
+                let lastPpmSum = 0;
+                let lastAccSum = 0;
+                let countWithAttempts = 0;
+
+                filtered.forEach(st => {
+                    const attempts = st.attempts;
+                    const totalAtt = attempts.length;
+                    const lastAttempt = totalAtt > 0 ? attempts[totalAtt - 1] : { ppm: 0, acc: 0, n: 0 };
+                    
+                    if (totalAtt > 0) {
+                        lastPpmSum += lastAttempt.ppm;
+                        lastAccSum += lastAttempt.acc;
+                        countWithAttempts++;
+                    }
+
+                    const tr = document.createElement('tr');
+                    tr.className = "hover:bg-purple-900/30 transition-all";
+                    tr.innerHTML = `
+                        <td class="p-3 font-bold text-white">${st.nombre}</td>
+                        <td class="p-3 font-mono text-amber-400">${st.codigo}</td>
+                        <td class="p-3 font-semibold text-purple-300">Grado ${st.grado}</td>
+                        <td class="p-3 text-cyan-400 font-bold">${totalAtt} intento(s)</td>
+                        <td class="p-3 text-amber-300 font-bold">${lastAttempt.ppm} PPM (Nivel ${lastAttempt.n || 1})</td>
+                        <td class="p-3 text-mint-400 font-bold">${lastAttempt.acc}% comp.</td>
+                        <td class="p-3 text-magenta-500 font-bold">${st.points} pts</td>
+                        <td class="p-3">
+                            <button onclick="app.showStudentAttemptsDetail('${st.codigo}')" class="px-3 py-1.5 rounded-xl bg-amber-500/20 text-amber-400 hover:bg-amber-500/30 font-bold text-[11px]">
+                                Ver Historial (${totalAtt})
+                            </button>
+                        </td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+
+                document.getElementById('teacher-stat-ppm').textContent = countWithAttempts ? `${Math.round(lastPpmSum / countWithAttempts)} PPM` : '0 PPM';
+                document.getElementById('teacher-stat-acc').textContent = countWithAttempts ? `${Math.round(lastAccSum / countWithAttempts)}%` : '0%';
+                document.getElementById('teacher-table-count').textContent = `${filtered.length} estudiantes`;
+            },
+
+            showStudentAttemptsDetail(codigo) {
+                sound.playClick();
+                const histKey = 'lecturapro_hist_' + codigo;
+                let attempts = JSON.parse(localStorage.getItem(histKey) || '[]');
+                
+                if (attempts.length === 0 && codigo === '93584') {
+                    attempts = [{n:1, ppm:110, acc:80, fecha:'10:00 AM'}, {n:2, ppm:125, acc:100, fecha:'10:15 AM'}];
+                }
+
+                let studentName = `Estudiante (${codigo})`;
+                const userKey = 'lecturapro_u_' + codigo;
+                const userData = localStorage.getItem(userKey);
+                if (userData) {
+                    try {
+                        const parsed = JSON.parse(userData);
+                        if (parsed && parsed.currentUser) studentName = parsed.currentUser.nombre;
+                    } catch (e) {}
+                } else if (codigo === '93584') studentName = "Alejandro Martínez Caicedo";
+                else if (codigo === '93585') studentName = "Lucía Sofía Benavides";
+                else if (codigo === '93586') studentName = "Carlos Andrés Restrepo";
+
+                document.getElementById('teacher-detail-title').textContent = `Historial detallado de intentos de: ${studentName}`;
+                const tbody = document.getElementById('teacher-detail-tbody');
+                tbody.innerHTML = '';
+
+                if (attempts.length === 0) {
+                    tbody.innerHTML = `<tr><td colspan="7" class="p-4 text-center text-slate-400">No hay intentos registrados aún para este estudiante.</td></tr>`;
+                } else {
+                    attempts.forEach((att, idx) => {
+                        const tr = document.createElement('tr');
+                        tr.className = "hover:bg-purple-900/30 transition-all";
+                        tr.innerHTML = `
+                            <td class="p-2.5 font-bold text-amber-400">Intento #${idx + 1}</td>
+                            <td class="p-2.5 font-semibold text-white">Nivel ${att.n || 1}</td>
+                            <td class="p-2.5 text-slate-300">${att.fecha || 'Sesión actual'}</td>
+                            <td class="p-2.5 text-amber-300 font-bold">${att.ppm} PPM</td>
+                            <td class="p-2.5 text-mint-400 font-bold">${att.acc}%</td>
+                            <td class="p-2.5 text-cyan-400">${att.acc >= 75 ? 'Aprobado' : 'Reprobado'}</td>
+                            <td class="p-2.5 text-magenta-500 font-bold">${att.acc >= 75 ? '+100 pts' : '0 pts'}</td>
+                        `;
+                        tbody.appendChild(tr);
+                    });
+                }
+
+                document.getElementById('teacher-attempts-detail').classList.remove('hidden');
+            },
+
+            filterTeacherGroup(group) {
+                sound.playClick();
+                ['ALL', '6-1', '6-2', '7-1'].forEach(g => {
+                    const btn = document.getElementById(`filter-btn-${g.toLowerCase()}`);
+                    if (btn) {
+                        if (g === group) {
+                            btn.className = "px-3 py-1.5 rounded-xl bg-amber-500 text-darkbg font-bold transition-all";
+                        } else {
+                            btn.className = "px-3 py-1.5 rounded-xl bg-cardbg text-slate-300 font-bold hover:bg-purple-900 transition-all";
+                        }
+                    }
+                });
+                app.renderTeacherDashboard(group);
+            },
+
+            exportTeacherReport() {
+                sound.playPop();
+                let csv = "Estudiante,Codigo,Grado,TotalIntentos,UltimoPpm,UltimaComprension,PuntosAcumulados\n";
+                for (let i = 0; i < localStorage.length; i++) {
+                    const key = localStorage.key(i);
+                    if (key && key.startsWith('lecturapro_u_')) {
+                        try {
+                            const data = JSON.parse(localStorage.getItem(key));
+                            if (data && data.currentUser) {
+                                const code = data.currentUser.codigo;
+                                const attempts = JSON.parse(localStorage.getItem('lecturapro_hist_' + code) || '[]');
+                                const last = attempts.length ? attempts[attempts.length - 1] : { ppm: 0, acc: 0 };
+                                csv += `"${data.currentUser.nombre}","${code}","${data.currentUser.grado || '6-1'}",${attempts.length},${last.ppm},${last.acc},${data.points || 0}\n`;
+                            }
+                        } catch (e) {}
+                    }
+                }
+                const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `Reporte_LecturaPro_Intentos_${new Date().toISOString().slice(0,10)}.csv`;
+                a.click();
+                app.toast('Reporte exportado correctamente');
             },
 
             toggleSound() {
                 sound.enabled = !sound.enabled;
                 const btn = document.getElementById('btn-sound');
-                btn.innerHTML = sound.enabled ? '<i class="fa-solid fa-volume-high text-sm"></i>' : '<i class="fa-solid fa-volume-xmark text-sm"></i>';
-                if(sound.enabled) sound.playPop();
+                if (btn) {
+                    btn.innerHTML = sound.enabled 
+                        ? '<i class="fa-solid fa-volume-high text-sm"></i>' 
+                        : '<i class="fa-solid fa-volume-xmark text-sm"></i>';
+                }
             },
 
             toggleFont() {
                 sound.playClick();
                 state.dyslexicFont = !state.dyslexicFont;
-                if(state.dyslexicFont) {
-                    document.body.classList.add('dyslexic-font');
+                const body = document.body;
+                if (state.dyslexicFont) {
+                    body.classList.add('dyslexic-font');
                 } else {
-                    document.body.classList.remove('dyslexic-font');
+                    body.classList.remove('dyslexic-font');
                 }
             },
 
-            // --- ENTRENADOR RSVP CON ORP (OPTIMAL RECOGNITION POINT) ---
             setTrainerSpeed(wpm, levelName) {
                 sound.playClick();
                 state.trainerWpm = wpm;
                 state.trainerLevelName = levelName;
 
-                const btns = ['bajo', 'medio-bajo', 'medio', 'medio-alto', 'alto'];
-                btns.forEach(b => {
-                    const el = document.getElementById(`speed-btn-${b}`);
-                    if (el) el.className = "px-3 py-2.5 rounded-xl border border-cardborder text-xs font-bold bg-darkbg text-slate-300 hover:border-amber-400 transition-all";
+                const speeds = [
+                    { id: 'speed-btn-bajo', wpm: 50 },
+                    { id: 'speed-btn-medio-bajo', wpm: 80 },
+                    { id: 'speed-btn-medio', wpm: 110 },
+                    { id: 'speed-btn-medio-alto', wpm: 150 },
+                    { id: 'speed-btn-alto', wpm: 200 }
+                ];
+
+                speeds.forEach(s => {
+                    const btn = document.getElementById(s.id);
+                    if (btn) {
+                        if (s.wpm === wpm) {
+                            btn.className = "px-3 py-2.5 rounded-xl border border-cardborder text-xs font-bold bg-mint-500 text-darkbg transition-all";
+                        } else {
+                            btn.className = "px-3 py-2.5 rounded-xl border border-cardborder text-xs font-bold bg-darkbg text-slate-300 hover:border-amber-400 transition-all";
+                        }
+                    }
                 });
 
-                const key = levelName.toLowerCase().replace(' ', '-');
-                const activeEl = document.getElementById(`speed-btn-${key}`);
-                if (activeEl) activeEl.className = "px-3 py-2.5 rounded-xl border border-cardborder text-xs font-bold bg-mint-500 text-darkbg transition-all";
-
                 document.getElementById('trainer-speed-info').textContent = `Modo: ${levelName} (${wpm} PPM)`;
+
                 if (state.isTrainerActive) {
-                    this.startTrainerStream();
+                    app.startTrainerStream();
                 }
             },
 
-            prepareTrainerWords() {
-                let allText = DATA.levels.map(l => l.text).join(' ');
-                let cleanWords = allText.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "").split(/\s+/);
-                // Shuffle Array
-                for (let i = cleanWords.length - 1; i > 0; i--) {
-                    const j = Math.floor(Math.random() * (i + 1));
-                    [cleanWords[i], cleanWords[j]] = [cleanWords[j], cleanWords[i]];
-                }
-                state.trainerWords = cleanWords;
-                state.trainerIndex = 0;
-            },
-
-            formatWordORP(word) {
-                if (!word) return '<span class="text-slate-400">FIN</span>';
-                const len = word.length;
-                let orpIdx = Math.floor((len - 1) * 0.35); // ORP standard index (~35% position)
-                if (len <= 3) orpIdx = 0;
-
-                const left = word.substring(0, orpIdx);
-                const mid = word.charAt(orpIdx);
-                const right = word.substring(orpIdx + 1);
-
-                // Use flex layout with fixed 50% width columns for perfect ORP centering on the vertical axis
-                return `
-                    <div class="w-1/2 text-right text-slate-200 select-none">${left}</div>
-                    <div class="text-magenta-500 font-black text-4xl sm:text-6xl mx-[2px] flex-none select-none">${mid}</div>
-                    <div class="w-1/2 text-left text-slate-200 select-none">${right}</div>
-                `;
-            },
-
-            // --- METODOS DEL ENTRENADOR ORP ---
             toggleTrainer() {
                 sound.playPop();
                 if (!state.isTrainerActive) {
-                    this.startTrainerStream();
+                    state.isTrainerActive = true;
+                    
+                    let allWords = [];
+                    DATA.levels.forEach(lvl => {
+                        const clean = lvl.text.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "");
+                        allWords = allWords.concat(clean.split(/\s+/));
+                    });
+                    
+                    state.trainerWords = allWords.sort(() => Math.random() - 0.5);
+                    state.trainerIndex = 0;
+
+                    document.getElementById('btn-trainer-text').textContent = "Pausar Entrenamiento";
+                    document.getElementById('btn-start-trainer').className = "px-8 py-3.5 rounded-2xl btn-3d btn-amber font-kids font-bold text-base flex items-center gap-2";
+
+                    app.startTrainerStream();
                 } else {
-                    this.stopTrainer();
+                    app.stopTrainer();
                 }
             },
 
             startTrainerStream() {
-                if (state.trainerWords.length === 0 || state.trainerIndex >= state.trainerWords.length) {
-                    this.prepareTrainerWords();
-                }
-
-                state.isTrainerActive = true;
-                const btnText = document.getElementById('btn-trainer-text');
-                const btn = document.getElementById('btn-start-trainer');
-                if (btnText) btnText.textContent = "Pausar Entrenamiento";
-                if (btn) btn.className = "px-8 py-3.5 rounded-2xl btn-3d btn-amber font-kids font-bold text-base flex items-center gap-2";
+                if (state.trainerInterval) clearInterval(state.trainerInterval);
 
                 const delay = (60 / state.trainerWpm) * 1000;
                 const displayBox = document.getElementById('orp-display-box');
                 const progressBar = document.getElementById('trainer-progress-bar');
                 const countInfo = document.getElementById('trainer-count-info');
 
-                if (state.trainerInterval) clearInterval(state.trainerInterval);
-
                 state.trainerInterval = setInterval(() => {
-                    if (state.trainerIndex < state.trainerWords.length) {
+                    if (state.trainerIndex < state.trainerWords.length && state.isTrainerActive) {
                         const word = state.trainerWords[state.trainerIndex];
-                        displayBox.innerHTML = this.formatWordORP(word);
-                        
+                        const len = word.length;
+
+                        let leftPart = "";
+                        let midPart = "";
+                        let rightPart = "";
+
+                        if (len <= 3) {
+                            leftPart = "";
+                            midPart = word;
+                            rightPart = "";
+                        } else if (len % 2 === 0) {
+                            const midIdx = (len / 2) - 1;
+                            leftPart = word.substring(0, midIdx);
+                            midPart = word.substring(midIdx, midIdx + 2);
+                            rightPart = word.substring(midIdx + 2);
+                        } else {
+                            const midIdx = Math.floor(len / 2);
+                            leftPart = word.substring(0, midIdx);
+                            midPart = word.substring(midIdx, midIdx + 1);
+                            rightPart = word.substring(midIdx + 1);
+                        }
+
+                        displayBox.innerHTML = `
+                            <div class="w-1/2 text-right text-slate-200 select-none">${leftPart}</div>
+                            <div class="text-magenta-500 font-black text-4xl sm:text-6xl mx-[1px] flex-none select-none">${midPart}</div>
+                            <div class="w-1/2 text-left text-slate-200 select-none">${rightPart}</div>
+                        `;
+
                         state.trainerIndex++;
                         const pct = Math.round((state.trainerIndex / state.trainerWords.length) * 100);
-                        if (progressBar) progressBar.style.width = `${pct}%`;
-                        if (countInfo) countInfo.textContent = `Palabras: ${state.trainerIndex}/${state.trainerWords.length}`;
+                        progressBar.style.width = `${pct}%`;
+                        countInfo.textContent = `Palabras: ${state.trainerIndex}/${state.trainerWords.length}`;
                     } else {
-                        this.stopTrainer();
-                        displayBox.innerHTML = '<span class="text-mint-400 font-bold">¡ENTRENAMIENTO FINALIZADO! 🎉</span>';
+                        app.stopTrainer();
+                        displayBox.innerHTML = `
+                            <div class="w-1/2 text-right text-mint-400 select-none">ENTRENAMIENTO </div>
+                            <div class="text-amber-400 font-black text-4xl sm:text-6xl mx-[1px] flex-none select-none">✔</div>
+                            <div class="w-1/2 text-left text-mint-400 select-none"> COMPLETADO</div>
+                        `;
                     }
                 }, delay);
             },
@@ -1379,10 +1638,18 @@
                 const rsvpBox = document.getElementById('reader-rsvp-box');
                 const wpmBox = document.getElementById('wpm-control-box');
 
+                if (state.isReadingActive) {
+                    if (state.rsvpInterval) clearInterval(state.rsvpInterval);
+                    if (state.readingTimerInterval) clearInterval(state.readingTimerInterval);
+                    state.isReadingActive = false;
+                    document.getElementById('reading-btn-text').textContent = "Iniciar Lectura";
+                    document.getElementById('reading-timer-display').textContent = "00:00";
+                }
+
                 if (mode === 'free') {
                     freeBtn.className = "px-3 py-2 rounded-lg bg-mint-500 text-white transition-all";
                     rsvpBtn.className = "px-3 py-2 rounded-lg text-slate-400 hover:text-white transition-all";
-                    freeBox.classList.remove('hidden');
+                    freeBox.classList.add('hidden');
                     rsvpBox.classList.add('hidden');
                     wpmBox.classList.add('hidden');
                 } else {
@@ -1391,6 +1658,10 @@
                     rsvpBox.classList.remove('hidden');
                     freeBox.classList.add('hidden');
                     wpmBox.classList.remove('hidden');
+
+                    const subtext = document.getElementById('rsvp-status-subtext');
+                    if (subtext) subtext.classList.remove('hidden');
+                    document.getElementById('rsvp-word-display').textContent = "Presiona \"Iniciar Lectura\" para comenzar";
                 }
             },
 
@@ -1412,6 +1683,17 @@
                     state.readingStartTime = Date.now();
                     document.getElementById('reading-btn-text').textContent = "Terminar y Responder";
 
+                    if (state.readerMode === 'free') {
+                        const freeBox = document.getElementById('reader-free-box');
+                        if (freeBox) freeBox.classList.remove('hidden');
+                    }
+
+                    if (state.readerMode === 'rsvp') {
+                        const subtext = document.getElementById('rsvp-status-subtext');
+                        if (subtext) subtext.classList.add('hidden');
+                        app.startRsvpStream();
+                    }
+
                     state.readingTimerInterval = setInterval(() => {
                         state.readingElapsedTime = Math.floor((Date.now() - state.readingStartTime) / 1000);
                         const mins = String(Math.floor(state.readingElapsedTime / 60)).padStart(2, '0');
@@ -1419,13 +1701,16 @@
                         document.getElementById('reading-timer-display').textContent = `${mins}:${secs}`;
                     }, 1000);
 
-                    if (state.readerMode === 'rsvp') {
-                        this.startRsvpStream();
-                    }
                 } else {
-                    clearInterval(state.readingTimerInterval);
+                    if (state.readingElapsedTime < 3 && state.readerMode === 'free') {
+                        app.toast("Lee el texto con calma antes de responder.");
+                        return;
+                    }
+
+                    if (state.rsvpInterval) clearInterval(state.rsvpInterval);
+                    if (state.readingTimerInterval) clearInterval(state.readingTimerInterval);
                     state.isReadingActive = false;
-                    this.prepareQuizView();
+                    app.prepareQuizView();
                 }
             },
 
@@ -1453,8 +1738,9 @@
                 const lvl = DATA.levels.find(l => l.id === state.currentLevel);
                 const quizForm = document.getElementById('quiz-form');
                 quizForm.innerHTML = '';
+                state.quizSet = lvl.questions.map(q => { const ix = q.options.map((_, i) => i).sort(() => Math.random() - 0.5); return { cat: q.cat, q: q.q, options: ix.map(i => q.options[i]), correct: ix.indexOf(q.correct) }; });
 
-                lvl.questions.forEach((q, qIdx) => {
+                state.quizSet.forEach((q, qIdx) => {
                     const box = document.createElement('div');
                     box.className = "bg-darkbg p-5 rounded-2xl border border-cardborder space-y-3";
                     box.innerHTML = `
@@ -1472,19 +1758,21 @@
                     quizForm.appendChild(box);
                 });
 
-                this.navigateTo('quiz');
+                app.navigateTo('quiz');
             },
 
             submitQuiz() {
+                const total = DATA.levels.find(l => l.id === state.currentLevel).questions.length;
+                if (document.querySelectorAll('#quiz-form input:checked').length < total) { app.toast('Responde las ' + total + ' preguntas para continuar.'); return; }
                 sound.playPop();
                 const lvl = DATA.levels.find(l => l.id === state.currentLevel);
                 let correctCount = 0;
-
-                lvl.questions.forEach((q, qIdx) => {
+                const wrong = [];
+                state.quizSet.forEach((q, qIdx) => {
                     const selected = document.querySelector(`input[name="q_${qIdx}"]:checked`);
                     if (selected && parseInt(selected.value) === q.correct) {
                         correctCount++;
-                    }
+                    } else { wrong.push(q); }
                 });
 
                 const accuracy = Math.round((correctCount / lvl.questions.length) * 100);
@@ -1515,19 +1803,52 @@
                         }
                     });
                     state.userStats.points += 100;
+                    state.hasSpunWheelCurrentSession = false;
                     if (adjustedPpm > state.userStats.maxPpm) {
                         state.userStats.maxPpm = adjustedPpm;
                     }
-                    this.saveStats();
-                    this.renderLevelsGrid();
-                    this.renderPokedexGrid();
+                    app.saveStats();
+                    app.renderLevelsGrid();
+                    app.renderPokedexGrid();
                 }
+
+                const currentUser = state.userStats.currentUser || { nombre: "Anónimo", codigo: "00000", grado: "6-1" };
+                app.sendResultsToSheet({
+                    nombre: currentUser.nombre,
+                    codigo: currentUser.codigo,
+                    grado: currentUser.grado,
+                    nivel: lvl.title,
+                    ppm: adjustedPpm,
+                    categoria: speedCategory,
+                    comprension: accuracy,
+                    correctas: `${correctCount}/${lvl.questions.length}`,
+                    tiempo: seconds,
+                    puntos: isPassed ? 100 : 0
+                });
 
                 document.getElementById('res-wpm').textContent = `${adjustedPpm} PPM`;
                 document.getElementById('res-wpm-category').textContent = `Nivel: ${speedCategory}`;
                 document.getElementById('res-accuracy').textContent = `${accuracy}%`;
                 document.getElementById('res-accuracy-detail').textContent = `${correctCount}/${lvl.questions.length} Correctas`;
                 document.getElementById('res-time').textContent = `${seconds}s`;
+
+                const hk = 'lecturapro_hist_' + currentUser.codigo;
+                const hist = JSON.parse(localStorage.getItem(hk) || '[]');
+                hist.push({ 
+                    n: lvl.id, 
+                    ppm: adjustedPpm, 
+                    acc: accuracy, 
+                    fecha: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) + ' (' + new Date().toLocaleDateString() + ')' 
+                });
+                localStorage.setItem(hk, JSON.stringify(hist.slice(-50)));
+                app.renderHistory();
+
+                const rv = document.getElementById('res-review');
+                rv.innerHTML = wrong.length ? '<h4 class="text-xs font-bold text-magenta-500 uppercase tracking-widest">Repasa lo que fallaste</h4>' + wrong.map(q => `<div class="bg-darkbg/80 p-4 rounded-2xl border border-cardborder space-y-1"><span class="text-[10px] font-bold text-purple-300 block">${q.cat}</span><p class="text-xs font-bold text-white">${q.q}</p><p class="text-xs text-mint-400"><i class="fa-solid fa-circle-check mr-1"></i>${q.options[q.correct]}</p></div>`).join('') : '';
+                rv.classList.toggle('hidden', !wrong.length);
+                const allDone = isPassed && DATA.levels.every(l => state.userStats.completedLevels.includes(l.id));
+                document.getElementById('res-graduation-box').classList.toggle('hidden', !allDone);
+                document.getElementById('btn-next-level').classList.toggle('hidden', !isPassed);
 
                 const bannerBox = document.getElementById('results-banner-box');
                 if (isPassed) {
@@ -1559,40 +1880,7 @@
                     feedbackBox.innerHTML = `<strong>Oportunidad de Mejora:</strong> Obtuviste un ${accuracy}% de precisión (se requiere mínimo 75%). Lee con atención los conceptos clave de ${lvl.targetComponent.toUpperCase()} y vuelve a intentarlo para afianzar la estructura.`;
                 }
 
-                const gradBox = document.getElementById('res-graduation-box');
-                if (isPassed && state.currentLevel === 3) {
-                    gradBox.classList.remove('hidden');
-                } else {
-                    gradBox.classList.add('hidden');
-                }
-
-                const btnNext = document.getElementById('btn-next-level');
-                if (isPassed && state.currentLevel < 3) {
-                    btnNext.classList.remove('hidden');
-                } else {
-                    btnNext.classList.add('hidden');
-                }
-
-                this.navigateTo('results');
-            },
-
-            generateShareableBadge() {
-                sound.playWin();
-                const totalPoints = state.userStats.points;
-                const maxPpm = state.userStats.maxPpm;
-                const badgeMessage = `🏆 RECONOCIMIENTO LECTURAPRO 🏆\n\nEstudiante Graduado en El Árbol del Emprendimiento (Ley 1014 de 2006)\n- Máxima Velocidad: ${maxPpm} PPM\n- Puntaje Total: ${totalPoints} Puntos\n- Fichas Coleccionadas: 5/5\n\nUbicación: Ginebra, Valle del Cauca`;
-                
-                alert(badgeMessage + "\n\n¡Puedes tomar una captura de pantalla de tu Pokédex y de este mensaje para compartir con tu docente!");
-            },
-
-            retryCurrentLevel() {
-                this.startLevel(state.currentLevel);
-            },
-
-            nextLevelNav() {
-                if (state.currentLevel < 3) {
-                    this.startLevel(state.currentLevel + 1);
-                }
+                app.navigateTo('results');
             },
 
             openWheelModal() {
@@ -1607,7 +1895,8 @@
                     document.getElementById('btn-close-wheel-modal').classList.add('hidden');
                 }
                 
-                this.drawWheel();
+                document.getElementById('wheel-canvas').style.transform = 'none';
+                app.drawWheel();
             },
 
             closeWheelModal() {
@@ -1617,10 +1906,11 @@
 
             drawWheel() {
                 const canvas = document.getElementById('wheel-canvas');
+                if (!canvas) return;
                 const ctx = canvas.getContext('2d');
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-                const slices = ['+50 Pts', '+100 Pts', 'Medalla', '+200 Pts', 'Super Estrella'];
+                const slices = ['+50 Pts', '+100 Pts', '+75 Pts', '+200 Pts', '+150 Pts'];
                 const colors = ['#10b981', '#f59e0b', '#ec4899', '#38bdf8', '#8b5cf6'];
 
                 const angle = (Math.PI * 2) / slices.length;
@@ -1657,21 +1947,23 @@
                 const animate = () => {
                     const elapsed = Date.now() - startTime;
                     if (elapsed < 3000) {
-                        rot = (totalRot * (elapsed / 3000));
+                        const t = elapsed / 3000; rot = totalRot * (1 - Math.pow(1 - t, 3));
                         const canvas = document.getElementById('wheel-canvas');
-                        canvas.style.transform = `rotate(${rot}deg)`;
+                        if (canvas) canvas.style.transform = `rotate(${rot}deg)`;
                         requestAnimationFrame(animate);
                     } else {
                         sound.playWin();
                         const msg = document.getElementById('wheel-result-msg');
-                        msg.textContent = "¡Felicidades! +150 Puntos Extra Ganados 🎉";
+                        const prize = [50, 100, 75, 200, 150][Math.floor((((-90 - totalRot) % 360) + 360) % 360 / 72)];
+                        document.getElementById('wheel-canvas').style.transform = `rotate(${totalRot}deg)`;
+                        msg.textContent = `¡Felicidades! +${prize} puntos extra 🎉`;
                         msg.classList.remove('hidden');
 
                         btnSpin.classList.add('hidden');
                         document.getElementById('btn-close-wheel-modal').classList.remove('hidden');
 
-                        state.userStats.points += 150;
-                        this.saveStats();
+                        state.userStats.points += prize;
+                        app.saveStats();
                     }
                 };
                 animate();
@@ -1703,6 +1995,384 @@
                     `;
                     grid.appendChild(el);
                 });
+            },
+
+            drawTreeSvg(containerId, activeComponent) {
+                const container = document.getElementById(containerId);
+                if (!container) return;
+
+                const isSueloActive = activeComponent === 'suelo' || activeComponent === 'semilla';
+                const isTroncoActive = activeComponent === 'tronco' || activeComponent === 'ramas';
+                const isFrutosActive = activeComponent === 'frutos';
+
+                container.innerHTML = `
+                    <path d="M 20 160 Q 100 145 180 160 L 180 185 Q 100 195 20 185 Z" fill="${isSueloActive ? '#b45309' : '#78350f'}" stroke="${isSueloActive ? '#fbbf24' : '#451a03'}" stroke-width="${isSueloActive ? '3' : '1'}" />
+                    <circle cx="100" cy="165" r="10" fill="${isSueloActive ? '#fbbf24' : '#f59e0b'}" />
+                    <path d="M 85 160 C 85 120 70 100 65 80 L 135 80 C 130 100 115 120 115 160 Z" fill="${isTroncoActive ? '#d97706' : '#a16207'}" stroke="${isTroncoActive ? '#fbbf24' : '#78350f'}" stroke-width="${isTroncoActive ? '3' : '1'}" />
+                    <path d="M 65 80 L 40 50 M 135 80 L 160 50 M 100 80 L 100 45" stroke="${isTroncoActive ? '#fbbf24' : '#843d10'}" stroke-width="8" stroke-linecap="round"/>
+                    <circle cx="60" cy="50" r="30" fill="${isFrutosActive ? '#34d399' : '#10b981'}" opacity="0.9" />
+                    <circle cx="140" cy="50" r="30" fill="${isFrutosActive ? '#34d399' : '#10b981'}" opacity="0.9" />
+                    <circle cx="100" cy="35" r="35" fill="${isFrutosActive ? '#6ee7b7' : '#34d399'}" opacity="0.9" />
+                    <circle cx="65" cy="45" r="6" fill="${isFrutosActive ? '#f472b6' : '#ec4899'}"/>
+                    <circle cx="135" cy="55" r="6" fill="${isFrutosActive ? '#fde047' : '#f59e0b'}"/>
+                    <circle cx="100" cy="30" r="6" fill="${isFrutosActive ? '#67e8f9' : '#38bdf8'}"/>
+                `;
+            },
+
+            showTreeTip(part) {
+                sound.playPop();
+                const tips = {
+                    suelo: "El Suelo representa la Cultura: los valores y la colaboración comunitaria (Minga).",
+                    semilla: "La Semilla es el Emprendedor: quien detecta problemas y crea soluciones con ética.",
+                    tronco: "El Tronco es el Emprendimiento: la acción organizada y la gestión de riesgo calculada.",
+                    frutos: "Los Frutos son el Plan de Negocios: la cosecha y guía de costos y precios."
+                };
+                app.toast(tips[part] || "¡El Árbol del Emprendimiento (Ley 1014)!");
+            },
+
+            renderLevelsGrid() {
+                const container = document.getElementById('levels-container');
+                if (!container) return;
+                container.innerHTML = '';
+
+                DATA.levels.forEach((lvl, idx) => {
+                    const isUnlocked = idx === 0 || state.userStats.completedLevels.includes(lvl.id - 1);
+                    const isCompleted = state.userStats.completedLevels.includes(lvl.id);
+
+                    const card = document.createElement('div');
+                    card.className = `p-6 rounded-3xl border-2 flex flex-col justify-between transition-all space-y-4 shadow-xl ${
+                        isUnlocked 
+                        ? 'bg-cardbg border-cardborder text-white hover:border-amber-400' 
+                        : 'bg-darkbg/60 border-cardborder/50 text-slate-500 opacity-60'
+                    }`;
+
+                    card.innerHTML = `
+                        <div class="space-y-2">
+                            <div class="flex items-center justify-between">
+                                <span class="px-3 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-wider ${
+                                    isCompleted ? 'bg-mint-500/20 text-mint-400 border border-mint-500/40' : isUnlocked ? 'bg-amber-500/20 text-amber-400 border border-amber-500/40' : 'bg-slate-800 text-slate-500'
+                                }">
+                                    ${isCompleted ? '✓ COMPLETADO' : isUnlocked ? 'DISPONIBLE' : '🔒 BLOQUEADO'}
+                                </span>
+                                <span class="text-xs text-slate-400 font-bold">${lvl.wordCount} Palabras</span>
+                            </div>
+                            <h4 class="font-kids text-lg font-bold">${lvl.title}</h4>
+                            <p class="text-xs text-purple-200">${lvl.subtitle}</p>
+                        </div>
+
+                        <div class="pt-2">
+                            <button onclick="app.startLevel(${lvl.id})" ${!isUnlocked ? 'disabled' : ''} class="w-full py-3 rounded-2xl ${
+                                isUnlocked ? 'btn-3d btn-mint font-kids font-bold text-sm' : 'bg-cardborder text-slate-500 cursor-not-allowed font-bold text-xs'
+                            }">
+                                ${isCompleted ? 'Repasar Nivel' : isUnlocked ? 'Empezar Nivel' : 'Nivel Bloqueado'}
+                            </button>
+                        </div>
+                    `;
+                    container.appendChild(card);
+                });
+            },
+
+            toast(msg) {
+                let t = document.getElementById('toast');
+                if (!t) { t = document.createElement('div'); t.id = 'toast'; t.setAttribute('role', 'status'); t.className = 'fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-cardbg border-2 border-amber-400 text-amber-300 text-sm font-bold px-5 py-3 rounded-2xl shadow-2xl max-w-sm text-center'; document.body.appendChild(t); }
+                t.textContent = msg; t.classList.remove('hidden');
+                clearTimeout(app._tt); app._tt = setTimeout(() => t.classList.add('hidden'), 3500);
+            },
+
+            logout() {
+                if (!confirm('¿Cerrar sesión? Tu avance en este equipo se guardará para tu próximo ingreso.')) return;
+                const u = state.userStats.currentUser;
+                if (u) localStorage.setItem('lecturapro_u_' + u.codigo, localStorage.getItem('lecturapro_stats') || '{}');
+                localStorage.removeItem('lecturapro_stats');
+                location.reload();
+            },
+
+            renderHistory() {
+                const pnl = document.getElementById('history-panel'), u = state.userStats.currentUser;
+                if (!pnl || !u) return;
+                const h = JSON.parse(localStorage.getItem('lecturapro_hist_' + u.codigo) || '[]').slice(-8);
+                if (!h.length) { pnl.classList.add('hidden'); return; }
+                const top = Math.max(...h.map(e => e.ppm), 60);
+                pnl.classList.remove('hidden');
+                pnl.innerHTML = `<h3 class="font-kids text-lg font-bold text-white"><i class="fa-solid fa-chart-simple text-mint-400 mr-2"></i>Mis últimos intentos</h3>
+                    <div class="flex items-end gap-2 h-28">${h.map(e => `<div class="flex-1 flex flex-col items-center justify-end h-full text-[10px] text-slate-300" title="Nivel ${e.n}: ${e.ppm} PPM, ${e.acc}% de comprensión"><span>${e.ppm}</span><div class="w-full rounded-t-lg ${e.acc >= 75 ? 'bg-mint-500' : 'bg-amber-500'}" style="height:${Math.round(e.ppm / top * 70) + 6}%"></div><span>N${e.n}</span></div>`).join('')}</div>
+                    <p class="text-xs text-slate-400">Barras verdes: comprensión de 75% o más. Sube las palabras por minuto sin bajar de ahí.</p>`;
+            },
+
+            generateShareableBadge() {
+                const u = state.userStats, c = document.createElement('canvas'), x = c.getContext('2d');
+                c.width = 900; c.height = 560;
+                const g = x.createLinearGradient(0, 0, 900, 560); g.addColorStop(0, '#180a2e'); g.addColorStop(1, '#3c2266');
+                x.fillStyle = g; x.fillRect(0, 0, 900, 560);
+                x.strokeStyle = '#fbbf24'; x.lineWidth = 8; x.strokeRect(24, 24, 852, 512);
+                x.textAlign = 'center';
+                const t = (txt, y, font, col) => { x.font = font; x.fillStyle = col; x.fillText(txt, 450, y); };
+                const cu = u.currentUser || { nombre: 'Estudiante', grado: '' };
+                t('CaféLAB · LecturaPro', 92, 'bold 28px Georgia', '#fbbf24');
+                t('Graduado en la Ley 1014', 170, 'bold 44px Georgia', '#ffffff');
+                t('Se otorga a', 235, '24px Georgia', '#e9d5ff');
+                t(cu.nombre, 305, 'bold 50px Georgia', '#34d399');
+                t(`Grado ${cu.grado} · ${u.completedLevels.length} niveles superados`, 372, '22px Georgia', '#ffffff');
+                t(`Máximo ${u.maxPpm} PPM · ${u.points} puntos · ${new Date().toLocaleDateString('es-CO')}`, 412, '22px Georgia', '#ffffff');
+                t('El Árbol del Emprendimiento', 482, 'bold 24px Georgia', '#fbbf24');
+                const a = document.createElement('a'); a.download = 'ficha-logro-lecturapro.png'; a.href = c.toDataURL('image/png'); a.click();
+                app.toast('Ficha descargada');
+            },
+
+            saveStats() {
+                state.userStats.save();
+                state.updateHeaderUI();
+            },
+
+            startLevel(lvlId) {
+                sound.playClick();
+                state.currentLevel = lvlId;
+                state.beforeQuizPassed = false;
+                state.lexiconViewedCount = 0;
+
+                const lvl = DATA.levels.find(l => l.id === lvlId);
+                if (!lvl) return;
+
+                document.getElementById('before-level-title').textContent = lvl.title;
+
+                const qBox = document.getElementById('before-title-question');
+                qBox.innerHTML = `
+                    <p class="font-bold text-amber-300 text-sm">${lvl.beforeQuiz.question}</p>
+                    <div class="space-y-2 pt-2">
+                        ${lvl.beforeQuiz.options.map((opt, idx) => `
+                            <button onclick="app.answerBeforeQuestion(${idx}, ${opt.correct})" class="w-full text-left p-3 rounded-xl bg-cardbg border border-cardborder hover:border-amber-400 transition-all text-xs font-semibold text-slate-200 flex items-center justify-between">
+                                <span>${opt.text}</span>
+                                <i class="fa-regular fa-circle text-slate-500" id="before-opt-icon-${idx}"></i>
+                            </button>
+                        `).join('')}
+                    </div>
+                `;
+
+                const lGrid = document.getElementById('before-lexicon-grid');
+                lGrid.innerHTML = '';
+                lvl.lexicon.forEach((lex, idx) => {
+                    const card = document.createElement('div');
+                    card.className = "bg-darkbg/80 p-4 rounded-2xl border border-cardborder space-y-2 cursor-pointer hover:border-mint-400 transition-all";
+                    card.onclick = () => app.markLexiconViewed(idx);
+                    card.innerHTML = `
+                        <div class="flex items-center space-x-2 text-mint-400 font-bold text-sm">
+                            <i class="fa-solid ${lex.icon}"></i>
+                            <span>${lex.word}</span>
+                        </div>
+                        <p class="text-xs text-slate-300">${lex.def}</p>
+                    `;
+                    lGrid.appendChild(card);
+                });
+
+                document.getElementById('btn-start-reading').disabled = true;
+                document.getElementById('btn-start-reading').className = "px-8 py-4 rounded-2xl btn-3d btn-mint opacity-50 cursor-not-allowed font-kids font-bold text-base flex items-center space-x-2";
+
+                app.navigateTo('before-read');
+            },
+
+            answerBeforeQuestion(idx, isCorrect) {
+                sound.playPop();
+                if (isCorrect) {
+                    state.beforeQuizPassed = true;
+                    document.getElementById(`before-opt-icon-${idx}`).className = "fa-solid fa-circle-check text-mint-400";
+                    app.checkBeforeStageReady();
+                } else {
+                    document.getElementById(`before-opt-icon-${idx}`).className = "fa-solid fa-circle-xmark text-magenta-500";
+                }
+            },
+
+            markLexiconViewed(idx) {
+                sound.playClick();
+                state.lexiconViewedCount++;
+                app.checkBeforeStageReady();
+            },
+
+            checkBeforeStageReady() {
+                const btn = document.getElementById('btn-start-reading');
+                if (state.beforeQuizPassed) {
+                    btn.disabled = false;
+                    btn.className = "px-8 py-4 rounded-2xl btn-3d btn-mint font-kids font-bold text-base flex items-center space-x-2 shadow-lg";
+                }
+            },
+
+            proceedToReading() {
+                sound.playPop();
+                const lvl = DATA.levels.find(l => l.id === state.currentLevel);
+                if (!lvl) return;
+
+                document.getElementById('reading-text-title').textContent = lvl.title;
+                document.getElementById('reading-word-count-badge').textContent = `${lvl.wordCount} palabras`;
+
+                const freeBox = document.getElementById('reader-free-box');
+                freeBox.innerHTML = `<p class="leading-relaxed text-slate-100">${lvl.text}</p>`;
+
+                if (state.readerMode === 'free') {
+                    freeBox.classList.add('hidden');
+                }
+
+                document.getElementById('reading-btn-text').textContent = "Iniciar Lectura";
+                document.getElementById('reading-timer-display').textContent = "00:00";
+                state.isReadingActive = false;
+
+                app.drawTreeSvg('reading-tree-svg', lvl.targetComponent);
+                app.navigateTo('reading');
+            },
+
+            retryCurrentLevel() {
+                sound.playClick();
+                app.startLevel(state.currentLevel);
+            },
+
+            nextLevelNav() {
+                sound.playClick();
+                if (state.currentLevel < DATA.levels.length) {
+                    app.startLevel(state.currentLevel + 1);
+                } else {
+                    app.navigateTo('home');
+                }
+            },
+
+            handleAuthSubmit(event) {
+                if (event) event.preventDefault();
+                sound.playPop();
+
+                const codeInput = document.getElementById('auth-code-input').value.trim();
+                const passInput = document.getElementById('auth-pass-input').value.trim();
+                const statusMsg = document.getElementById('auth-status-msg');
+
+                statusMsg.classList.remove('hidden', 'text-mint-400', 'text-magenta-500');
+                statusMsg.classList.add('text-amber-400');
+                statusMsg.textContent = "Verificando credenciales...";
+
+                if (passInput === 'DocenteAdmin*' || codeInput.toLowerCase() === 'docente') {
+                    state.userStats.isTeacher = true;
+                    state.userStats.currentUser = null;
+                    state.userStats.save();
+
+                    statusMsg.className = "text-xs font-bold text-center text-mint-400";
+                    statusMsg.textContent = "¡Bienvenido, Profesor(a)! Abriendo panel...";
+
+                    setTimeout(() => {
+                        document.getElementById('login-gatekeeper').classList.add('hidden');
+                        document.getElementById('main-app-wrapper').classList.remove('hidden');
+                        document.getElementById('student-stats-header').classList.add('hidden');
+                        document.getElementById('nav-trainer-btn').classList.add('hidden');
+                        document.getElementById('nav-pokedex-btn').classList.add('hidden');
+                        app.navigateTo('teacher-dashboard');
+                    }, 500);
+                    return;
+                }
+
+                const codeLower = codeInput.toLowerCase();
+
+                if (codeLower === 'ejemplo' || codeLower === 'ensayo') {
+                    state.userStats.isTeacher = false;
+                    state.userStats.currentUser = {
+                        nombre: "Estudiante de Prueba",
+                        codigo: "93584",
+                        grado: "6-1"
+                    };
+                    state.userStats.save();
+                    state.updateHeaderUI();
+
+                    statusMsg.className = "text-xs font-bold text-center text-mint-400";
+                    statusMsg.textContent = "¡Bienvenido! Modo de prueba activado.";
+
+                    setTimeout(() => {
+                        document.getElementById('login-gatekeeper').classList.add('hidden');
+                        document.getElementById('main-app-wrapper').classList.remove('hidden');
+                    }, 500);
+                    return;
+                }
+
+                const scriptUrl = state.userStats.sheetScriptUrl;
+                if (!scriptUrl) {
+                    state.userStats.isTeacher = false;
+                    state.userStats.currentUser = {
+                        nombre: `Estudiante (${codeInput})`,
+                        codigo: codeInput,
+                        grado: "6-1"
+                    };
+                    state.userStats.save();
+                    state.updateHeaderUI();
+
+                    document.getElementById('login-gatekeeper').classList.add('hidden');
+                    document.getElementById('main-app-wrapper').classList.remove('hidden');
+                    return;
+                }
+
+                fetch(scriptUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                    body: JSON.stringify({
+                        action: 'login',
+                        codigo: codeInput,
+                        password: passInput
+                    })
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if (data && data.result === 'success' && data.user) {
+                        state.userStats.isTeacher = false;
+                        state.userStats.currentUser = {
+                            nombre: data.user.nombre,
+                            codigo: data.user.codigo,
+                            grado: data.user.grado
+                        };
+                        state.userStats.save();
+                        state.updateHeaderUI();
+
+                        statusMsg.className = "text-xs font-bold text-center text-mint-400";
+                        statusMsg.textContent = `¡Bienvenido(a), ${data.user.nombre.split(' ')[0]}!`;
+
+                        setTimeout(() => {
+                            document.getElementById('login-gatekeeper').classList.add('hidden');
+                            document.getElementById('main-app-wrapper').classList.remove('hidden');
+                        }, 600);
+                    } else {
+                        statusMsg.className = "text-xs font-bold text-center text-magenta-500";
+                        statusMsg.textContent = (data && data.message) ? data.message : "Código de estudiante no encontrado o clave incorrecta.";
+                    }
+                })
+                .catch(err => {
+                    console.warn("Autenticación remota no disponible, ingresando en modo local:", err);
+                    state.userStats.isTeacher = false;
+                    state.userStats.currentUser = {
+                        nombre: `Estudiante (${codeInput})`,
+                        codigo: codeInput,
+                        grado: "6-1"
+                    };
+                    state.userStats.save();
+                    state.updateHeaderUI();
+
+                    document.getElementById('login-gatekeeper').classList.add('hidden');
+                    document.getElementById('main-app-wrapper').classList.remove('hidden');
+                });
+            },
+
+            sendResultsToSheet(payload) {
+                const scriptUrl = state.userStats.sheetScriptUrl;
+                if (!scriptUrl) return;
+
+                fetch(scriptUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                    body: JSON.stringify({
+                        action: 'saveResult',
+                        fecha: new Date().toLocaleString(),
+                        nombre: payload.nombre,
+                        codigo: payload.codigo,
+                        grado: payload.grado,
+                        nivel: payload.nivel,
+                        ppm: payload.ppm,
+                        categoria: payload.categoria,
+                        comprension: payload.comprension,
+                        correctas: payload.correctas,
+                        tiempo: payload.tiempo,
+                        puntos: payload.puntos
+                    })
+                })
+                .catch(err => console.warn("No se pudo registrar en Google Sheets:", err));
             }
         };
 
